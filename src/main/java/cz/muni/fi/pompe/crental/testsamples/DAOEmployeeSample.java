@@ -16,7 +16,7 @@ import javax.persistence.Persistence;
  */
 public class DAOEmployeeSample {
         
-        public void run() throws ClassNotFoundException {
+        public void run() {
             
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
             DAOEmployeeImpl daoemployee = new DAOEmployeeImpl();

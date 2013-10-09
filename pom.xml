@@ -9,18 +9,32 @@
 
   <name>crental</name>
   <url>http://maven.apache.org</url>
-
+ 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <build>
+      <plugins>
+        <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                      <source>1.7</source>
+                      <target>1.7</target>
+              </configuration>
+        </plugin>
+      </plugins>
+  </build>
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
     </dependency>
+    
+    
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -36,5 +50,6 @@
 	<artifactId>hsqldb</artifactId>
 	<version>1.8.0.7</version>
 </dependency>
+
   </dependencies>
 </project>
