@@ -19,6 +19,11 @@ public class DAOEmployeeImpl implements DAOEmployee{
     
     private EntityManagerFactory emf;
         
+    /**
+     * Method set EntityManagerFactory for this class.
+     * This class wouldn't work without EntityManagerFactory.
+     * @param emf EntityManagerFactory to be set
+     */
     public void setEntityManagerFactory(EntityManagerFactory emf) {
         this.emf = emf;
     }

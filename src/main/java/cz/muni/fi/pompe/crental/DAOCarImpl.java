@@ -1,6 +1,7 @@
 package cz.muni.fi.pompe.crental;
 
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -8,6 +9,17 @@ import java.util.List;
  */
 public class DAOCarImpl implements DAOCar{
 
+    private EntityManagerFactory emf;
+    
+    /**
+     * Method set EntityManagerFactory for this class.
+     * This class wouldn't work without EntityManagerFactory.
+     * @param emf EntityManagerFactory to be set
+     */
+    public void setEntityManagerFactory(EntityManagerFactory emf){
+        this.emf = emf;
+    }
+    
     @Override
     public void createCar(Car car) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
