@@ -20,7 +20,7 @@ public class DAOCarImplTest {
     
     @Before
     public void setUp() {
-        emf = Persistence.createEntityManagerFactory("CarCaralPUInMemory");
+        emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
         daocar = new DAOCarImpl();
         daocar.setEntityManagerFactory(emf);
     }
