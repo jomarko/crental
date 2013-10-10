@@ -4,4 +4,8 @@
 *.jar
 *.war
 *.ear
-/target/
+/target/classes/cz/*
+/target/generated-sources/*
+/target/surefire/*
+/target/surefire-reports/*
+/target/test-classes/*
