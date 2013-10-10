@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
  *
  * @author jozef
  */
-public class DAOEmployeeImpl {
+public class DAOEmployeeImpl implements DAOEmployee{
     
     private EntityManagerFactory emf;
         
@@ -23,12 +23,6 @@ public class DAOEmployeeImpl {
         this.emf = emf;
     }
         
-    /**
-     * Method stores employee to database.
-     * @throws NullPointerException if employee is null
-     * @throws IllegalArgumentException if employee has id, hasn't name, password or accessRight set
-     * @param employee Instance of Employee to be stored. Instance can't be stored before.
-     */
     public void createEmployee(Employee employee){
         checkEntityManagerFactory();
         checkEmployeeWithoutId(employee);
@@ -43,12 +37,6 @@ public class DAOEmployeeImpl {
         }
     }
     
-    /**
-     * Method delete employee from database.
-     * @throws NullPointerException if employee is null
-     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set
-     * @param employee Instance of Employee to be deleted. Instance must be stored before method is called.
-     */
     public void deleteEmployee(Employee employee){
         checkEntityManagerFactory();
         checkEmployeeWithId(employee);
@@ -66,12 +54,6 @@ public class DAOEmployeeImpl {
         }
     }
     
-    /**
-     * Method update record in database, which has the same id as employee.
-     * @throws NullPointerException if employee is null
-     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set
-     * @param employee Instance of Employee to be updated. Instance must be stored before method is called.
-     */
     public void updateEmployee(Employee employee){
         checkEntityManagerFactory();
         checkEmployeeWithId(employee);
@@ -91,10 +73,6 @@ public class DAOEmployeeImpl {
         }
     }
     
-    /**
-     * Method returns List of all employees in database
-     * @return List of all employees in database. If no employees is stored, empty list is returned;
-     */
     public List<Employee> getAllEmployees(){
         checkEntityManagerFactory();
         
@@ -111,13 +89,6 @@ public class DAOEmployeeImpl {
         return resultList;
     }
     
-    /**
-     * Method returns employee with id in database
-     * @throws NullPointerException If id is null
-     * @throws NoResultException If id isn't in database
-     * @param id Id of wanted employee
-     * @return Instance of Employee with wanted id
-     */
     public Employee getEmployeeById(Long id){
         checkEntityManagerFactory();
         
