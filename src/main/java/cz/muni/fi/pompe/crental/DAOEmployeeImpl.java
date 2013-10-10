@@ -12,7 +12,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Class must have set EntityManagerFactory for correct working.
+ * Otherwise is throws IllegalStateException by calling it's methods
  * @author jozef
  */
 public class DAOEmployeeImpl implements DAOEmployee{
