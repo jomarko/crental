@@ -46,5 +46,7 @@ public class DAOEmployeeSample {
 
             daoemployee.deleteEmployee(e);
             System.out.println(daoemployee.getAllEmployees());
+            
+            emf.close();
         }
 }
