@@ -5,6 +5,7 @@
 package cz.muni.fi.pompe.crental;
 
 import java.util.List;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -23,14 +24,15 @@ public interface DAOEmployee {
      * Method delete employee from database.
      * @throws NullPointerException if employee is null
      * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set
+     * @throws NoResultException if such employee isn't in database
      * @param employee Instance of Employee to be deleted. Instance must be stored before method is called.
      */
     void deleteEmployee(Employee employee);
     
     /**
      * Method update record in database, which has the same id as employee.
-     * @throws NullPointerException if employee is null
-     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set
+     * @throws NullPointerException if employee is null, or employee's id isn't in database
+     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set, or employee with such id isn't in database
      * @param employee Instance of Employee to be updated. Instance must be stored before method is called.
      */
     void updateEmployee(Employee employee);

@@ -25,6 +25,8 @@ public class Request implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date dateTo;
     
+    private String carName;
+
     @OneToOne
     private Employee employee;
 
@@ -60,4 +62,11 @@ public class Request implements Serializable {
         this.dateTo = dateTo;
     }
     
+    public String getCarName() {
+        return carName;
+    }
+
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
 }

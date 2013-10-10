@@ -1,11 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: cz.muni.fi.pompe.crental.DAORequestImplTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.108 sec <<< FAILURE!
-testCreateRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.024 sec  <<< FAILURE!
-java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testCreateRequest(DAORequestImplTest.java:50)
+Tests run: 5, Failures: 2, Errors: 3, Skipped: 0, Time elapsed: 4.629 sec <<< FAILURE!
+testCreateRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 3.451 sec  <<< FAILURE!
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:92)
+	at org.junit.Assert.assertTrue(Assert.java:43)
+	at org.junit.Assert.assertNotNull(Assert.java:526)
+	at org.junit.Assert.assertNotNull(Assert.java:537)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testCreateRequest(DAORequestImplTest.java:69)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -39,10 +42,10 @@ java.lang.AssertionError: The test case is a prototype.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-testUpdateRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.015 sec  <<< FAILURE!
-java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testUpdateRequest(DAORequestImplTest.java:63)
+testUpdateRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.195 sec  <<< ERROR!
+java.lang.NullPointerException
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.assertDeepEqualsRequest(DAORequestImplTest.java:353)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testUpdateRequest(DAORequestImplTest.java:135)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -76,10 +79,13 @@ java.lang.AssertionError: The test case is a prototype.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-testDeleteRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.001 sec  <<< FAILURE!
-java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testDeleteRequest(DAORequestImplTest.java:76)
+testDeleteRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.218 sec  <<< FAILURE!
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:92)
+	at org.junit.Assert.assertTrue(Assert.java:43)
+	at org.junit.Assert.assertNotNull(Assert.java:526)
+	at org.junit.Assert.assertNotNull(Assert.java:537)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testDeleteRequest(DAORequestImplTest.java:214)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -113,10 +119,9 @@ java.lang.AssertionError: The test case is a prototype.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-testGetAllRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0 sec  <<< FAILURE!
-java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetAllRequest(DAORequestImplTest.java:90)
+testGetAllRequest(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.341 sec  <<< ERROR!
+java.lang.NullPointerException
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetAllRequest(DAORequestImplTest.java:288)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -150,10 +155,10 @@ java.lang.AssertionError: The test case is a prototype.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-testGetRequestById(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.001 sec  <<< FAILURE!
-java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetRequestById(DAORequestImplTest.java:105)
+testGetRequestById(cz.muni.fi.pompe.crental.DAORequestImplTest)  Time elapsed: 0.223 sec  <<< ERROR!
+java.lang.NullPointerException
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.assertDeepEqualsRequest(DAORequestImplTest.java:353)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetRequestById(DAORequestImplTest.java:325)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

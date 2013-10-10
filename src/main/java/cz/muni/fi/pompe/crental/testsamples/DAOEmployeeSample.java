@@ -35,7 +35,7 @@ public class DAOEmployeeSample {
             e.setPassword("ZZZ");
 
             daoemployee.createEmployee(e);
-
+                                    
             System.out.println(daoemployee.getAllEmployees());
             System.out.println(daoemployee.getEmployeeById(e.getId()));
 

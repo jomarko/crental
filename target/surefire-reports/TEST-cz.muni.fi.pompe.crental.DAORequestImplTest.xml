@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="5" time="0.108" errors="0" skipped="0" tests="5" name="cz.muni.fi.pompe.crental.DAORequestImplTest">
+<testsuite failures="2" time="4.635" errors="3" skipped="0" tests="5" name="cz.muni.fi.pompe.crental.DAORequestImplTest">
   <properties>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-oracle/jre/lib/amd64"/>
-    <property name="java.vm.version" value="24.0-b56"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64"/>
+    <property name="java.vm.version" value="23.7-b01"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="user.country" value="CZ"/>
+    <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/var/www/crental"/>
-    <property name="java.runtime.version" value="1.7.0_40-b43"/>
+    <property name="user.dir" value="/home/jozef/muni/pa165/crental"/>
+    <property name="java.runtime.version" value="1.7.0_25-b30"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-7-oracle/jre/lib/endorsed"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/home/jozef/netbeans-7.3/netbeans-7.3.1/java/maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/i386::/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="3.2.0-54-generic"/>
-    <property name="user.home" value="/home/patrik"/>
-    <property name="user.timezone" value="Europe/Prague"/>
+    <property name="os.version" value="3.2.0-53-generic"/>
+    <property name="user.home" value="/home/jozef"/>
+    <property name="user.timezone" value="Europe/Bratislava"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="1.7"/>
-    <property name="user.name" value="patrik"/>
-    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="user.name" value="jozef"/>
+    <property name="java.class.path" value="/home/jozef/netbeans-7.3/netbeans-7.3.1/java/maven/boot/plexus-classworlds-2.4.jar"/>
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/usr/lib/jvm/java-7-oracle/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="java.home" value="/usr/lib/jvm/java-7-openjdk-amd64/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.language" value="cs"/>
+    <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.7.0_40"/>
-    <property name="java.ext.dirs" value="/usr/lib/jvm/java-7-oracle/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="java.version" value="1.7.0_25"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
     <property name="securerandom.source" value="file:/dev/./urandom"/>
-    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-7-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-7-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-7-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-7-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-7-oracle/jre/classes"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/netx.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/plugin.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rhino.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="maven.home" value="/home/jozef/netbeans-7.3/netbeans-7.3.1/java/maven"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -59,10 +59,13 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.025" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testCreateRequest">
-    <failure message="The test case is a prototype." type="java.lang.AssertionError">java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testCreateRequest(DAORequestImplTest.java:50)
+  <testcase time="3.451" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testCreateRequest">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:92)
+	at org.junit.Assert.assertTrue(Assert.java:43)
+	at org.junit.Assert.assertNotNull(Assert.java:526)
+	at org.junit.Assert.assertNotNull(Assert.java:537)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testCreateRequest(DAORequestImplTest.java:69)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -97,13 +100,56 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </failure>
-    <system-out>createRequest
-</system-out>
+    <system-err>Oct 10, 2013 9:00:08 PM org.hibernate.annotations.common.Version &lt;clinit&gt;
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+Oct 10, 2013 9:00:08 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.1.4.Final}
+Oct 10, 2013 9:00:08 PM org.hibernate.cfg.Environment &lt;clinit&gt;
+INFO: HHH000206: hibernate.properties not found
+Oct 10, 2013 9:00:08 PM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+Oct 10, 2013 9:00:10 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Oct 10, 2013 9:00:10 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20
+Oct 10, 2013 9:00:10 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000006: Autocommit mode: true
+Oct 10, 2013 9:00:10 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000401: using driver [org.hsqldb.jdbcDriver] at URL [jdbc:hsqldb:mem:unit-testing-jpa]
+Oct 10, 2013 9:00:10 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000046: Connection properties: {user=sa, password=****, autocommit=true, release_mode=auto}
+Oct 10, 2013 9:00:10 PM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+Oct 10, 2013 9:00:10 PM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+Oct 10, 2013 9:00:10 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+Oct 10, 2013 9:00:10 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory &lt;init&gt;
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Request drop constraint FKA4878A6F1760A4C3
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Table not found: REQUEST in statement [alter table Request]
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop sequence hibernate_sequence
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Sequence not found in statement [drop sequence hibernate_sequence]
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:11 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:11 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl stop
+INFO: HHH000030: Cleaning up connection pool [jdbc:hsqldb:mem:unit-testing-jpa]
+</system-err>
   </testcase>
-  <testcase time="0.015" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testUpdateRequest">
-    <failure message="The test case is a prototype." type="java.lang.AssertionError">java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testUpdateRequest(DAORequestImplTest.java:63)
+  <testcase time="0.196" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testUpdateRequest">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.assertDeepEqualsRequest(DAORequestImplTest.java:353)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testUpdateRequest(DAORequestImplTest.java:135)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -137,14 +183,52 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</failure>
-    <system-out>updateRequest
-</system-out>
+</error>
+    <system-err>Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000006: Autocommit mode: true
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000401: using driver [org.hsqldb.jdbcDriver] at URL [jdbc:hsqldb:mem:unit-testing-jpa]
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000046: Connection properties: {user=sa, password=****, autocommit=true, release_mode=auto}
+Oct 10, 2013 9:00:12 PM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory &lt;init&gt;
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Request drop constraint FKA4878A6F1760A4C3
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Table not found: REQUEST in statement [alter table Request]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop sequence hibernate_sequence
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Sequence not found in statement [drop sequence hibernate_sequence]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl stop
+INFO: HHH000030: Cleaning up connection pool [jdbc:hsqldb:mem:unit-testing-jpa]
+</system-err>
   </testcase>
-  <testcase time="0.001" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testDeleteRequest">
-    <failure message="The test case is a prototype." type="java.lang.AssertionError">java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testDeleteRequest(DAORequestImplTest.java:76)
+  <testcase time="0.218" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testDeleteRequest">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:92)
+	at org.junit.Assert.assertTrue(Assert.java:43)
+	at org.junit.Assert.assertNotNull(Assert.java:526)
+	at org.junit.Assert.assertNotNull(Assert.java:537)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testDeleteRequest(DAORequestImplTest.java:214)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -179,13 +263,47 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </failure>
-    <system-out>deleteRequest
-</system-out>
+    <system-err>Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000006: Autocommit mode: true
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000401: using driver [org.hsqldb.jdbcDriver] at URL [jdbc:hsqldb:mem:unit-testing-jpa]
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000046: Connection properties: {user=sa, password=****, autocommit=true, release_mode=auto}
+Oct 10, 2013 9:00:12 PM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory &lt;init&gt;
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Request drop constraint FKA4878A6F1760A4C3
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Table not found: REQUEST in statement [alter table Request]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop sequence hibernate_sequence
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Sequence not found in statement [drop sequence hibernate_sequence]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl stop
+INFO: HHH000030: Cleaning up connection pool [jdbc:hsqldb:mem:unit-testing-jpa]
+</system-err>
   </testcase>
-  <testcase time="0" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testGetAllRequest">
-    <failure message="The test case is a prototype." type="java.lang.AssertionError">java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetAllRequest(DAORequestImplTest.java:90)
+  <testcase time="0.341" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testGetAllRequest">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetAllRequest(DAORequestImplTest.java:288)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -219,14 +337,49 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</failure>
-    <system-out>getAllRequest
-</system-out>
+</error>
+    <system-err>Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000006: Autocommit mode: true
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000401: using driver [org.hsqldb.jdbcDriver] at URL [jdbc:hsqldb:mem:unit-testing-jpa]
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000046: Connection properties: {user=sa, password=****, autocommit=true, release_mode=auto}
+Oct 10, 2013 9:00:12 PM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory &lt;init&gt;
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Request drop constraint FKA4878A6F1760A4C3
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Table not found: REQUEST in statement [alter table Request]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop sequence hibernate_sequence
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Sequence not found in statement [drop sequence hibernate_sequence]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl stop
+INFO: HHH000030: Cleaning up connection pool [jdbc:hsqldb:mem:unit-testing-jpa]
+</system-err>
   </testcase>
-  <testcase time="0.001" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testGetRequestById">
-    <failure message="The test case is a prototype." type="java.lang.AssertionError">java.lang.AssertionError: The test case is a prototype.
-	at org.junit.Assert.fail(Assert.java:93)
-	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetRequestById(DAORequestImplTest.java:105)
+  <testcase time="0.223" classname="cz.muni.fi.pompe.crental.DAORequestImplTest" name="testGetRequestById">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.assertDeepEqualsRequest(DAORequestImplTest.java:353)
+	at cz.muni.fi.pompe.crental.DAORequestImplTest.testGetRequestById(DAORequestImplTest.java:325)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -260,8 +413,43 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</failure>
-    <system-out>getRequestById
-</system-out>
+</error>
+    <system-err>Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000006: Autocommit mode: true
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000401: using driver [org.hsqldb.jdbcDriver] at URL [jdbc:hsqldb:mem:unit-testing-jpa]
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000046: Connection properties: {user=sa, password=****, autocommit=true, release_mode=auto}
+Oct 10, 2013 9:00:12 PM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+Oct 10, 2013 9:00:12 PM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory &lt;init&gt;
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Request drop constraint FKA4878A6F1760A4C3
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Table not found: REQUEST in statement [alter table Request]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop sequence hibernate_sequence
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: Sequence not found in statement [drop sequence hibernate_sequence]
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Oct 10, 2013 9:00:12 PM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+Oct 10, 2013 9:00:12 PM org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl stop
+INFO: HHH000030: Cleaning up connection pool [jdbc:hsqldb:mem:unit-testing-jpa]
+</system-err>
   </testcase>
 </testsuite>
