@@ -5,7 +5,6 @@
 package cz.muni.fi.pompe.crental;
 
 import java.util.List;
-import javax.persistence.NoResultException;
 
 /**
  *

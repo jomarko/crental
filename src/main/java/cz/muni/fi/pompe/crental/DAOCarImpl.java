@@ -116,16 +116,4 @@ public class DAOCarImpl implements DAOCar {
             throw new IllegalArgumentException("evidencePlate cannt be null or empty");
         }
     }
-
-//    public Car getCarByLicencePlate(String licencePlate) {
-//        checkEntityManagerFactory();
-//        EntityManager em = emf.createEntityManager();
-//        try {
-//            Query q = em.createNamedQuery("Car.SelectCarByLicencePlate", Car.class);
-//
-//            return (Car) q.getSingleResult();
-//        } finally {
-//            em.close();
-//        }
-//    }
 }

@@ -2,7 +2,6 @@ package cz.muni.fi.pompe.crental;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -23,16 +21,18 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date dateFrom;
     
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date dateTo;
     
     private String description;
     
     @ManyToOne(targetEntity=Employee.class)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     public Long getId() {
