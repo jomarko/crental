@@ -22,6 +22,7 @@ public class DAOCarImpl implements DAOCar {
     //Creates new car
     public void createCar(Car car) {
         EntityManager em = emf.createEntityManager();
+        checkCar(car);
         try {
             em.getTransaction().begin();
             em.persist(car);
@@ -34,7 +35,7 @@ public class DAOCarImpl implements DAOCar {
     @Override
     public void deleteCar(Car car) {
         checkEntityManagerFactory();
-
+        checkCar(car);
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -51,7 +52,7 @@ public class DAOCarImpl implements DAOCar {
     @Override
     public void updateCar(Car car) {
         checkEntityManagerFactory();
-
+        checkCar(car);
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -88,13 +89,31 @@ public class DAOCarImpl implements DAOCar {
     @Override
     public Car getCarById(Long id) {
         checkEntityManagerFactory();
+        
+        if(id == null){
+            throw new NullPointerException("given id was null");
+        }        
         EntityManager em = emf.createEntityManager();
         try {
             Query q = em.createNamedQuery("Car.SelectCarById", Car.class);
-
+            q.setParameter("id", id);
             return (Car) q.getSingleResult();
         } finally {
             em.close();
+        }
+    }
+    
+    private void checkCar(Car car){
+        if(car == null){
+            throw new NullPointerException("car was null");
+        }
+        
+        if(car.getCarType() == null || car.getCarType().isEmpty()){
+            throw new IllegalArgumentException("carType cannt be null or empty");
+        }
+        
+        if(car.getEvidencePlate()== null || car.getEvidencePlate().isEmpty()){
+            throw new IllegalArgumentException("evidencePlate cannt be null or empty");
         }
     }
 
