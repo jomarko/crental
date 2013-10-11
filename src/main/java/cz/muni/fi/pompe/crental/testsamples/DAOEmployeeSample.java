@@ -40,14 +40,16 @@ public class DAOEmployeeSample {
             daoemployee.createEmployee(e);
                                     
             System.out.println(daoemployee.getAllEmployees());
-            System.out.println(daoemployee.getEmployeeById(e.getId()));
-
+            System.out.println(daoemployee.getEmployeeById(e.getId()));           
+            
             e.setName("Tonka");
             daoemployee.updateEmployee(e);        
 
             System.out.println(daoemployee.getEmployeeById(e.getId()));
 
-//            daoemployee.deleteEmployee(e);
+            Employee xxx = daoemployee.getEmployeeById(e.getId() + 1);
+            System.out.println("XXX "+ xxx);
+            
             System.out.println(daoemployee.getAllEmployees());
             
             ///  Request

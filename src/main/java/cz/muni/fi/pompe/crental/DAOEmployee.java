@@ -23,8 +23,8 @@ public interface DAOEmployee {
     /**
      * Method delete employee from database.
      * @throws NullPointerException if employee is null
-     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set
-     * @throws NoResultException if such employee isn't in database
+     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set, or
+     *         employee isn't in database
      * @param employee Instance of Employee to be deleted. Instance must be stored before method is called.
      */
     void deleteEmployee(Employee employee);
@@ -32,7 +32,8 @@ public interface DAOEmployee {
     /**
      * Method update record in database, which has the same id as employee.
      * @throws NullPointerException if employee is null, or employee's id isn't in database
-     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set, or employee with such id isn't in database
+     * @throws IllegalArgumentException if employee hasn't id, name, password or accessRight set, 
+     *         or employee with such id isn't in database
      * @param employee Instance of Employee to be updated. Instance must be stored before method is called.
      */
     void updateEmployee(Employee employee);
@@ -46,9 +47,8 @@ public interface DAOEmployee {
     /**
      * Method returns employee with id in database
      * @throws NullPointerException If id is null
-     * @throws NoResultException If id isn't in database
      * @param id Id of wanted employee
-     * @return Instance of Employee with wanted id
+     * @return Instance of Employee with wanted id, if such 'Employee' doesn't exist in database null is returned
      */
     Employee getEmployeeById(Long id);
 }
