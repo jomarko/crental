@@ -1,5 +1,6 @@
 package cz.muni.fi.pompe.crental;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -62,21 +63,25 @@ public class DAORequestImpl implements DAORequest{
     @Override
     public List<Request> getAllRequest() {
         EntityManager em = this.emf.createEntityManager();
-        
+        List<Request> result = new ArrayList<>();
         try {
              TypedQuery<Request> query = em.createQuery("from Request as r", Request.class);
-             return query.getResultList();
+             result = query.getResultList();
         } finally {
             if (em != null) {
                 em.close();
             }
         }
+        
+        return result;
     }
     
     @Override
     public Request getRequestById(Long id) {
         EntityManager em = this.emf.createEntityManager();
-        
+        if(id == null){
+            throw new NullPointerException("given id was null");
+        }
         try {
              TypedQuery<Request> query = em.createQuery("from Request as r where r.id = ?1", Request.class);
              query.setParameter(1, id);
