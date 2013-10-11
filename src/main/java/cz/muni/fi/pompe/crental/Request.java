@@ -2,21 +2,25 @@ package cz.muni.fi.pompe.crental;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
  *
- * @author Patrik Pompe xpompe00@stud.fit.vutbr.cz
+ * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Entity
 public class Request implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -25,39 +29,54 @@ public class Request implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date dateTo;
     
-    @OneToOne
+    private String description;
+    
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     public Long getId() {
         return id;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public Date getDateFrom() {
         return dateFrom;
-    }
-
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
     }
 
     public Date getDateTo() {
         return dateTo;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
     public void setDateTo(Date dateTo) {
         this.dateTo = dateTo;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
     
+    @Override
+    public String toString() {
+        return "Request{" + "id=" + id + ", description=" + description + ", eployee_id=" + employee.getId() + ",dateFrom=" + dateFrom + ", dateTo=" + dateTo + '}';
+    }
 }

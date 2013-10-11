@@ -4,11 +4,12 @@
  */
 package cz.muni.fi.pompe.crental;
 
+import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,49 +19,44 @@ import static org.junit.Assert.*;
  */
 public class DAORequestImplTest {
 
-    public DAORequestImplTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    private DAORequestImpl dao;
+    private EntityManagerFactory emf;
+
     
     @Before
     public void setUp() {
+        emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
+        dao = new DAORequestImpl(emf);
     }
     
     @After
     public void tearDown() {
+        emf.close();
     }
 
     /**
      * Test of createRequest method, of class DAORequestImpl.
      */
     @Test
-    public void testCreateRequest() {
-        System.out.println("createRequest");
-        Request r = null;
-        DAORequestImpl instance = new DAORequestImpl();
-        instance.createRequest(r);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateRequest method, of class DAORequestImpl.
-     */
-    @Test
-    public void testUpdateRequest() {
-        System.out.println("updateRequest");
-        Request r = null;
-        DAORequestImpl instance = new DAORequestImpl();
-        instance.updateRequest(r);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSaveRequest() {
+        DAOEmployeeImpl daoE = new DAOEmployeeImpl();
+        daoE.setEntityManagerFactory(emf);
+        Employee e = new Employee();
+        e.setName("Anton Takac");
+        e.setPassword("XXX");
+        e.setAccessRight(AccessRight.Admin);
+        daoE.createEmployee(e);
+        
+        Request r = new Request();
+        r.setEmployee(e);
+        r.setDateFrom(new Date(2013, 10, 25));
+        r.setDateTo(new Date(2013, 10, 26));
+        r.setDescription("Chci oktavku");
+        
+        dao.createRequest(r);
+//        List<Request> rl = dao.getAllRequest();
+        
+//        assertEquals(rl.get(0), e);
     }
 
     /**
@@ -68,12 +64,7 @@ public class DAORequestImplTest {
      */
     @Test
     public void testDeleteRequest() {
-        System.out.println("deleteRequest");
-        Request r = null;
-        DAORequestImpl instance = new DAORequestImpl();
-        instance.deleteRequest(r);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -81,13 +72,7 @@ public class DAORequestImplTest {
      */
     @Test
     public void testGetAllRequest() {
-        System.out.println("getAllRequest");
-        DAORequestImpl instance = new DAORequestImpl();
-        List expResult = null;
-        List result = instance.getAllRequest();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -95,13 +80,6 @@ public class DAORequestImplTest {
      */
     @Test
     public void testGetRequestById() {
-        System.out.println("getRequestById");
-        Long id = null;
-        DAORequestImpl instance = new DAORequestImpl();
-        Request expResult = null;
-        Request result = instance.getRequestById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 }

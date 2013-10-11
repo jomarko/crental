@@ -6,7 +6,10 @@ package cz.muni.fi.pompe.crental.testsamples;
 
 import cz.muni.fi.pompe.crental.AccessRight;
 import cz.muni.fi.pompe.crental.DAOEmployeeImpl;
+import cz.muni.fi.pompe.crental.DAORequestImpl;
 import cz.muni.fi.pompe.crental.Employee;
+import cz.muni.fi.pompe.crental.Request;
+import java.util.Date;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -46,6 +49,21 @@ public class DAOEmployeeSample {
 
             daoemployee.deleteEmployee(e);
             System.out.println(daoemployee.getAllEmployees());
+            
+            ///  Request
+            DAORequestImpl daoR = new DAORequestImpl(emf);
+            
+            Request r = new Request();
+            r.setEmployee(e);
+            r.setDateFrom(new Date(2013, 10, 25));
+            r.setDateTo(new Date(2013, 10, 26));
+            r.setDescription("Chci oktavku");
+            System.out.println(r);
+            
+            daoR.createRequest(r);
+            System.out.println(daoR.getAllRequest());
+            
+            
             
             emf.close();
         }
