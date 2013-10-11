@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -57,5 +58,21 @@ public class DAOEmployeeImplTest {
     @Test
     public void testGetEmployeeById() {
         
+    }
+    
+    static Employee newEmployee(Long id, String name, String passwd, AccessRight ar){
+        Employee e = new Employee();
+        e.setId(id);
+        e.setName(name);
+        e.setPassword(passwd);
+        e.setAccessRight(ar);
+        return e;
+    }
+    
+    static void assertDeepEqualsEmployee(Employee expected, Employee actual) {
+        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPassword(), actual.getPassword());
+        assertEquals(expected.getAccessRight(), actual.getAccessRight());
     }
 }
