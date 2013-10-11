@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author Patrik Pompe xpompe00@stud.fit.vutbr.cz
+ * @author Jaro
  */
 public class DAORentImpl implements DAORent{
 
@@ -117,6 +117,10 @@ public class DAORentImpl implements DAORent{
         
         if (r.getConfirmedBy() == null) {
             throw new IllegalArgumentException("'ConfirmedBy' is required");
+        }
+        
+        if (r.getConfirmedBy().getAccessRight() != AccessRight.Admin) {
+            throw new IllegalArgumentException("'Request' can be confirmend only by admin");
         }
         
         if (r.getRentedCar() == null) {

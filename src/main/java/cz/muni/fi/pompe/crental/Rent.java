@@ -2,6 +2,7 @@ package cz.muni.fi.pompe.crental;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,16 +25,17 @@ public class Rent implements Serializable {
     @OneToOne(optional = false)
     private Request request;
     
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date confirmedAt;
     
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee confirmedBy;
     
     
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "car_id")
+    @ManyToOne
+    @JoinColumn(name = "car_id", nullable = false)
     private Car rentedCar;
     
     public Long getId() {
