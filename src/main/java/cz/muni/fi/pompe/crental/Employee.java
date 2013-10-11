@@ -43,20 +43,20 @@ public class Employee {
     @Column(nullable = false, columnDefinition = "varchar(8)")
     private AccessRight accessRight;
 
-    @OneToMany(targetEntity=Request.class,mappedBy="employee",cascade={CascadeType.ALL},orphanRemoval=true)
-    private List<Request> requests = new ArrayList<>();
-
-    public void addRequest(Request r){
-        requests.add(r);
-    }
-    
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }
+//    @OneToMany(targetEntity=Request.class,mappedBy="employee",cascade={CascadeType.ALL},orphanRemoval=true)
+//    private List<Request> requests = new ArrayList<>();
+//
+//    public void addRequest(Request r){
+//        requests.add(r);
+//    }
+//    
+//    public List<Request> getRequests() {
+//        return requests;
+//    }
+//
+//    public void setRequests(List<Request> requests) {
+//        this.requests = requests;
+//    }
     
     
     
