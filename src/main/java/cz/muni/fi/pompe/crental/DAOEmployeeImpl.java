@@ -68,7 +68,7 @@ public class DAOEmployeeImpl implements DAOEmployee{
             em.getTransaction().commit();
         }catch(NoResultException ex){
             logger.log(Level.SEVERE, "No such 'Employee': " + employee + " in database");
-            throw ex;
+            throw new IllegalArgumentException("No such 'Employee': " + employee + " in database", ex);
         }finally{
             closeEntityManager(em);
         }

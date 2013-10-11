@@ -47,9 +47,6 @@ public class DAOEmployeeSample {
 
             System.out.println(daoemployee.getEmployeeById(e.getId()));
 
-            Employee xxx = daoemployee.getEmployeeById(e.getId() + 1);
-            System.out.println("XXX "+ xxx);
-            
             System.out.println(daoemployee.getAllEmployees());
             
             ///  Request
