@@ -98,15 +98,15 @@ public class DAOCarImpl implements DAOCar {
         }
     }
 
-    public Car getCarByLicencePlate(String licencePlate) {
-        checkEntityManagerFactory();
-        EntityManager em = emf.createEntityManager();
-        try {
-            Query q = em.createNamedQuery("Car.SelectCarByLicencePlate", Car.class);
-
-            return (Car) q.getSingleResult();
-        } finally {
-            em.close();
-        }
-    }
+//    public Car getCarByLicencePlate(String licencePlate) {
+//        checkEntityManagerFactory();
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            Query q = em.createNamedQuery("Car.SelectCarByLicencePlate", Car.class);
+//
+//            return (Car) q.getSingleResult();
+//        } finally {
+//            em.close();
+//        }
+//    }
 }

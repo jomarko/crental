@@ -15,7 +15,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries(value={
     @NamedQuery(name = "Car.SelectAllCars", query = "SELECT c FROM Car c"),
     @NamedQuery(name = "Car.SelectCarById", query = "SELECT c FROM Car c WHERE c.id = :id"),
-    @NamedQuery(name = "Car.SelectCarByLicencePlate", query = "SELECT c FROM Car c WHERE c.licencePlate = :licencePlate")
+    @NamedQuery(name = "Car.SelectCarByLicencePlate", query = "SELECT c FROM Car c WHERE c.evidencePlate = :evidencePlate")
 })
 public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
