@@ -91,23 +91,13 @@ public class DAORequestImpl implements DAORequest{
     @Override
     public void createRequest(Request r) {
         validate(r);
-        if(r.getId() != null){
+        
+        if (r.getId() != null){
             throw new IllegalArgumentException("try to save request with set id");
         }
-        saveRequest(r);
-    }
-
-    @Override
-    public void updateRequest(Request r) {
-        validate(r);
-        saveRequest(r);
-    }
-    
-    private void saveRequest(Request r) {
         
         EntityManager em = emf.createEntityManager();
-        System.out.println(r);
-        System.out.println(r.getEmployee());
+
         try {
             em.getTransaction().begin();    
             em.persist(r);
@@ -118,4 +108,28 @@ public class DAORequestImpl implements DAORequest{
             }
         }
     }
+
+    @Override
+    public void updateRequest(Request r) {
+        validate(r);
+        
+        if (r.getId() == null){
+            throw new IllegalArgumentException("try to update request without id");
+        }
+        
+        EntityManager em = emf.createEntityManager();
+        Request toUpdate = em.find(Request.class, r.getId());
+        
+        try {
+            em.getTransaction().begin();    
+            toUpdate.setDateFrom(r.getDateFrom());
+            toUpdate.setDateTo(r.getDateTo());
+            toUpdate.setDescription(r.getDescription());
+            toUpdate.setEmployee(r.getEmployee());
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+    
 }
