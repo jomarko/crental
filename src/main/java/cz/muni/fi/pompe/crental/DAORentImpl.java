@@ -69,8 +69,8 @@ public class DAORentImpl implements DAORent{
             em.getTransaction().begin();    
             rentToUpdate.setConfirmedAt(rent.getConfirmedAt());
             rentToUpdate.setConfirmedBy(rent.getConfirmedBy());
-            rent.setRentedCar(rent.getRentedCar());
-            rent.setRequest(rent.getRequest());
+            rentToUpdate.setRentedCar(rent.getRentedCar());
+            rentToUpdate.setRequest(rent.getRequest());
             em.getTransaction().commit();
         } finally {
             em.close();
