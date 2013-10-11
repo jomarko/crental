@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Patrik Pompe <325292@mail.muni.cz>
+ * @author jozef
  */
 public class DAORequestImplTest {
 
@@ -33,24 +33,12 @@ public class DAORequestImplTest {
     private DAOEmployeeImpl daoemployee;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
-    public DAORequestImplTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
         daorequest = new DAORequestImpl(emf);
         daoemployee = new DAOEmployeeImpl();
         daoemployee.setEntityManagerFactory(emf);
-        //daorequest.setEntityManagerFactory(emf);
     }
     
     @After
@@ -66,8 +54,9 @@ public class DAORequestImplTest {
         // *** Correct part ***
         
         Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        daoemployee.createEmployee(employee);
+        
         Request request = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
-        employee.setRequests(Arrays.asList(request));
         daorequest.createRequest(request);
         
         assertNotNull(request.getId());
@@ -109,7 +98,7 @@ public class DAORequestImplTest {
         } catch (IllegalArgumentException ex) {
             //OK
         }
-        /* TO DO
+        
         try {
             employee = DAOEmployeeImplTest.newEmployee(null, "testname", "", AccessRight.Admin);
             request = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "", employee);
@@ -117,7 +106,7 @@ public class DAORequestImplTest {
             fail("it was created request with invalid employee");
         } catch (IllegalArgumentException ex) {
             //OK
-        }*/
+        }
     }
 
     /**
@@ -127,9 +116,10 @@ public class DAORequestImplTest {
     public void testUpdateRequest() throws ParseException {
         // *** Correct part ***
         
-        /*Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        daoemployee.createEmployee(employee);
+        
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
-        employee.setRequests(Arrays.asList(req1));
         daorequest.createRequest(req1);
         
         req1.setDateFrom(sdf.parse("11/11/1990"));
@@ -141,12 +131,7 @@ public class DAORequestImplTest {
         daorequest.updateRequest(req1);
         req2 = daorequest.getRequestById(req1.getId());
         assertDeepEqualsRequest(req1, req2);
-        
-        employee.setName("testname2");
-        daorequest.updateRequest(req1);
-        req2 = daorequest.getRequestById(req1.getId());
-        assertDeepEqualsRequest(req1, req2);
-        
+                
         // *** Incorrect part ***
         
         try {
@@ -187,17 +172,6 @@ public class DAORequestImplTest {
             //OK
             req1 = req2;
         }
-        
-        try {
-            req2 = req1;
-            employee.setAccessRight(null);
-            req1.setEmployee(employee);
-            daorequest.updateRequest(req1);
-            fail("it was updated request with invalid employee");
-        } catch (IllegalArgumentException ex) {
-            //OK
-            req1 = req2;
-        }*/
     }
 
     /**
@@ -208,26 +182,25 @@ public class DAORequestImplTest {
         // *** Correct part ***
         
         Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        daoemployee.createEmployee(employee);
+
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         Request req2 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "name of car", employee);
-        employee.setRequests(Arrays.asList(req1, req2));
         
-        daoemployee.createEmployee(employee);
+        daorequest.createRequest(req1);
+        daorequest.createRequest(req2);
         
-        assertNotNull(daorequest.getRequestById(req1.getId()));
-        assertNotNull(daorequest.getRequestById(req2.getId()));        
-       
         assertTrue(daorequest.getAllRequest().size() == 2);
         
         daorequest.deleteRequest(req1);
-        assertTrue(daorequest.getAllRequest().size() == 1); //!!!!! je to 0 a neviem preco
+        assertTrue(daorequest.getAllRequest().size() == 1);
         
-        /*daorequest.deleteRequest(req2);
+        daorequest.deleteRequest(req2);
         assertTrue(daorequest.getAllRequest().size() == 0);
         
         // *** Incorrect part ***
         
-        /*req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
+        req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         
         daorequest.createRequest(req1);
                 
@@ -255,7 +228,7 @@ public class DAORequestImplTest {
             req1.setDescription("wrong name");
             daorequest.deleteRequest(req1);
             fail("it was deleted request with wrong carName");
-        } catch (NoResultException ex) {
+        } catch (IllegalArgumentException ex) {
             //OK
             req1 = req2;
         }
@@ -275,9 +248,9 @@ public class DAORequestImplTest {
             req1.setEmployee(employee);
             daorequest.deleteRequest(req1);
             fail("it was deleted request with wrong employee");
-        } catch (NoResultException ex) {
+        } catch (IllegalArgumentException ex) {
             //OK
-        }*/
+        }
     }
 
     /**
@@ -287,13 +260,15 @@ public class DAORequestImplTest {
     public void testGetAllRequest() throws ParseException {
                
         Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        daoemployee.createEmployee(employee);
+        
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         Request req2 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "name of car", employee);
-        employee.setRequests(Arrays.asList(req1, req2));
         
         assertTrue(daorequest.getAllRequest().isEmpty());
         
-        daoemployee.createEmployee(employee);
+        daorequest.createRequest(req1);
+        daorequest.createRequest(req2);
 
         assertTrue(daorequest.getAllRequest().size() == 2);
 
@@ -321,8 +296,9 @@ public class DAORequestImplTest {
     public void testGetRequestById() throws ParseException {
         
         Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        daoemployee.createEmployee(employee);
+        
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
-                
         daorequest.createRequest(req1);
         
         Request req2 = daorequest.getRequestById(req1.getId());
