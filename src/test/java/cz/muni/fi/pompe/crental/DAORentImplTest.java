@@ -21,8 +21,7 @@ public class DAORentImplTest {
     @Before
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
-        daorent = new DAORentImpl();
-        daorent.setEntityManagerFactory(emf);
+        daorent = new DAORentImpl(emf);
     }
     
     @After

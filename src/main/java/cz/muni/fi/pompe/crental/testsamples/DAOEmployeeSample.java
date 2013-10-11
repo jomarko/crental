@@ -47,7 +47,7 @@ public class DAOEmployeeSample {
 
             System.out.println(daoemployee.getEmployeeById(e.getId()));
 
-            daoemployee.deleteEmployee(e);
+//            daoemployee.deleteEmployee(e);
             System.out.println(daoemployee.getAllEmployees());
             
             ///  Request
