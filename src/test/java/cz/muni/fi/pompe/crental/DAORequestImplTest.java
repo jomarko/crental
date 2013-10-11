@@ -30,6 +30,7 @@ public class DAORequestImplTest {
 
     private EntityManagerFactory emf;
     private DAORequestImpl daorequest;
+    private DAOEmployeeImpl daoemployee;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     public DAORequestImplTest() {
@@ -47,6 +48,8 @@ public class DAORequestImplTest {
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
         daorequest = new DAORequestImpl(emf);
+        daoemployee = new DAOEmployeeImpl();
+        daoemployee.setEntityManagerFactory(emf);
         //daorequest.setEntityManagerFactory(emf);
     }
     
@@ -126,6 +129,7 @@ public class DAORequestImplTest {
         
         /*Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
+        employee.setRequests(Arrays.asList(req1));
         daorequest.createRequest(req1);
         
         req1.setDateFrom(sdf.parse("11/11/1990"));
@@ -203,25 +207,27 @@ public class DAORequestImplTest {
     public void testDeleteRequest() throws ParseException {
         // *** Correct part ***
         
-        /*Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         Request req2 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "name of car", employee);
+        employee.setRequests(Arrays.asList(req1, req2));
         
-        daorequest.createRequest(req1);
-        daorequest.createRequest(req2);
+        daoemployee.createEmployee(employee);
         
         assertNotNull(daorequest.getRequestById(req1.getId()));
         assertNotNull(daorequest.getRequestById(req2.getId()));        
        
-        daorequest.deleteRequest(req1);
-        assertTrue(daorequest.getAllRequest().size() == 1);
+        assertTrue(daorequest.getAllRequest().size() == 2);
         
-        daorequest.deleteRequest(req2);
+        daorequest.deleteRequest(req1);
+        assertTrue(daorequest.getAllRequest().size() == 1); //!!!!! je to 0 a neviem preco
+        
+        /*daorequest.deleteRequest(req2);
         assertTrue(daorequest.getAllRequest().size() == 0);
         
         // *** Incorrect part ***
         
-        req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
+        /*req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         
         daorequest.createRequest(req1);
                 
@@ -280,14 +286,14 @@ public class DAORequestImplTest {
     @Test
     public void testGetAllRequest() throws ParseException {
                
-        /*Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         Request req2 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "name of car", employee);
+        employee.setRequests(Arrays.asList(req1, req2));
         
         assertTrue(daorequest.getAllRequest().isEmpty());
         
-        daorequest.createRequest(req1);
-        daorequest.createRequest(req2);
+        daoemployee.createEmployee(employee);
 
         assertTrue(daorequest.getAllRequest().size() == 2);
 
@@ -305,7 +311,7 @@ public class DAORequestImplTest {
         Collections.sort(actual, idComparator);
         Collections.sort(expected, idComparator);
 
-        assertDeepEqualsRequest(expected, actual);*/
+        assertDeepEqualsRequest(expected, actual);
     }
 
     /**
@@ -314,7 +320,7 @@ public class DAORequestImplTest {
     @Test
     public void testGetRequestById() throws ParseException {
         
-        /*Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
+        Employee employee = DAOEmployeeImplTest.newEmployee(null, "testname", "testpasswd", AccessRight.Admin);
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
                 
         daorequest.createRequest(req1);
@@ -335,7 +341,7 @@ public class DAORequestImplTest {
             fail("it was finded request with wrong id");
         }catch(NoResultException ex){
             //OK
-        }*/
+        }
     }
     
     static Request newRequest(Long id, Date from, Date to, String carName, Employee e) {
