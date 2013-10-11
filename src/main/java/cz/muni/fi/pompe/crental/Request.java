@@ -31,7 +31,7 @@ public class Request implements Serializable {
     
     private String description;
     
-    @ManyToOne
+    @ManyToOne(targetEntity=Employee.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

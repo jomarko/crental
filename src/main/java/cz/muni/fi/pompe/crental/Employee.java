@@ -4,6 +4,9 @@
  */
 package cz.muni.fi.pompe.crental;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -39,6 +43,23 @@ public class Employee {
     @Column(nullable = false, columnDefinition = "varchar(8)")
     private AccessRight accessRight;
 
+    @OneToMany(targetEntity=Request.class,mappedBy="employee",cascade={CascadeType.ALL},orphanRemoval=true)
+    private List<Request> requests = new ArrayList<>();
+
+    public void addRequest(Request r){
+        requests.add(r);
+    }
+    
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

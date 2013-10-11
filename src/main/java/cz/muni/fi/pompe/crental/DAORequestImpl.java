@@ -29,6 +29,10 @@ public class DAORequestImpl implements DAORequest{
             throw new IllegalArgumentException("'DateFrom' cannt be after 'DateTo'");
         }
         
+        if (r.getDescription() == null || r.getDescription().isEmpty()) {
+            throw new IllegalArgumentException("'Description' cannt be null or empty");
+        }
+        
         if (r.getEmployee() == null) {
             throw new IllegalArgumentException("'Employee' is required");
         }
@@ -86,16 +90,21 @@ public class DAORequestImpl implements DAORequest{
 
     @Override
     public void createRequest(Request r) {
+        validate(r);
+        if(r.getId() != null){
+            throw new IllegalArgumentException("try to save request with set id");
+        }
         saveRequest(r);
     }
 
     @Override
     public void updateRequest(Request r) {
+        validate(r);
         saveRequest(r);
     }
     
     private void saveRequest(Request r) {
-        validate(r);
+        
         EntityManager em = emf.createEntityManager();
         System.out.println(r);
         System.out.println(r.getEmployee());
