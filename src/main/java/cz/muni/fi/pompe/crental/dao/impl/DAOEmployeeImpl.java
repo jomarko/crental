@@ -1,5 +1,7 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao.impl;
 
+import cz.muni.fi.pompe.crental.entity.Employee;
+import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;

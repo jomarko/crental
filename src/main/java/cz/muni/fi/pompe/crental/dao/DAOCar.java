@@ -1,5 +1,6 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao;
 
+import cz.muni.fi.pompe.crental.entity.Car;
 import java.util.List;
 
 /**

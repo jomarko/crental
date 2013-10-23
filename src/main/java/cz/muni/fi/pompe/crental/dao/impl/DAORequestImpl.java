@@ -1,5 +1,7 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao.impl;
 
+import cz.muni.fi.pompe.crental.entity.Request;
+import cz.muni.fi.pompe.crental.dao.DAORequest;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

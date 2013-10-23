@@ -1,5 +1,7 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao.impl;
 
+import cz.muni.fi.pompe.crental.entity.Car;
+import cz.muni.fi.pompe.crental.dao.DAOCar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,4 +1,4 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.entity;
 
 import java.util.ArrayList;
 import java.util.List;

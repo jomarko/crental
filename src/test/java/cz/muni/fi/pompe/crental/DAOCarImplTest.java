@@ -1,5 +1,7 @@
 package cz.muni.fi.pompe.crental;
 
+import cz.muni.fi.pompe.crental.entity.Car;
+import cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;

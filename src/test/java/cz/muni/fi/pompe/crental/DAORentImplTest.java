@@ -1,5 +1,14 @@
 package cz.muni.fi.pompe.crental;
 
+import cz.muni.fi.pompe.crental.entity.Employee;
+import cz.muni.fi.pompe.crental.entity.Car;
+import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.entity.Rent;
+import cz.muni.fi.pompe.crental.entity.Request;
+import cz.muni.fi.pompe.crental.dao.impl.DAORentImpl;
+import cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl;
+import cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl;
+import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;

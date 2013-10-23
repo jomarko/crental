@@ -1,5 +1,8 @@
 package cz.muni.fi.pompe.crental;
 
+import cz.muni.fi.pompe.crental.entity.Employee;
+import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

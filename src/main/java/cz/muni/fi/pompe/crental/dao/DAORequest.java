@@ -1,12 +1,13 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao;
 
+import cz.muni.fi.pompe.crental.entity.Request;
 import java.util.List;
 
 /**
  *
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
-interface DAORequest {
+public interface DAORequest {
     /**
      * Create record of Request in persitence unit
      * @param Request r
