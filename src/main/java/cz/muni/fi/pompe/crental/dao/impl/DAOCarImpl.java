@@ -16,7 +16,7 @@ public class DAOCarImpl implements DAOCar {
 
     private EntityManagerFactory emf;
 
-    public void setEntityManagerFactory(EntityManagerFactory emf) {
+    public DAOCarImpl(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
@@ -36,7 +36,6 @@ public class DAOCarImpl implements DAOCar {
 
     @Override
     public void deleteCar(Car car) {
-        checkEntityManagerFactory();
         checkCar(car);
         EntityManager em = emf.createEntityManager();
 
@@ -53,7 +52,6 @@ public class DAOCarImpl implements DAOCar {
 
     @Override
     public void updateCar(Car car) {
-        checkEntityManagerFactory();
         checkCar(car);
         EntityManager em = emf.createEntityManager();
 
@@ -69,15 +67,8 @@ public class DAOCarImpl implements DAOCar {
         }
     }
 
-    private void checkEntityManagerFactory() {
-        if (emf == null) {
-            throw new IllegalStateException("EntityManagerFactory emf was not set");
-        }
-    }
-
     @Override
     public List<Car> getAllCars() {
-        checkEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         try {
             Query q = em.createNamedQuery("Car.SelectAllCars", Car.class);
@@ -90,8 +81,6 @@ public class DAOCarImpl implements DAOCar {
 
     @Override
     public Car getCarById(Long id) {
-        checkEntityManagerFactory();
-        
         if(id == null){
             throw new NullPointerException("given id was null");
         }        

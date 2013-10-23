@@ -1,4 +1,4 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao;
 
 import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.entity.Car;
@@ -40,8 +40,7 @@ public class DAORentImplTest {
         daoEmployee = new DAOEmployeeImpl();
         daoEmployee.setEntityManagerFactory(emf);
         
-        daoCar = new DAOCarImpl();
-        daoCar.setEntityManagerFactory(emf);
+        daoCar = new DAOCarImpl(emf);
     }
     
     @After

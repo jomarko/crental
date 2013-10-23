@@ -1,4 +1,4 @@
-package cz.muni.fi.pompe.crental;
+package cz.muni.fi.pompe.crental.dao;
 
 import cz.muni.fi.pompe.crental.entity.Car;
 import cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl;
@@ -21,8 +21,7 @@ public class DAOCarImplTest {
     @Before
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
-        daocar = new DAOCarImpl();
-        daocar.setEntityManagerFactory(emf);
+        daocar = new DAOCarImpl(emf);
     }
     
     @After
