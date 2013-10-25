@@ -38,8 +38,7 @@ public class DAORequestImplTest {
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
         daorequest = new DAORequestImpl(emf);
-        daoemployee = new DAOEmployeeImpl();
-        daoemployee.setEntityManagerFactory(emf);
+        daoemployee = new DAOEmployeeImpl(emf);
     }
     
     @After

@@ -23,8 +23,7 @@ public class DAOEmployeeImplTest {
     @Before
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
-        daoemployee = new DAOEmployeeImpl();
-        daoemployee.setEntityManagerFactory(emf);
+        daoemployee = new DAOEmployeeImpl(emf);
     }
     
     @After

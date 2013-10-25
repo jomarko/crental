@@ -20,24 +20,17 @@ import org.hibernate.annotations.common.util.impl.LoggerFactory;
 public class DAOEmployeeImpl implements DAOEmployee{
     
     private EntityManagerFactory emf;
-    private Logger logger;
+    private static final Logger logger = Logger.getLogger(DAOEmployeeImpl.class.getName());
 
     public DAOEmployeeImpl() {
-        logger = Logger.getLogger(DAOEmployeeImpl.class.getName());
     }
     
-    /**
-     * Method set EntityManagerFactory for this class.
-     * This class wouldn't work without EntityManagerFactory.
-     * @param emf EntityManagerFactory to be set
-     */
-    public void setEntityManagerFactory(EntityManagerFactory emf) {
+    public DAOEmployeeImpl(EntityManagerFactory emf){
         this.emf = emf;
     }
-        
+    
     @Override
     public void createEmployee(Employee employee){
-        checkEntityManagerFactory();
         checkEmployeeWithoutId(employee);
         
         EntityManager em = emf.createEntityManager();
@@ -53,7 +46,6 @@ public class DAOEmployeeImpl implements DAOEmployee{
     
     @Override
     public void deleteEmployee(Employee employee){
-        checkEntityManagerFactory();
         checkEmployeeWithId(employee);
         
         EntityManager em = emf.createEntityManager();
@@ -75,7 +67,6 @@ public class DAOEmployeeImpl implements DAOEmployee{
     
     @Override
     public void updateEmployee(Employee employee){
-        checkEntityManagerFactory();
         checkEmployeeWithId(employee);
         
         EntityManager em = emf.createEntityManager();
@@ -96,8 +87,6 @@ public class DAOEmployeeImpl implements DAOEmployee{
     
     @Override
     public List<Employee> getAllEmployees(){
-        checkEntityManagerFactory();
-        
         EntityManager em = emf.createEntityManager();
         List<Employee> resultList = new ArrayList<>();
         
@@ -113,8 +102,6 @@ public class DAOEmployeeImpl implements DAOEmployee{
     
     @Override
     public Employee getEmployeeById(Long id){
-        checkEntityManagerFactory();
-        
         if(id == null) {
             logger.log(Level.SEVERE, "Id was null");
             throw new NullPointerException("Id was null");
@@ -182,12 +169,5 @@ public class DAOEmployeeImpl implements DAOEmployee{
             em.getTransaction().rollback();
         }
         em.close();
-    }
-    
-    private void checkEntityManagerFactory() {
-        if(emf == null) {
-            logger.log(Level.SEVERE, "Unset'EntityManagerFactory' in DAOEmployeeImpl");
-            throw new IllegalStateException("EntityManagerFactory emf was not set");
-        }
     }
 }
