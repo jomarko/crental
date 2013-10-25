@@ -1,55 +1,35 @@
-package cz.muni.fi.pompe.crental.entity;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cz.muni.fi.pompe.crental.dto;
 
-import cz.muni.fi.pompe.crental.dto.DTOEmployee;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.entity.Employee;
 
 /**
  *
  * @author jozef
  */
-@Entity
-@NamedQueries(value={
-    @NamedQuery(name = "Employee.SelectAllEmployee", query = "SELECT e FROM Employee e"),
-    @NamedQuery(name = "Employee.SelectEmployeeById", query = "SELECT e FROM Employee e WHERE e.id = :id")
-})
-
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+public class DTOEmployee {
     private Long id;
 
-    @Column(nullable = false)
     private String name;
     
-    @Column(nullable = false)
     private String password;
     
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(8)")
     private AccessRight accessRight;
 
-    public Employee() {
+    public DTOEmployee() {
     }
-   
-    public Employee(DTOEmployee dtoemployee) {
-        id = dtoemployee.getId();
-        name = dtoemployee.getName();
-        password = dtoemployee.getPassword();
-        accessRight = dtoemployee.getAccessRight();
+
+    public DTOEmployee(Employee employee) {
+        id = employee.getId();
+        name = employee.getName();
+        password = employee.getPassword();
+        accessRight = employee.getAccessRight();
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -57,7 +37,7 @@ public class Employee {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -81,7 +61,7 @@ public class Employee {
     public void setAccessRight(AccessRight accessRight) {
         this.accessRight = accessRight;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -100,7 +80,7 @@ public class Employee {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Employee other = (Employee) obj;
+        final DTOEmployee other = (DTOEmployee) obj;
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
@@ -118,6 +98,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", name=" + name + ", password=" + password + ", accessRight=" + accessRight + '}';
+        return "DTOEmployee{" + "id=" + id + ", name=" + name + ", password=" + password + ", accessRight=" + accessRight + '}';
     }
 }

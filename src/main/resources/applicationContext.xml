@@ -25,5 +25,12 @@
         <constructor-arg ref="carDao"></constructor-arg>
     </bean>
 
+    <bean id="employeeDao" class="cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl">
+        <constructor-arg ref="entityManagerFactory"></constructor-arg>
+    </bean>
+    
+    <bean id="employeeService" class="cz.muni.fi.pompe.crental.service.EmployeeService">
+        <constructor-arg ref="employeeDao"></constructor-arg>
+    </bean>
 
 </beans>
