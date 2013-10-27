@@ -3,6 +3,8 @@ package cz.muni.fi.pompe.crental.dao.impl;
 import cz.muni.fi.pompe.crental.entity.Car;
 import cz.muni.fi.pompe.crental.dao.DAOCar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,7 +17,8 @@ import javax.persistence.Query;
 public class DAOCarImpl implements DAOCar {
 
     private EntityManagerFactory emf;
-
+    private static final Logger LOG = Logger.getLogger(DAOCarImpl.class.getName());
+    
     public DAOCarImpl(EntityManagerFactory emf) {
         this.emf = emf;
     }
@@ -32,6 +35,7 @@ public class DAOCarImpl implements DAOCar {
         } finally {
             em.close();
         }
+        LOG.log(Level.INFO, "Car {0} was persisted into the database", car);
     }
 
     @Override
@@ -48,6 +52,7 @@ public class DAOCarImpl implements DAOCar {
         } finally {
             em.close();
         }
+        LOG.log(Level.INFO, "Car with id {0} was deleted from the database", car.getId());
     }
 
     @Override
@@ -65,6 +70,7 @@ public class DAOCarImpl implements DAOCar {
         } finally {
             em.close();
         }
+        LOG.log(Level.INFO, "Car {0} was updated", car);
     }
 
     @Override

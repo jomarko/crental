@@ -2,6 +2,7 @@ package cz.muni.fi.pompe.crental.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -17,7 +20,12 @@ import javax.persistence.Temporal;
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Entity
-public class Rent implements Serializable {
+@NamedQueries(value={
+    @NamedQuery(name = "Rent.SelectAllRents", query = "SELECT r FROM Rent r"),
+    @NamedQuery(name = "Rent.SelectRentById", query = "SELECT r FROM Rent r WHERE r.id = :id")
+})
+public class Rent {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -37,7 +45,7 @@ public class Rent implements Serializable {
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     private Car rentedCar;
-    
+
     public Long getId() {
         return id;
     }
@@ -77,9 +85,47 @@ public class Rent implements Serializable {
     public void setRentedCar(Car rentedCar) {
         this.rentedCar = rentedCar;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.confirmedAt);
+        hash = 67 * hash + Objects.hashCode(this.confirmedBy);
+        hash = 67 * hash + Objects.hashCode(this.rentedCar);
+        hash = 67 * hash + Objects.hashCode(this.request);
+        return hash;
+    }
+
+   @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Rent other = (Rent) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.confirmedAt, other.confirmedAt)) {
+            return false;
+        }
+        if (!Objects.equals(this.confirmedBy, other.confirmedBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.rentedCar, other.rentedCar)) {
+            return false;
+        }
+        if (!Objects.equals(this.request, other.request)) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
-        return "Rent{id="+id+", confirmedAt="+confirmedAt+", employee_id="+confirmedBy.getId()+", car_id="+rentedCar.getId()+", request_id="+request.getId()+'}';
+        return "Rent{id=" + id + ", confirmedAt=" + confirmedAt + ", employee_id=" + confirmedBy.getId() + ", car_id=" + rentedCar.getId() + ", request_id=" + request.getId() + '}';
     }
 }

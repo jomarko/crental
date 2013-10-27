@@ -1,5 +1,6 @@
 package cz.muni.fi.pompe.crental.dao;
 
+import cz.fi.muni.pompe.crental.exception.CarRentalException;
 import cz.muni.fi.pompe.crental.entity.Rent;
 import java.util.List;
 
@@ -14,14 +15,14 @@ public interface DAORent {
     * @throws IllegalArgumentException if rent has id, hasn't request, confirmedBy, confirmedAt, rentedCar set
     * @param rent Instance of Rent to be stored. Instance can't be stored before.
     */
-    void createRent(Rent rent);
+    void createRent(Rent rent) throws CarRentalException;
    
     /**
     * Method deletes a rent from database.
     * @throws NullPointerException if idOfRentToBeDeleted is null
     * @param id Id of Rent to be deleted.
     */
-    void deleteRent(Rent rent);
+    void deleteRent(Long id) throws CarRentalException;
     
    /**
      * Method update record in database, which has the same id as rent.
@@ -29,13 +30,13 @@ public interface DAORent {
      * @throws IllegalArgumentException if employee hasn't id, request, confirmedBy, confirmedAt, rentedCar set
      * @param rent Instance of Rent to be updated. Instance must be stored before method is called.
      */
-    void updateRent(Rent rent);
+    void updateRent(Rent rent) throws CarRentalException;
     
     /**
      * Method returns List of all rents in database
      * @return List of all rents in database. If no rent is stored, empty list is returned;
      */
-    List<Rent> getAllRents();
+    List<Rent> getAllRents() throws CarRentalException;
     
     /**
      * Method returns Rent with specific id in database
@@ -44,5 +45,5 @@ public interface DAORent {
      * @param idOfRent Id of wanted Rent
      * @return Instance of Rent with wanted id
      */
-    Rent getRentById(Long idOfRent);
+    Rent getRentById(Long idOfRent) throws CarRentalException;
 }
