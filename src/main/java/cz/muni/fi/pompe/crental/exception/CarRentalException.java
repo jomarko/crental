@@ -1,4 +1,4 @@
-package cz.fi.muni.pompe.crental.exception;
+package cz.muni.fi.pompe.crental.exception;
 
 /**
  *

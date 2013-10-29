@@ -1,6 +1,6 @@
 package cz.muni.fi.pompe.crental.dao.impl;
 
-import cz.fi.muni.pompe.crental.exception.CarRentalException;
+import cz.muni.fi.pompe.crental.exception.CarRentalException;
 import cz.muni.fi.pompe.crental.entity.AccessRight;
 import cz.muni.fi.pompe.crental.entity.Rent;
 import cz.muni.fi.pompe.crental.dao.DAORent;
