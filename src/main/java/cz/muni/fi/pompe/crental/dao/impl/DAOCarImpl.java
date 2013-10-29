@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 /**
@@ -22,6 +23,13 @@ public class DAOCarImpl implements DAOCar {
     public DAOCarImpl(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    @PersistenceUnit
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+    
+    
 
     @Override
     //Creates new car

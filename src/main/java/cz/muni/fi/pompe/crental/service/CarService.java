@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Service
+@Transactional
 public class CarService {
     private DAOCar dao;
 
-    public CarService(DAOCar dao) {
+    public void setDao(DAOCar dao) {
         this.dao = dao;
     }
 
-    @Transactional
     public void createNewCar(String carType, String evidencePlate) {
         Car car = new Car();
         car.setCarType(carType);
@@ -26,7 +26,7 @@ public class CarService {
         dao.createCar(car);
     }
     
-    @Transactional(readOnly = true)
+
     public List<Car> getAllCars() {
         return dao.getAllCars();
     }

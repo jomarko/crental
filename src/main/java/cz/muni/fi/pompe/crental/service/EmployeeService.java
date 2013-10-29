@@ -20,12 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmployeeService {
     
     private DAOEmployee daoemployee;
-    
-    public EmployeeService(){
-        
-    }
-    
-    public EmployeeService(DAOEmployee daoemployee){
+
+    public void setDaoemployee(DAOEmployee daoemployee) {
         this.daoemployee = daoemployee;
     }
     
