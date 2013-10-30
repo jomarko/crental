@@ -1,32 +1,37 @@
 package cz.muni.fi.pompe.crental.dao;
 
-import cz.muni.fi.pompe.crental.entity.Car;
 import cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl;
-import javax.persistence.EntityManagerFactory;
+import cz.muni.fi.pompe.crental.entity.Car;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author jozef
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@TransactionConfiguration(defaultRollback = true)
+@Transactional
 public class DAOCarImplTest {
-    private EntityManagerFactory emf;
+    @Autowired
     private DAOCarImpl daocar;
     
     @Before
     public void setUp() {
-        emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
-        daocar = new DAOCarImpl(emf);
     }
     
     @After
     public void tearDown() {
-        emf.close();
     }
     
     @Test
@@ -81,7 +86,7 @@ public class DAOCarImplTest {
             car.setId(car.getId()+1);
             daocar.updateCar(car);
             fail("wrong id of car");
-        }catch(NullPointerException ex){    }
+        }catch(IllegalArgumentException ex){    }
     }
     
     @Test

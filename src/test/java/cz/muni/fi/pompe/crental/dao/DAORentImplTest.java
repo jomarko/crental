@@ -31,7 +31,7 @@ public class DAORentImplTest {
     private DAOCarImpl daoCar;
     private DAOEmployeeImpl daoEmployee;
     private DAORequestImpl daoRequest;
-
+/*
     @Before
     public void setUp() {
         emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
@@ -212,7 +212,7 @@ public class DAORentImplTest {
         rent.setConfirmedBy(admin);
 
         return rent;
-    }
+    }*/
 
     static void assertDeepEquals(Rent expected, Rent actual) {
         assertEquals(expected.getConfirmedAt(), actual.getConfirmedAt());

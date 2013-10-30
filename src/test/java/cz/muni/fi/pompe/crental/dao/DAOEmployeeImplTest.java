@@ -10,25 +10,37 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@TransactionConfiguration(defaultRollback = true)
+@Transactional
 public class DAOEmployeeImplTest {
     
-    private EntityManagerFactory emf;
+    @Autowired
     private DAOEmployeeImpl daoemployee;
     
     @Before
     public void setUp() {
-        emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
-        daoemployee = new DAOEmployeeImpl(emf);
+        
     }
     
     @After
     public void tearDown() {
-        emf.close();
+        
     }
     
     @Test

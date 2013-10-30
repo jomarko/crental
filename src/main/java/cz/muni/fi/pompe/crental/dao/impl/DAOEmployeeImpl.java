@@ -10,7 +10,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.logging.Logger;
+import javax.persistence.PersistenceContext;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Class must have set EntityManagerFactory for correct working.
@@ -19,27 +21,22 @@ import org.hibernate.annotations.common.util.impl.LoggerFactory;
  */
 public class DAOEmployeeImpl implements DAOEmployee{
     
-    private EntityManagerFactory emf;
+    @PersistenceContext(unitName = "CarRentalPUInMemory")
+    private EntityManager em;
+    
     private static final Logger logger = Logger.getLogger(DAOEmployeeImpl.class.getName());
 
     public DAOEmployeeImpl() {
-    }
-    
-    public DAOEmployeeImpl(EntityManagerFactory emf){
-        this.emf = emf;
     }
     
     @Override
     public void createEmployee(Employee employee){
         checkEmployeeWithoutId(employee);
         
-        EntityManager em = emf.createEntityManager();
         try{
-            em.getTransaction().begin();
             em.persist(employee);
-            em.getTransaction().commit();
         }finally{
-            closeEntityManager(em);
+            em.close();
         }
         logger.log(Level.INFO, "Created 'Employee': {0}", employee);
     }
@@ -48,19 +45,14 @@ public class DAOEmployeeImpl implements DAOEmployee{
     public void deleteEmployee(Employee employee){
         checkEmployeeWithId(employee);
         
-        EntityManager em = emf.createEntityManager();
-        
         try{
             Employee employeeToRemove = em.find(Employee.class, employee.getId());
-
-            em.getTransaction().begin();
             em.remove(employeeToRemove);
-            em.getTransaction().commit();
         }catch(NoResultException ex){
             logger.log(Level.SEVERE, "No such 'Employee': " + employee + " in database");
             throw new IllegalArgumentException("No such 'Employee': " + employee + " in database", ex);
         }finally{
-            closeEntityManager(em);
+            em.close();
         }
         logger.log(Level.INFO, "Deleted 'Employee': {0}", employee);
     }
@@ -69,32 +61,27 @@ public class DAOEmployeeImpl implements DAOEmployee{
     public void updateEmployee(Employee employee){
         checkEmployeeWithId(employee);
         
-        EntityManager em = emf.createEntityManager();
-        
         try{
             Employee employeeToUpdate = em.find(Employee.class, employee.getId());
 
-            em.getTransaction().begin();
             employeeToUpdate.setAccessRight(employee.getAccessRight());
             employeeToUpdate.setName(employee.getName());
             employeeToUpdate.setPassword(employee.getPassword());
-            em.getTransaction().commit();
         }finally{
-            closeEntityManager(em);
+            em.close();
         }
         logger.log(Level.INFO, "Updated 'Employee': {0}", employee);
     }
     
     @Override
     public List<Employee> getAllEmployees(){
-        EntityManager em = emf.createEntityManager();
         List<Employee> resultList = new ArrayList<>();
         
         try{
             TypedQuery<Employee> query = em.createNamedQuery("Employee.SelectAllEmployee", Employee.class);
             resultList = query.getResultList();
         }finally{
-            closeEntityManager(em);
+            em.close();
         }
         
         return resultList;
@@ -107,7 +94,6 @@ public class DAOEmployeeImpl implements DAOEmployee{
             throw new NullPointerException("Id was null");
         }
         
-        EntityManager em = emf.createEntityManager();
         Employee result = null;
         
         try{
@@ -117,7 +103,7 @@ public class DAOEmployeeImpl implements DAOEmployee{
         }catch(NoResultException ex){
             logger.log(Level.WARNING, "Query for ''Employee'' with unknown id: {0}", id);
         }finally{
-            closeEntityManager(em);
+            em.close();
         }
                 
         return result;
@@ -161,13 +147,5 @@ public class DAOEmployeeImpl implements DAOEmployee{
             logger.log(Level.SEVERE, "Employe instance: {0} has set id", e);
             throw new IllegalArgumentException("Employe instance: " + e + " has set id");
         }
-    }
-    
-    private void closeEntityManager(EntityManager em){
-        if(em.getTransaction().isActive()){
-            logger.log(Level.SEVERE, "Executed rollback, because of active Transaction");
-            em.getTransaction().rollback();
-        }
-        em.close();
     }
 }

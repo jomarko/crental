@@ -31,9 +31,7 @@
         <property name="dao" ref="carDao" />
     </bean>
 
-    <bean id="employeeDao" class="cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl">
-        <constructor-arg ref="entityManagerFactory"></constructor-arg>
-    </bean>
+    <bean id="employeeDao" class="cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl"/>
     
     <bean id="employeeService" class="cz.muni.fi.pompe.crental.service.EmployeeService">
         <property name="daoemployee" ref="employeeDao" />
