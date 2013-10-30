@@ -8,11 +8,13 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Roman Stehlik
  */
+@Repository // for PersistenceExceptionTranslationPostProcessor to translate exceptions to DataAccessException
 public class DAOCarImpl implements DAOCar {
     @PersistenceContext
     EntityManager em;
@@ -78,7 +80,7 @@ public class DAOCarImpl implements DAOCar {
     @Override
     public Car getCarById(Long id) {
         if (id == null){
-            throw new NullPointerException("given id was null");
+            throw new IllegalArgumentException("given id was null");
         }        
 
         try {
@@ -92,7 +94,7 @@ public class DAOCarImpl implements DAOCar {
     
     private void checkCar(Car car){
         if (car == null){
-            throw new NullPointerException("car was null");
+            throw new IllegalArgumentException("car was null");
         }
         
         if (car.getCarType() == null || car.getCarType().isEmpty()){

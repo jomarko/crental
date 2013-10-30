@@ -4,6 +4,7 @@ import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.entity.AccessRight;
 import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.junit.After;
@@ -19,6 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -30,18 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class DAOEmployeeImplTest {
     
-    @Autowired
-    private DAOEmployeeImpl daoemployee;
-    
-    @Before
-    public void setUp() {
-        
-    }
-    
-    @After
-    public void tearDown() {
-        
-    }
+    @Resource( name="employeeDao")
+    private DAOEmployee daoemployee;
     
     @Test
     public void testCreateEmployee() {
@@ -53,14 +45,14 @@ public class DAOEmployeeImplTest {
         try {
             daoemployee.createEmployee(e);
              fail("create invalid Employee successful");
-        } catch(Exception ex){    }
+        } catch(DataAccessException ex){    }
 
         e.setPassword("xxx");
         
         try {
             daoemployee.createEmployee(e);
              fail("create invalid Employee successful");
-        } catch(Exception ex){    }
+        } catch(DataAccessException ex){    }
         
         e.setAccessRight(AccessRight.Admin);
         daoemployee.createEmployee(e);
@@ -77,12 +69,12 @@ public class DAOEmployeeImplTest {
         try {
             daoemployee.createEmployee(null);
             fail("null has been created?!");
-        } catch (Exception ex) { }
+        } catch (DataAccessException ex) { }
         
         try {
             daoemployee.createEmployee(e2);
             fail("object with id cannot be created");
-        } catch (Exception ex) { }
+        } catch (DataAccessException ex) { }
     }
     
     @Test
@@ -109,14 +101,14 @@ public class DAOEmployeeImplTest {
         try {
             daoemployee.updateEmployee(e2);
             fail("Invalid employee updated");
-        } catch (Exception ex){ }
+        } catch (DataAccessException ex){ }
         
         e.setId(null);
         
         try {
             daoemployee.updateEmployee(e);
             fail("employee without id updated");
-        } catch (Exception ex){ }
+        } catch (DataAccessException ex){ }
     }
     
     @Test
@@ -170,7 +162,7 @@ public class DAOEmployeeImplTest {
         try{
             daoemployee.getEmployeeById(null);
             fail("employee with nullable id found");
-        } catch (Exception ex) { }
+        } catch (DataAccessException ex) { }
     }
     
     static Employee newEmployee(Long id, String name, String passwd, AccessRight ar){

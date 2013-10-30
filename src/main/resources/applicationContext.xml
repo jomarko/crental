@@ -25,6 +25,9 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
     
+    <!-- Exception translation bean post processor -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
     <bean id="carDao" class="cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl"></bean>
     
     <bean id="carService" class="cz.muni.fi.pompe.crental.service.CarService">

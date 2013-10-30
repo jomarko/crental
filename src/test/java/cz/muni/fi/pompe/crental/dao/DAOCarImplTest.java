@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -24,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class DAOCarImplTest {
     @Autowired
-    private DAOCarImpl daocar;
+    private DAOCar daocar;
     
     @Before
     public void setUp() {
@@ -47,13 +48,13 @@ public class DAOCarImplTest {
         try{
             daocar.createCar(null);
             fail("null car");
-        }catch(NullPointerException ex){    }
+        }catch(DataAccessException ex){    }
         
         try{
             car = newCar(null, "", null);
             daocar.createCar(car);
             fail("invalid car");
-        }catch(IllegalArgumentException ex){    }
+        }catch(DataAccessException ex){    }
         
     }
     
@@ -73,20 +74,20 @@ public class DAOCarImplTest {
         try{
             daocar.updateCar(null);
             fail("null car");
-        }catch(NullPointerException ex){    }
+        }catch(DataAccessException ex){    }
         
         try{
             car.setCarType("");
             daocar.updateCar(car);
             fail("invalid car");
-        }catch(IllegalArgumentException ex){    }
+        }catch(DataAccessException ex){    }
         
         try{
             car = daocar.getCarById(car.getId());
             car.setId(car.getId()+1);
             daocar.updateCar(car);
             fail("wrong id of car");
-        }catch(IllegalArgumentException ex){    }
+        }catch(DataAccessException ex){    }
     }
     
     @Test
@@ -111,7 +112,7 @@ public class DAOCarImplTest {
         try{
             daocar.deleteCar(null);
             fail("null car");
-        }catch(NullPointerException ex){    }
+        }catch(DataAccessException ex){    }
         
         auto = newCar(null, "typ", "spz");
         daocar.createCar(auto);
@@ -119,7 +120,7 @@ public class DAOCarImplTest {
         try{
             daocar.deleteCar(car);
             fail("invalid car");
-        }catch(IllegalArgumentException ex){    }
+        }catch(DataAccessException ex){    }
     }
     
     @Test
@@ -151,13 +152,13 @@ public class DAOCarImplTest {
         
         try{
             daocar.getCarById(null);
-        }catch(NullPointerException ex){
+        }catch(DataAccessException ex){
             
         }
         
         try{
             daocar.getCarById(745l);
-        }catch(NoResultException ex){
+        }catch(DataAccessException ex){
             
         }
     }

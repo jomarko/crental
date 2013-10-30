@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import java.util.logging.Logger;
 import javax.persistence.PersistenceContext;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Otherwise is throws IllegalStateException by calling it's methods
  * @author jozef
  */
+@Repository // for PersistenceExceptionTranslationPostProcessor to translate exceptions to DataAccessException
 public class DAOEmployeeImpl implements DAOEmployee{
     
     @PersistenceContext(unitName = "CarRentalPUInMemory")
@@ -91,7 +93,7 @@ public class DAOEmployeeImpl implements DAOEmployee{
     public Employee getEmployeeById(Long id){
         if(id == null) {
             logger.log(Level.SEVERE, "Id was null");
-            throw new NullPointerException("Id was null");
+            throw new IllegalArgumentException("Id was null");
         }
         
         Employee result = null;
@@ -112,7 +114,7 @@ public class DAOEmployeeImpl implements DAOEmployee{
     private void checkEmployee(Employee e){
         if(e == null){
             logger.log(Level.SEVERE, "Employe instance was null");
-            throw new NullPointerException("Employee instance was null");
+            throw new IllegalArgumentException("Employee instance was null");
         }
         
         if(e.getAccessRight() == null){

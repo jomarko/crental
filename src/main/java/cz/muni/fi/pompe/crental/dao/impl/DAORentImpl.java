@@ -13,11 +13,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Jaro
  */
+@Repository // for PersistenceExceptionTranslationPostProcessor to translate exceptions to DataAccessException
 public class DAORentImpl implements DAORent {
 
     private EntityManagerFactory emf;

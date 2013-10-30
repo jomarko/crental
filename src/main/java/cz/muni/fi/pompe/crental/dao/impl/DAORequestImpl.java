@@ -9,11 +9,13 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
+@Repository // for PersistenceExceptionTranslationPostProcessor to translate exceptions to DataAccessException
 public class DAORequestImpl implements DAORequest {
 
     private EntityManagerFactory emf;
