@@ -1,6 +1,5 @@
 package cz.muni.fi.pompe.crental.entity;
 
-import cz.muni.fi.pompe.crental.dto.DTOCar;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,15 +29,6 @@ public class Car implements Serializable {
     public Car(){
         
         
-    }
-
-    public Car(DTOCar dto) {
-        if (dto.getId() != null) {
-            this.id = dto.getId();
-        }
-        
-        this.carType = dto.getCarType();
-        this.evidencePlate = dto.getEvidencePlate();
     }
 
     public Long getId() {
