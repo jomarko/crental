@@ -35,29 +35,46 @@ public class CarService {
     public DTOCar getCarById(Long id) {
         Car entity = this.dao.getCarById(id);
         
-        return new DTOCar(entity);
+        return entityToDTO(entity);
     }
 
     public void createCar(DTOCar dto) {
-        Car car = new Car(dto);
+        Car car = dtoToEntity(dto);
         dao.createCar(car);
     }
     
     public void deleteCar(DTOCar dto) {
-        dao.deleteCar(new Car(dto));
+        dao.deleteCar(dtoToEntity(dto));
     }
     
     public void updateCar(DTOCar dto) {
-        dao.updateCar(new Car(dto));
+        dao.updateCar(dtoToEntity(dto));
     }
     
     protected List<DTOCar> entitiesToDTOs(List<Car> entities) {
         List<DTOCar> ret = new ArrayList<>();
         
         for (Car car : entities) {
-            ret.add(new DTOCar(car));
+            ret.add(entityToDTO(car));
         }
         
         return ret;
+    }
+    
+    private Car dtoToEntity(DTOCar dto) {
+        Car entity = new Car();
+        entity.setCarType(dto.getCarType());
+        entity.setEvidencePlate(dto.getEvidencePlate());
+        entity.setId(dto.getId());
+        return entity;
+    }
+    
+    private DTOCar entityToDTO(Car entity) {
+        DTOCar dto = new DTOCar();
+        dto.setId(entity.getId());
+        dto.setEvidencePlate(entity.getEvidencePlate());
+        dto.setCarType(dto.getCarType());
+        
+        return dto;
     }
 }

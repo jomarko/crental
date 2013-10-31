@@ -29,19 +29,19 @@ public class RequestService {
     }
     
     public void createRequest(DTORequest dto) {
-        this.daoRequest.createRequest(this.getRequestEntity(dto));
+        this.daoRequest.createRequest(this.dtoToEntity(dto));
     }
     
     public void deleteRequest(DTORequest dto) {
-        this.daoRequest.deleteRequest(new Request(dto));
+        this.daoRequest.deleteRequest(this.dtoToEntity(dto));
     }
     
     public void updateRequest(DTORequest dto) {
-        this.daoRequest.updateRequest(this.getRequestEntity(dto));
+        this.daoRequest.updateRequest(this.dtoToEntity(dto));
     }
     
     public DTORequest getRequestById(Long id) {
-        return new DTORequest(this.daoRequest.getRequestById(id));
+        return entityToDTO(this.daoRequest.getRequestById(id));
     }
     
     public List<DTORequest> getAllRequests() {
@@ -59,16 +59,33 @@ public class RequestService {
         List<DTORequest> ret = new ArrayList<>();
         
         for (Request request : entities) {
-            ret.add(new DTORequest(request));
+            ret.add(entityToDTO(request));
         }
         
         return ret;
     }
     
-    private Request getRequestEntity(DTORequest dto) {
-        Request entity = new Request(dto);
+    private Request dtoToEntity(DTORequest dto) {
+        Request entity = new Request();
         Employee empl = dAOEmployee.getEmployeeById(dto.getEmployeeId());
         entity.setEmployee(empl);
+        entity.setDateFrom(dto.getDateFrom());
+        entity.setDateTo(dto.getDateTo());
+        entity.setDescription(dto.getDescription());
+        entity.setId(dto.getId());
         return entity;
+    }
+    
+    private DTORequest entityToDTO(Request entity) {
+        DTORequest dto = new DTORequest();
+            
+        dto.setId(entity.getId());
+        dto.setDateFrom(entity.getDateFrom());
+        dto.setDateTo(entity.getDateTo());
+        dto.setDescription(entity.getDescription());       
+        dto.setEmployeeName(entity.getEmployee().getName());
+        dto.setEmployeeId(entity.getEmployee().getId());
+        
+        return dto;
     }
 }

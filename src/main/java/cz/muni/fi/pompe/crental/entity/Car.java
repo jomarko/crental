@@ -25,21 +25,6 @@ public class Car implements Serializable {
     private Long id;
     private String carType;
     private String evidencePlate;
-    
-    
-    public Car(){
-        
-        
-    }
-
-    public Car(DTOCar dto) {
-        if (dto.getId() != null) {
-            this.id = dto.getId();
-        }
-        
-        this.carType = dto.getCarType();
-        this.evidencePlate = dto.getEvidencePlate();
-    }
 
     public Long getId() {
         return id;

@@ -36,16 +36,6 @@ public class Request implements Serializable {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    public Request() {
-    }
-
-    public Request(DTORequest dto) {
-        this.dateFrom = dto.getDateFrom();
-        this.dateTo = dto.getDateTo();
-        this.description = dto.getDescription();
-        this.id = dto.getId();
-    }
-
     public Long getId() {
         return id;
     }

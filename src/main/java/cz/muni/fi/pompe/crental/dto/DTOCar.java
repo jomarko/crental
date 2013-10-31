@@ -15,12 +15,6 @@ public class DTOCar {
     public DTOCar() {
     }
 
-    public DTOCar(Car entity) {
-        this.id = entity.getId();
-        this.carType = entity.getCarType();
-        this.evidencePlate = entity.getEvidencePlate();
-    }
-
     public Long getId() {
         return id;
     }

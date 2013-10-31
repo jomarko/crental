@@ -16,17 +16,12 @@ public class DTORequest {
     private Long employeeId;
     private String employeeName;
 
-    public DTORequest(Request request) {
-        this.id = request.getId();
-        this.dateFrom = request.getDateFrom();
-        this.dateTo = request.getDateTo();
-        this.description = request.getDescription();       
-        this.employeeName = request.getEmployee().getName();
-        this.employeeId = request.getEmployee().getId();
-    }
-
     public String getEmployeeName() {
         return employeeName;
+    }
+    
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
     public Long getId() {
@@ -68,7 +63,7 @@ public class DTORequest {
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
