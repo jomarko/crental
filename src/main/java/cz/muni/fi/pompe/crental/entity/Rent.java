@@ -1,8 +1,16 @@
 package cz.muni.fi.pompe.crental.entity;
 
+import cz.muni.fi.pompe.crental.dao.DAOCar;
+import cz.muni.fi.pompe.crental.dao.DAOEmployee;
+import cz.muni.fi.pompe.crental.dao.DAORequest;
+import cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl;
+import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;
+import cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl;
+import cz.muni.fi.pompe.crental.dto.DTORent;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.annotation.Resource;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -46,6 +55,21 @@ public class Rent {
     @JoinColumn(name = "car_id", nullable = false)
     private Car rentedCar;
 
+    public Rent() {
+    }
+
+    public Rent(DTORent dtorent) {
+        DAOCar daocar = new DAOCarImpl();
+        DAOEmployee daoemp = new DAOEmployeeImpl();
+        DAORequest daoreq = new DAORequestImpl();
+        
+        this.id = dtorent.getId();
+        this.confirmedAt = dtorent.getConfirmedAt();
+        this.rentedCar = daocar.getCarById(dtorent.getRentedCarId());
+        this.confirmedBy = daoemp.getEmployeeById(dtorent.getConfirmedById());
+        this.request = daoreq.getRequestById(dtorent.getRequestId());
+    }
+    
     public Long getId() {
         return id;
     }

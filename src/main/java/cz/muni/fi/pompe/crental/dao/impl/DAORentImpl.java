@@ -1,16 +1,13 @@
 package cz.muni.fi.pompe.crental.dao.impl;
 
-import cz.muni.fi.pompe.crental.exception.CarRentalException;
 import cz.muni.fi.pompe.crental.entity.AccessRight;
 import cz.muni.fi.pompe.crental.entity.Rent;
 import cz.muni.fi.pompe.crental.dao.DAORent;
-import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

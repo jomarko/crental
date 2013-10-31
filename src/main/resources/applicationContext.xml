@@ -42,6 +42,10 @@
 
     <bean id="rentDao" class="cz.muni.fi.pompe.crental.dao.impl.DAORentImpl"/>
     
+    <bean id="rentService" class="cz.muni.fi.pompe.crental.service.RentService">
+        <property name="daorent" ref="rentDao" />
+    </bean>
+    
     <bean id="requestDao" class="cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl"/>
 
 </beans>
