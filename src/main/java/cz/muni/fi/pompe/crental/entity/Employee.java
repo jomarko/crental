@@ -40,16 +40,6 @@ public class Employee {
     @Column(nullable = false, columnDefinition = "varchar(8)")
     private AccessRight accessRight;
 
-    public Employee() {
-    }
-   
-    public Employee(DTOEmployee dtoemployee) {
-        id = dtoemployee.getId();
-        name = dtoemployee.getName();
-        password = dtoemployee.getPassword();
-        accessRight = dtoemployee.getAccessRight();
-    }
-    
     public Long getId() {
         return id;
     }

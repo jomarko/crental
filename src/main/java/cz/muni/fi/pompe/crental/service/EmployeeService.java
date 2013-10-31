@@ -28,21 +28,21 @@ public class EmployeeService {
     @Transactional
     void createEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
-            daoemployee.createEmployee(new Employee(dtoemployee));
+            daoemployee.createEmployee(dtoToEntity(dtoemployee));
         }
     }
     
     @Transactional
     void deleteEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
-            daoemployee.deleteEmployee(new Employee(dtoemployee));
+            daoemployee.deleteEmployee(dtoToEntity(dtoemployee));
         }
     }
     
     @Transactional
     void updateEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
-            daoemployee.updateEmployee(new Employee(dtoemployee));
+            daoemployee.updateEmployee(dtoToEntity(dtoemployee));
         }
     }
     
@@ -51,7 +51,7 @@ public class EmployeeService {
         List<DTOEmployee> result = new ArrayList<>();
         
         for(Employee e : daoemployee.getAllEmployees()){
-            result.add(new DTOEmployee(e));
+            result.add(entityToDto(e));
         }
         
         return result;
@@ -62,9 +62,31 @@ public class EmployeeService {
         DTOEmployee result = null;
         Employee e = daoemployee.getEmployeeById(id);
         if(e != null){
-            result = new DTOEmployee(e);
+            result = entityToDto(e);
         }
         
         return result;
+    }
+    
+    private DTOEmployee entityToDto(Employee employee) {
+        DTOEmployee dto = new DTOEmployee();
+        
+        dto.setId(employee.getId());
+        dto.setName(employee.getName());
+        dto.setPassword(employee.getPassword());
+        dto.setAccessRight(employee.getAccessRight());
+        
+        return dto;
+    }
+    
+    private Employee dtoToEntity(DTOEmployee dtoemployee) {
+        Employee e = new Employee();
+        
+        e.setId(dtoemployee.getId());
+        e.setName(dtoemployee.getName());
+        e.setPassword(dtoemployee.getPassword());
+        e.setAccessRight(dtoemployee.getAccessRight());
+        
+        return e;
     }
 }
