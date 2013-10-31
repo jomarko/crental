@@ -55,21 +55,6 @@ public class Rent {
     @JoinColumn(name = "car_id", nullable = false)
     private Car rentedCar;
 
-    public Rent() {
-    }
-
-    public Rent(DTORent dtorent) {
-        DAOCar daocar = new DAOCarImpl();
-        DAOEmployee daoemp = new DAOEmployeeImpl();
-        DAORequest daoreq = new DAORequestImpl();
-        
-        this.id = dtorent.getId();
-        this.confirmedAt = dtorent.getConfirmedAt();
-        this.rentedCar = daocar.getCarById(dtorent.getRentedCarId());
-        this.confirmedBy = daoemp.getEmployeeById(dtorent.getConfirmedById());
-        this.request = daoreq.getRequestById(dtorent.getRequestId());
-    }
-    
     public Long getId() {
         return id;
     }

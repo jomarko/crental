@@ -20,16 +20,6 @@ public class DTOEmployee {
     
     private AccessRight accessRight;
 
-    public DTOEmployee() {
-    }
-
-    public DTOEmployee(Employee employee) {
-        id = employee.getId();
-        name = employee.getName();
-        password = employee.getPassword();
-        accessRight = employee.getAccessRight();
-    }
-
     public Long getId() {
         return id;
     }

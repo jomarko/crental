@@ -23,18 +23,6 @@ public class DTORent {
     
     private Long rentedCarId;
     
-    public DTORent(){
-        
-    }
-    
-    public DTORent(Rent r){
-        this.id = r.getId();
-        this.confirmedAt = r.getConfirmedAt();
-        this.requestId = r.getRequest().getId();
-        this.rentedCarId = r.getRentedCar().getId();
-        this.confirmedById = r.getConfirmedBy().getId();
-    }
-
     public Long getId() {
         return id;
     }
