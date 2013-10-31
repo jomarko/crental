@@ -27,17 +27,23 @@ public class EmployeeService {
     
     @Transactional
     void createEmployee(DTOEmployee dtoemployee){
-        daoemployee.createEmployee(new Employee(dtoemployee));
+        if(dtoemployee != null){
+            daoemployee.createEmployee(new Employee(dtoemployee));
+        }
     }
     
     @Transactional
     void deleteEmployee(DTOEmployee dtoemployee){
-        daoemployee.deleteEmployee(new Employee(dtoemployee));
+        if(dtoemployee != null){
+            daoemployee.deleteEmployee(new Employee(dtoemployee));
+        }
     }
     
     @Transactional
     void updateEmployee(DTOEmployee dtoemployee){
-        daoemployee.updateEmployee(new Employee(dtoemployee));
+        if(dtoemployee != null){
+            daoemployee.updateEmployee(new Employee(dtoemployee));
+        }
     }
     
     @Transactional(readOnly = true)
