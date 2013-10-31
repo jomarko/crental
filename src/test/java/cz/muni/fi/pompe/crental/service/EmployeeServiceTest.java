@@ -15,10 +15,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -33,13 +35,27 @@ public class EmployeeServiceTest {
     
     @Mock
     private DAOEmployee daoemp;
+    
+    @InjectMocks
+    @Autowired
     private EmployeeService empservice;
+    
+    private Employee e;
+    private DTOEmployee dtoe;
     
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        empservice = new EmployeeService();
-        empservice.setDaoemployee(daoemp);
+        
+        e = new Employee();
+        e.setAccessRight(AccessRight.Admin);
+        e.setName("admin");
+        e.setPassword("admin");
+        
+        dtoe = new DTOEmployee();
+        dtoe.setAccessRight(AccessRight.Admin);
+        dtoe.setName("admin");
+        dtoe.setPassword("admin");
     }
     
     @After
@@ -48,16 +64,6 @@ public class EmployeeServiceTest {
     
     @Test
     public void createEmployeeTest(){
-        Employee e = new Employee();
-        e.setAccessRight(AccessRight.Admin);
-        e.setName("admin");
-        e.setPassword("admin");
-        
-        DTOEmployee dtoe = new DTOEmployee();
-        dtoe.setAccessRight(AccessRight.Admin);
-        dtoe.setName("admin");
-        dtoe.setPassword("admin");
-        
         empservice.createEmployee(dtoe);
         
         verify(daoemp).createEmployee(e);
@@ -66,17 +72,30 @@ public class EmployeeServiceTest {
     
     @Test
     public void deleteEmployeeTest(){
+        empservice.createEmployee(dtoe);
+        empservice.deleteEmployee(dtoe);
+        
+        verify(daoemp).deleteEmployee(e);
     }
     
     @Test
     public void updateEmployeeTest(){
+        empservice.createEmployee(dtoe);
+        dtoe.setAccessRight(AccessRight.Employee);
+        empservice.updateEmployee(dtoe);
+        e.setAccessRight(AccessRight.Employee);
+        verify(daoemp).updateEmployee(e);
     }
     
     @Test
     public void getAllEmployeesTest(){
+        empservice.getAllEmployees();
+        verify(daoemp).getAllEmployees();
     }
     
     @Test
     public void getEmployeeByIdTest(){
+        empservice.getEmployeeById(Long.MIN_VALUE);
+        verify(daoemp).getEmployeeById(Long.MIN_VALUE);
     }
 }
