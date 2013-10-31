@@ -2,6 +2,7 @@ package cz.muni.fi.pompe.crental.dao.impl;
 
 import cz.muni.fi.pompe.crental.entity.Car;
 import cz.muni.fi.pompe.crental.dao.DAOCar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -103,6 +104,19 @@ public class DAOCarImpl implements DAOCar {
         
         if (car.getEvidencePlate()== null || car.getEvidencePlate().isEmpty()){
             throw new IllegalArgumentException("evidencePlate cannt be null or empty");
+        }
+    }
+
+    @Override
+    public List<Car> getFreeCars(Date from, Date to) {
+        try {
+            Query q = em.createQuery("SELECT c FROM Car p WHERE p.id NOT IN (SELECT DISTINCT r.car_id FROM Rent r JOIN Request rq ON rq.id = r.request_id WHERE rq.dateFrom <= :from AND rq.dateTo >= :to)", Car.class);
+            q.setParameter("from", from);
+            q.setParameter("to", to);
+            List<Car> result = q.getResultList();
+            return result;
+        } finally {
+            em.close();
         }
     }
 }

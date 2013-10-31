@@ -1,5 +1,6 @@
 package cz.muni.fi.pompe.crental.entity;
 
+import cz.muni.fi.pompe.crental.dto.DTORequest;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -34,6 +35,16 @@ public class Request implements Serializable {
     @ManyToOne(targetEntity=Employee.class)
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
+
+    public Request() {
+    }
+
+    public Request(DTORequest dto) {
+        this.dateFrom = dto.getDateFrom();
+        this.dateTo = dto.getDateTo();
+        this.description = dto.getDescription();
+        this.id = dto.getId();
+    }
 
     public Long getId() {
         return id;
