@@ -65,7 +65,9 @@ public class DAOEmployeeImpl implements DAOEmployee{
         
         try{
             Employee employeeToUpdate = em.find(Employee.class, employee.getId());
-
+            if(employeeToUpdate == null) {
+                throw new IllegalArgumentException("No such: " + employee + " in database");
+            }
             employeeToUpdate.setAccessRight(employee.getAccessRight());
             employeeToUpdate.setName(employee.getName());
             employeeToUpdate.setPassword(employee.getPassword());

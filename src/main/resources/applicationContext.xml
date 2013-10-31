@@ -40,4 +40,8 @@
         <property name="daoemployee" ref="employeeDao" />
     </bean>
 
+    <bean id="rentDao" class="cz.muni.fi.pompe.crental.dao.impl.DAORentImpl"/>
+    
+    <bean id="requestDao" class="cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl"/>
+
 </beans>

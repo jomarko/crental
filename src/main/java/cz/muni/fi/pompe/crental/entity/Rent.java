@@ -126,6 +126,6 @@ public class Rent {
 
     @Override
     public String toString() {
-        return "Rent{id=" + id + ", confirmedAt=" + confirmedAt + ", employee_id=" + confirmedBy.getId() + ", car_id=" + rentedCar.getId() + ", request_id=" + request.getId() + '}';
+        return "Rent{" + "id=" + id + ", request=" + request + ", confirmedAt=" + confirmedAt + ", confirmedBy=" + confirmedBy + ", rentedCar=" + rentedCar + '}';
     }
 }

@@ -22,33 +22,34 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author jozef
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@TransactionConfiguration(defaultRollback = true)
+@Transactional
 public class DAORequestImplTest {
 
-    private EntityManagerFactory emf;
-    private DAORequestImpl daorequest;
-    private DAOEmployeeImpl daoemployee;
+    @Autowired
+    private DAORequest daorequest;
+    @Autowired
+    private DAOEmployee daoemployee;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    /*
-    @Before
-    public void setUp() {
-        emf = Persistence.createEntityManagerFactory("CarRentalPUInMemory");
-        daorequest = new DAORequestImpl(emf);
-        daoemployee = new DAOEmployeeImpl(emf);
-    }
     
-    @After
-    public void tearDown() {
-        emf.close();
-    }
-
+    
     /**
      * Test of createRequest method, of class DAORequestImpl.
-     
+     */
     @Test
     public void testCreateRequest() throws ParseException {
         // *** Correct part ***
@@ -68,9 +69,7 @@ public class DAORequestImplTest {
         try {
             daorequest.createRequest(null);
             fail("it was created null request");
-        } catch (IllegalArgumentException ex) {
-            //OK
-        } catch (NullPointerException npe) {
+        } catch (DataAccessException ex) {
             //OK
         }
         
@@ -78,7 +77,7 @@ public class DAORequestImplTest {
             request = newRequest(1l, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
             daorequest.createRequest(request);
             fail("it was created request with set id");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
         }
 
@@ -87,7 +86,7 @@ public class DAORequestImplTest {
             request = newRequest(null, null, sdf.parse("10/10/1991"), "carname", employee);
             daorequest.createRequest(request);
             fail("it was created request with null date");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
         }
 
@@ -95,7 +94,7 @@ public class DAORequestImplTest {
             request = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "", employee);
             daorequest.createRequest(request);
             fail("it was created request with empty carName");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
         }
         
@@ -104,14 +103,14 @@ public class DAORequestImplTest {
             request = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "", employee);
             daorequest.createRequest(request);
             fail("it was created request with invalid employee");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
         }
     }
 
     /**
      * Test of updateRequest method, of class DAORequestImpl.
-     
+     */
     @Test
     public void testUpdateRequest() throws ParseException {
         // *** Correct part ***
@@ -137,9 +136,7 @@ public class DAORequestImplTest {
         try {
             daorequest.updateRequest(null);
             fail("it was updated null request");
-        } catch (IllegalArgumentException ex) {
-            //OK
-        } catch (NullPointerException npe) {
+        } catch (DataAccessException ex) {
             //OK
         }
         
@@ -148,7 +145,7 @@ public class DAORequestImplTest {
             req1.setId(req1.getId() + 1);
             daorequest.updateRequest(req1);
             fail("it was updated request with wrong id");
-        } catch (NullPointerException ex) {
+        } catch (DataAccessException ex) {
             //OK
             req1 = req2;
         }
@@ -158,7 +155,7 @@ public class DAORequestImplTest {
             req1.setDateFrom(null);
             daorequest.updateRequest(req1);
             fail("it was updated request with null date");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
             req1 = req2;
         }
@@ -168,7 +165,7 @@ public class DAORequestImplTest {
             req1.setDescription(null);
             daorequest.updateRequest(req1);
             fail("it was updated request with null carName");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
             req1 = req2;
         }
@@ -176,7 +173,7 @@ public class DAORequestImplTest {
 
     /**
      * Test of deleteRequest method, of class DAORequestImpl.
-     
+     */
     @Test
     public void testDeleteRequest() throws ParseException {
         // *** Correct part ***
@@ -207,9 +204,7 @@ public class DAORequestImplTest {
         try {
             daorequest.deleteRequest(null);
             fail("it was deleted null request");
-        } catch (IllegalArgumentException ex) {
-            //OK
-        } catch (NullPointerException npe) {
+        } catch (DataAccessException ex) {
             //OK
         }
         
@@ -218,7 +213,7 @@ public class DAORequestImplTest {
             req1.setId(req1.getId() + 1);
             daorequest.deleteRequest(req1);
             fail("it was deleted request with wrong id");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
             req1 = req2;
         }
@@ -228,7 +223,7 @@ public class DAORequestImplTest {
             req1.setDescription("wrong name");
             daorequest.deleteRequest(req1);
             fail("it was deleted request with wrong carName");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
             req1 = req2;
         }
@@ -238,7 +233,7 @@ public class DAORequestImplTest {
             req1.setDescription(null);
             daorequest.deleteRequest(req1);
             fail("it was updated request with null carName");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
             req1 = req2;
         }
@@ -248,14 +243,14 @@ public class DAORequestImplTest {
             req1.setEmployee(employee);
             daorequest.deleteRequest(req1);
             fail("it was deleted request with wrong employee");
-        } catch (IllegalArgumentException ex) {
+        } catch (DataAccessException ex) {
             //OK
         }
     }
 
     /**
      * Test of getAllRequest method, of class DAORequestImpl.
-     
+     */
     @Test
     public void testGetAllRequest() throws ParseException {
                
@@ -291,7 +286,7 @@ public class DAORequestImplTest {
 
     /**
      * Test of getRequestById method, of class DAORequestImpl.
-     
+     */
     @Test
     public void testGetRequestById() throws ParseException {
         
@@ -308,14 +303,14 @@ public class DAORequestImplTest {
         try{
             daorequest.getRequestById(null);
             fail("it was finded request with null id");
-        }catch(NullPointerException ex){
+        }catch(DataAccessException ex){
             //OK
         }
         
         try{
             daorequest.getRequestById(req1.getId() + 1);
             fail("it was finded request with wrong id");
-        }catch(NoResultException ex){
+        }catch(DataAccessException ex){
             //OK
         }
     }
@@ -344,5 +339,5 @@ public class DAORequestImplTest {
             Request actual = actualList.get(i);
             assertDeepEqualsRequest(expected, actual);
         }
-    } */
+    }
 }

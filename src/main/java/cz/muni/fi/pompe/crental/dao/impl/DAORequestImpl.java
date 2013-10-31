@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
@@ -18,14 +19,18 @@ import org.springframework.stereotype.Repository;
 @Repository // for PersistenceExceptionTranslationPostProcessor to translate exceptions to DataAccessException
 public class DAORequestImpl implements DAORequest {
 
-    private EntityManagerFactory emf;
+    @PersistenceContext(unitName = "CarRentalPUInMemory")
+    private EntityManager em;
     private static final Logger LOG = Logger.getLogger(DAOCarImpl.class.getName());
 
-    public DAORequestImpl(EntityManagerFactory emf) {
-        this.emf = emf;
+    public DAORequestImpl() {
     }
 
     public void validate(Request r) {
+        if (r == null) {
+            throw new IllegalArgumentException("'Ruquest' is null");
+        }
+        
         if (r.getDateFrom() == null) {
             throw new IllegalArgumentException("'DateFrom' is required");
         }
@@ -49,37 +54,25 @@ public class DAORequestImpl implements DAORequest {
 
     @Override
     public void deleteRequest(Request r) {
-        EntityManager em = emf.createEntityManager();
-
-        if (r.getId() == null) {
-            throw new IllegalArgumentException("Requested entity cannot be deleted");
-        }
+        validate(r);
 
         try {
             Request toDelete = em.find(Request.class, r.getId());
-
-            em.getTransaction().begin();
             em.remove(toDelete);
-            em.getTransaction().commit();
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
         LOG.log(Level.INFO, "Request with id {0} was deleted from the database", r.getId());
     }
 
     @Override
     public List<Request> getAllRequest() {
-        EntityManager em = this.emf.createEntityManager();
         List<Request> result = new ArrayList<>();
         try {
             TypedQuery<Request> query = em.createQuery("from Request as r", Request.class);
             result = query.getResultList();
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
 
         return result;
@@ -87,18 +80,15 @@ public class DAORequestImpl implements DAORequest {
 
     @Override
     public Request getRequestById(Long id) {
-        EntityManager em = this.emf.createEntityManager();
         if (id == null) {
-            throw new NullPointerException("given id was null");
+            throw new IllegalArgumentException("given id was null");
         }
         try {
             TypedQuery<Request> query = em.createQuery("from Request as r where r.id = ?1", Request.class);
             query.setParameter(1, id);
             return query.getSingleResult();
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
@@ -110,16 +100,10 @@ public class DAORequestImpl implements DAORequest {
             throw new IllegalArgumentException("try to save request with set id");
         }
 
-        EntityManager em = emf.createEntityManager();
-
         try {
-            em.getTransaction().begin();
             em.persist(r);
-            em.getTransaction().commit();
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
         LOG.log(Level.INFO, "Request {0} was persisted into the database", r);
     }
@@ -131,17 +115,17 @@ public class DAORequestImpl implements DAORequest {
         if (r.getId() == null) {
             throw new IllegalArgumentException("try to update request without id");
         }
-
-        EntityManager em = emf.createEntityManager();
-        Request toUpdate = em.find(Request.class, r.getId());
-
+        
         try {
-            em.getTransaction().begin();
+            Request toUpdate = em.find(Request.class, r.getId());
+            if(toUpdate == null){
+                throw new IllegalArgumentException("No such:" + r + " in database");
+            }
             toUpdate.setDateFrom(r.getDateFrom());
             toUpdate.setDateTo(r.getDateTo());
             toUpdate.setDescription(r.getDescription());
             toUpdate.setEmployee(r.getEmployee());
-            em.getTransaction().commit();
+            
         } finally {
             em.close();
         }
