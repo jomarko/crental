@@ -24,17 +24,12 @@ public class CarService {
     
     public List<DTOCar> getAllCars() {
         List<Car> entities = dao.getAllCars();
-        List<DTOCar> ret = new ArrayList<>();
-        
-        for (Car car : entities) {
-            ret.add(new DTOCar(car));
-        }
-        
-        return ret;
+        return this.entitiesToDTOs(entities);
     }
     
-    public List<DTOCar> getFreeCars(Date from, Date until) {
-        return null;
+    public List<DTOCar> getFreeCars(Date from, Date to) {
+        List<Car> entities = dao.getFreeCars(from, to);
+        return this.entitiesToDTOs(entities);
     }
     
     public DTOCar getCarById(Long id) {
@@ -54,5 +49,15 @@ public class CarService {
     
     public void updateCar(DTOCar dto) {
         dao.updateCar(new Car(dto));
+    }
+    
+    protected List<DTOCar> entitiesToDTOs(List<Car> entities) {
+        List<DTOCar> ret = new ArrayList<>();
+        
+        for (Car car : entities) {
+            ret.add(new DTOCar(car));
+        }
+        
+        return ret;
     }
 }

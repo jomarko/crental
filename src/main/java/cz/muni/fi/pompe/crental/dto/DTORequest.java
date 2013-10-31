@@ -1,0 +1,114 @@
+package cz.muni.fi.pompe.crental.dto;
+
+import cz.muni.fi.pompe.crental.entity.Request;
+import java.util.Date;
+import java.util.Objects;
+
+/**
+ *
+ * @author Patrik Pompe <325292@mail.muni.cz>
+ */
+public class DTORequest {
+    private Long id;
+    private Date dateFrom;
+    private Date dateTo;
+    private String description;
+    private Long employeeId;
+    private String employeeName;
+
+    public DTORequest(Request request) {
+        this.id = request.getId();
+        this.dateFrom = request.getDateFrom();
+        this.dateTo = request.getDateTo();
+        this.description = request.getDescription();       
+        this.employeeName = request.getEmployee().getName();
+        this.employeeId = request.getEmployee().getId();
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public Date getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(Date dateTo) {
+        this.dateTo = dateTo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.dateFrom);
+        hash = 17 * hash + Objects.hashCode(this.dateTo);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.employeeId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DTORequest other = (DTORequest) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateFrom, other.dateFrom)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateTo, other.dateTo)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.employeeId, other.employeeId)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "DTORequest{" + "id=" + id + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", description=" + description + ", employeeId=" + employeeId + ", employeeName=" + employeeName + '}';
+    }
+}
