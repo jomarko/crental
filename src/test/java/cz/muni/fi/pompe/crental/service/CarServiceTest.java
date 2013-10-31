@@ -37,7 +37,9 @@ public class CarServiceTest extends AbstractIntegrationTest {
         testCarDTO = new DTOCar();
         testCarDTO.setCarType("BMW X5");
         testCarDTO.setEvidencePlate("123456");
-        testCar = new Car(testCarDTO);
+        testCar = new Car();
+        testCar.setCarType("BMW X5");
+        testCar.setEvidencePlate("123456");
         
         List<Car> allCars = new ArrayList<>();
         allCars.add(testCar);
