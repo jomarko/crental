@@ -8,6 +8,8 @@ import cz.muni.fi.pompe.crental.dao.DAOCar;
 import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import cz.muni.fi.pompe.crental.dao.DAORent;
 import cz.muni.fi.pompe.crental.dao.DAORequest;
+import cz.muni.fi.pompe.crental.dto.DTOCar;
+import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORent;
 import cz.muni.fi.pompe.crental.entity.AccessRight;
 import cz.muni.fi.pompe.crental.entity.Car;
@@ -20,10 +22,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,6 +36,7 @@ import org.springframework.dao.DataIntegrityViolationException;
  *
  * @author jozef
  */
+@RunWith(MockitoJUnitRunner.class)
 public class RentServiceTest extends AbstractIntegrationTest{
     @Mock
     private DAORent daorent;
@@ -195,5 +200,45 @@ public class RentServiceTest extends AbstractIntegrationTest{
         assertEquals(dtorent, rentservice.getAllRentsIn(new Date(60), new Date(70)).get(0));
         
         assertEquals(0, rentservice.getAllRentsIn(new Date(61), new Date(70)).size());
+    }
+    
+    
+    @Test
+    public void getAllRentsOfCar() {       
+        List<Rent> result = new ArrayList<>();
+        result.add(rent);
+        
+        doReturn(result).when(daorent).getAllRents();
+        
+        List<DTORent> ret = rentservice.getAllRentsOfCar(CarService.entityToDTO(car));
+        verify(daorent).getAllRents();
+        assertEquals(1, ret.size());
+        
+        DTOCar car2 = new DTOCar();
+        car2.setId(2L);
+        car2.setEvidencePlate("XZY");
+        car2.setCarType("Audi A8");
+        
+        assertEquals(0, rentservice.getAllRentsOfCar(car2).size());
+    }
+    
+    @Test
+    public void getAllRentsOfEmployee() {
+        List<Rent> result = new ArrayList<>();
+        result.add(rent);
+        
+        doReturn(result).when(daorent).getAllRents();
+        
+        List<DTORent> ret = rentservice.getAllRentsOfEmployee(EmployeeService.entityToDto(employee));
+        verify(daorent).getAllRents();
+        assertEquals(1, ret.size());
+        
+        DTOEmployee e2 = new DTOEmployee();
+        e2.setId(2L);
+        e2.setName("Tester Testovaci");
+        e2.setAccessRight(AccessRight.Employee);
+        e2.setPassword("XZY");
+        
+        assertEquals(0, rentservice.getAllRentsOfEmployee(e2).size());
     }
 }

@@ -14,39 +14,50 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Service
-@Transactional
-public class CarService {
+public class CarService implements AbstractCarService {
     private DAOCar dao;
     
     public void setDao(DAOCar dao) {
         this.dao = dao;
     }
     
+    @Transactional(readOnly = true)
+    @Override
     public List<DTOCar> getAllCars() {
         List<Car> entities = dao.getAllCars();
         return this.entitiesToDTOs(entities);
     }
     
+    @Transactional(readOnly = true)
+    @Override
     public List<DTOCar> getFreeCars(Date from, Date to) {
         List<Car> entities = dao.getFreeCars(from, to);
         return this.entitiesToDTOs(entities);
     }
     
+    @Transactional(readOnly = true)
+    @Override
     public DTOCar getCarById(Long id) {
         Car entity = this.dao.getCarById(id);
         
         return entityToDTO(entity);
     }
 
+    @Transactional
+    @Override
     public void createCar(DTOCar dto) {
         Car car = dtoToEntity(dto);
         dao.createCar(car);
     }
     
+    @Transactional
+    @Override
     public void deleteCar(DTOCar dto) {
         dao.deleteCar(dto.getId());
     }
     
+    @Transactional
+    @Override
     public void updateCar(DTOCar dto) {
         dao.updateCar(dtoToEntity(dto));
     }
