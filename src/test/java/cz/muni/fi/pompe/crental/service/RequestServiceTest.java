@@ -9,6 +9,7 @@ import cz.muni.fi.pompe.crental.entity.Request;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
@@ -77,8 +78,9 @@ public class RequestServiceTest extends AbstractIntegrationTest {
     public void testCreateNullRequest() {
         try{
             requestService.createRequest(null);
-            fail("null dto");
-        } catch(NullPointerException ex){    }
+        } catch(NullPointerException ex){
+            fail("service don't call dao if has got null argument");
+        }
     }
     
     @Test 
@@ -91,8 +93,9 @@ public class RequestServiceTest extends AbstractIntegrationTest {
     public void testDeleteNullRequest() {
         try{
             requestService.deleteRequest(null);
-            fail("null dto");
-        } catch(NullPointerException ex){    }
+        } catch(NullPointerException ex){  
+            fail("service don't call dao if has got null argument");
+        }
     }
     
     @Test
@@ -124,10 +127,7 @@ public class RequestServiceTest extends AbstractIntegrationTest {
         verify(daoRequest).getRequestById(1L);
         assertEquals(dto, dto2);
         
-        try {
-            requestService.getRequestById(null);
-            fail("get dto by null id");
-        } catch(DataAccessException ex){    }
+        assertNull(requestService.getRequestById(null));
     }
     
     @Test
