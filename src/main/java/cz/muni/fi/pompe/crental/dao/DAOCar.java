@@ -17,9 +17,9 @@ public interface DAOCar {
     
     /**
      * Delete instance of car in storage
-     * @param car
+     * @param id
      */
-    void deleteCar(Car car);
+    void deleteCar(Long id);
     
     /**
      * Update instance of car in storage
