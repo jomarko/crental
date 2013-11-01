@@ -74,6 +74,10 @@ public class CarServiceTest extends AbstractIntegrationTest {
         carService.deleteCar(carDTO);
         verify(MockDAOCar, times(1)).deleteCar(1l);
 
+        List<Car> result = new ArrayList<>();
+        doReturn(result).when(MockDAOCar).getAllCars();
+        assertEquals(result.size(), carService.getAllCars().size());
+
         carDTO.setId(null);
         doThrow(new DataIntegrityViolationException("fail")).when(MockDAOCar).deleteCar(null);
 
@@ -107,8 +111,8 @@ public class CarServiceTest extends AbstractIntegrationTest {
 
         List<DTOCar> DTOCars = new ArrayList<>();
         DTOCars.add(carDTO);
+
         doReturn(Arrays.asList(car)).when(MockDAOCar).getAllCars();
-        carService.createCar(carDTO);
         assertEquals(1, carService.getAllCars().size());
     }
 
@@ -121,18 +125,19 @@ public class CarServiceTest extends AbstractIntegrationTest {
         carDTO.setId(Long.MIN_VALUE);
         doReturn(car).when(MockDAOCar).getCarById(anyLong());
         assertEquals(carDTO, carService.getCarById(Long.MIN_VALUE));
-        
+
         doReturn(null).when(MockDAOCar).getCarById(1l);
         assertNull(carService.getCarById(1l));
     }
 
-    /*@Test
+    @Test
     public void testGetFreeCars() {
         carService.getFreeCars(new Date(), new Date());
         verify(MockDAOCar, times(1)).getFreeCars(new Date(), new Date());
 
         List<Car> resultCars = new ArrayList<>();
-        resultCars.add(car);
+        when(MockDAOCar.getFreeCars(new Date(), new Date())).thenReturn(resultCars);
         
-    }*/
+        assertEquals(resultCars.size(), carService.getFreeCars(new Date(), new Date()).size());
+    }
 }
