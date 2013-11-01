@@ -61,7 +61,7 @@ public class CarService {
         return ret;
     }
     
-    private Car dtoToEntity(DTOCar dto) {
+    public static Car dtoToEntity(DTOCar dto) {
         Car entity = new Car();
         entity.setCarType(dto.getCarType());
         entity.setEvidencePlate(dto.getEvidencePlate());
@@ -69,7 +69,7 @@ public class CarService {
         return entity;
     }
     
-    private DTOCar entityToDTO(Car entity) {
+    public static DTOCar entityToDTO(Car entity) {
         DTOCar dto = new DTOCar();
         dto.setId(entity.getId());
         dto.setEvidencePlate(entity.getEvidencePlate());

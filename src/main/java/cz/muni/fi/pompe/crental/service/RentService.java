@@ -8,6 +8,8 @@ import cz.muni.fi.pompe.crental.dao.DAOCar;
 import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import cz.muni.fi.pompe.crental.dao.DAORent;
 import cz.muni.fi.pompe.crental.dao.DAORequest;
+import cz.muni.fi.pompe.crental.dto.DTOCar;
+import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORent;
 import cz.muni.fi.pompe.crental.entity.Rent;
 import java.util.ArrayList;
@@ -87,6 +89,34 @@ public class RentService {
                    reqFrom.compareTo(to)<= 0) ||
                    (reqTo.compareTo(from)>= 0 &&
                    reqTo.compareTo(to)<= 0)){
+                   result.add(entityToDto(r));
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<DTORent> getAllRentsOfCar(DTOCar dtocar) {
+        List<DTORent> result = new ArrayList<>();
+        if(dtocar != null && dtocar.getId() != null){
+            for(Rent r : daorent.getAllRents()){
+                if(r.getRentedCar().equals(CarService.dtoToEntity(dtocar))){
+                   result.add(entityToDto(r));
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<DTORent> getAllRentsOfEmployee(DTOEmployee dtoemp) {
+        List<DTORent> result = new ArrayList<>();
+        if(dtoemp != null && dtoemp.getId() != null){
+            for(Rent r : daorent.getAllRents()){
+                if(r.getRequest().getEmployee().equals(EmployeeService.dtoToEntity(dtoemp))){
                    result.add(entityToDto(r));
                 }
             }

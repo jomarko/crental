@@ -68,7 +68,7 @@ public class EmployeeService {
         return result;
     }
     
-    private DTOEmployee entityToDto(Employee employee) {
+    public static DTOEmployee entityToDto(Employee employee) {
         DTOEmployee dto = new DTOEmployee();
         
         dto.setId(employee.getId());
@@ -79,7 +79,7 @@ public class EmployeeService {
         return dto;
     }
     
-    private Employee dtoToEntity(DTOEmployee dtoemployee) {
+    public static Employee dtoToEntity(DTOEmployee dtoemployee) {
         Employee e = new Employee();
         
         e.setId(dtoemployee.getId());
