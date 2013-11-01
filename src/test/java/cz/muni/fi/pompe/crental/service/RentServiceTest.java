@@ -65,8 +65,8 @@ public class RentServiceTest extends AbstractIntegrationTest{
         employee.setPassword("password");
         
         request = new Request();
-        request.setDateFrom(new Date(0));
-        request.setDateTo(new Date(1));
+        request.setDateFrom(new Date(50));
+        request.setDateTo(new Date(60));
         request.setDescription("description");
         request.setEmployee(employee);
         request.setId(1l);
@@ -81,13 +81,13 @@ public class RentServiceTest extends AbstractIntegrationTest{
         doReturn(request).when(daorequest).getRequestById(anyLong());
         
         rent = new Rent();
-        rent.setConfirmedAt(new Date(2));
+        rent.setConfirmedAt(new Date(100));
         rent.setConfirmedBy(employee);
         rent.setRentedCar(car);
         rent.setRequest(request);
         
         dtorent = new DTORent();
-        dtorent.setConfirmedAt(new Date(2));
+        dtorent.setConfirmedAt(new Date(100));
         dtorent.setConfirmedById(1l);
         dtorent.setRentedCarId(1l);
         dtorent.setRequestId(1l);
@@ -172,5 +172,28 @@ public class RentServiceTest extends AbstractIntegrationTest{
         
         assertEquals(serviceResult.size(), rentservice.getAllRents().size());
         assertEquals(serviceResult.get(0), rentservice.getAllRents().get(0));
+    }
+    
+    @Test
+    public void getAllRentsInTest() {
+        rentservice.getAllRentsIn(new Date(), new Date());
+        verify(daorent).getAllRents();
+        
+        List<Rent> result = new ArrayList<>();
+        result.add(rent);
+        
+        doReturn(result).when(daorent).getAllRents();
+        
+        assertEquals(0, rentservice.getAllRentsIn(new Date(0), new Date(49)).size());
+        assertEquals(1, rentservice.getAllRentsIn(new Date(0), new Date(50)).size());
+        assertEquals(dtorent, rentservice.getAllRentsIn(new Date(0), new Date(50)).get(0));
+        
+        assertEquals(1, rentservice.getAllRentsIn(new Date(50), new Date(60)).size());
+        assertEquals(dtorent, rentservice.getAllRentsIn(new Date(50), new Date(60)).get(0));
+        
+        assertEquals(1, rentservice.getAllRentsIn(new Date(60), new Date(70)).size());
+        assertEquals(dtorent, rentservice.getAllRentsIn(new Date(60), new Date(70)).get(0));
+        
+        assertEquals(0, rentservice.getAllRentsIn(new Date(61), new Date(70)).size());
     }
 }

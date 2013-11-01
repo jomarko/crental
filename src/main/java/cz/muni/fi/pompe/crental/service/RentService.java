@@ -11,6 +11,7 @@ import cz.muni.fi.pompe.crental.dao.DAORequest;
 import cz.muni.fi.pompe.crental.dto.DTORent;
 import cz.muni.fi.pompe.crental.entity.Rent;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +71,25 @@ public class RentService {
         
         for(Rent r : daorent.getAllRents()){
             result.add(entityToDto(r));
+        }
+        
+        return result;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<DTORent> getAllRentsIn(Date from, Date to) {
+        List<DTORent> result = new ArrayList<>();
+        if(from != null && to != null && to.compareTo(from)>= 0){
+            for(Rent r : daorent.getAllRents()){
+                Date reqFrom = r.getRequest().getDateFrom();
+                Date reqTo = r.getRequest().getDateTo();
+                if((reqFrom.compareTo(from)>= 0 &&
+                   reqFrom.compareTo(to)<= 0) ||
+                   (reqTo.compareTo(from)>= 0 &&
+                   reqTo.compareTo(to)<= 0)){
+                   result.add(entityToDto(r));
+                }
+            }
         }
         
         return result;
