@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Service
-@Transactional
 public class RequestService {
     private DAORequest daoRequest;
     private DAOEmployee dAOEmployee;
@@ -28,26 +27,32 @@ public class RequestService {
         this.dAOEmployee = dao;
     }
     
+    @Transactional
     public void createRequest(DTORequest dto) {
         this.daoRequest.createRequest(this.dtoToEntity(dto));
     }
     
+    @Transactional
     public void deleteRequest(DTORequest dto) {
         this.daoRequest.deleteRequest(this.dtoToEntity(dto));
     }
     
+    @Transactional
     public void updateRequest(DTORequest dto) {
         this.daoRequest.updateRequest(this.dtoToEntity(dto));
     }
     
+    @Transactional(readOnly = true)
     public DTORequest getRequestById(Long id) {
         return entityToDTO(this.daoRequest.getRequestById(id));
     }
     
+    @Transactional(readOnly = true)
     public List<DTORequest> getAllRequests() {
         return entitiesToDTOs(this.daoRequest.getAllRequests());
     }
     
+    @Transactional(readOnly = true)
     public List<DTORequest> getUnconfirmedRequests() {
         return entitiesToDTOs(daoRequest.getUnconfirmedRequests());
     }
@@ -62,7 +67,7 @@ public class RequestService {
         return ret;
     }
     
-    private Request dtoToEntity(DTORequest dto) {
+    public Request dtoToEntity(DTORequest dto) {
         Request entity = new Request();
         Employee empl = dAOEmployee.getEmployeeById(dto.getEmployeeId());
         entity.setEmployee(empl);
@@ -73,7 +78,7 @@ public class RequestService {
         return entity;
     }
     
-    private DTORequest entityToDTO(Request entity) {
+    public DTORequest entityToDTO(Request entity) {
         DTORequest dto = new DTORequest();
             
         dto.setId(entity.getId());
