@@ -15,63 +15,81 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class CarService implements AbstractCarService {
+
     private DAOCar dao;
-    
+
     public void setDao(DAOCar dao) {
         this.dao = dao;
     }
-    
+
     @Transactional(readOnly = true)
     @Override
     public List<DTOCar> getAllCars() {
+        List<DTOCar> DTOCars = new ArrayList<>();
         List<Car> entities = dao.getAllCars();
-        return this.entitiesToDTOs(entities);
+        if (entities.size() != 0) {
+            DTOCars = entitiesToDTOs(entities);
+        }
+        return DTOCars;
     }
-    
+
     @Transactional(readOnly = true)
     @Override
     public List<DTOCar> getFreeCars(Date from, Date to) {
+        List<DTOCar> DTOCars = new ArrayList<>();
         List<Car> entities = dao.getFreeCars(from, to);
-        return this.entitiesToDTOs(entities);
+        if (entities.size() != 0) {
+            DTOCars = entitiesToDTOs(entities);
+        }
+        return DTOCars;
     }
-    
+
     @Transactional(readOnly = true)
     @Override
     public DTOCar getCarById(Long id) {
-        Car entity = this.dao.getCarById(id);
+        DTOCar result = null;
+        Car c = dao.getCarById(id);
+        if(c != null){
+            result = entityToDTO(c);
+        }
         
-        return entityToDTO(entity);
+        return result;
     }
 
     @Transactional
     @Override
     public void createCar(DTOCar dto) {
-        Car car = dtoToEntity(dto);
-        dao.createCar(car);
+        if (dto != null) {
+            dao.createCar(dtoToEntity(dto));
+        }
     }
-    
+
     @Transactional
     @Override
     public void deleteCar(DTOCar dto) {
-        dao.deleteCar(dto.getId());
+        if (dto != null && dto.getId() != null) {
+            dao.deleteCar(dto.getId());
+        }
     }
-    
+
     @Transactional
     @Override
     public void updateCar(DTOCar dto) {
-        dao.updateCar(dtoToEntity(dto));
+        if (dto != null) {
+            dao.updateCar(dtoToEntity(dto));
+        }
     }
-    
+
     protected List<DTOCar> entitiesToDTOs(List<Car> entities) {
         List<DTOCar> ret = new ArrayList<>();
-        
+
         for (Car car : entities) {
             ret.add(entityToDTO(car));
         }
-        
+
         return ret;
     }
-    
+
     public static Car dtoToEntity(DTOCar dto) {
         Car entity = new Car();
         entity.setCarType(dto.getCarType());
@@ -79,13 +97,13 @@ public class CarService implements AbstractCarService {
         entity.setId(dto.getId());
         return entity;
     }
-    
+
     public static DTOCar entityToDTO(Car entity) {
         DTOCar dto = new DTOCar();
         dto.setId(entity.getId());
         dto.setEvidencePlate(entity.getEvidencePlate());
         dto.setCarType(dto.getCarType());
-        
+
         return dto;
     }
 }
