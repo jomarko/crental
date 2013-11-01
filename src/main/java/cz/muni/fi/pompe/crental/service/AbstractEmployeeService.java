@@ -13,33 +13,38 @@ import java.util.List;
  */
 public interface AbstractEmployeeService {
     /**
-     * Method
-     * @param dtoemployee 
+     * Method stores non stored employee
+     * @throws DataAccessException subclass, if any error has occurred
+     * @param dtoemployee DTOEmployee to be stored
      */
     void createEmployee(DTOEmployee dtoemployee);
     
     /**
-     * 
-     * @param dtoemployee 
+     * Method deletes stored employee
+     * @throws DataAccessException subclass, if any error has occurred
+     * @param dtoemployee Stored DTOEmployee to be deleted
      */
     void deleteEmployee(DTOEmployee dtoemployee);
     
     /**
-     * 
-     * @param dtoemployee 
+     * Method updates stored employee
+     * @throws DataAccessException subclass, if any error has occurred
+     * @param dtoemployee Stored DTOEmployee to be updated
      */
     void updateEmployee(DTOEmployee dtoemployee);
     
     /**
-     * 
-     * @return 
+     * Method finds all stored employees
+     * @throws DataAccessException subclass, if any error has occurred
+     * @return List of all stored DTOEmployees, if no such employee exist, empty list is returned
      */
     List<DTOEmployee> getAllEmployees();
     
     /**
-     * 
-     * @param id
-     * @return 
+     * Method finds DTOEmployee
+     * @throws DataAccessException subclass, if any error has occurred
+     * @param id Id of searched employee
+     * @return DTOEmployee with given id, null if no such employee exists
      */
     DTOEmployee getEmployeeById(Long id);
 }
