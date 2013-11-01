@@ -102,7 +102,7 @@ public class CarService implements AbstractCarService {
         DTOCar dto = new DTOCar();
         dto.setId(entity.getId());
         dto.setEvidencePlate(entity.getEvidencePlate());
-        dto.setCarType(dto.getCarType());
+        dto.setCarType(entity.getCarType());
 
         return dto;
     }
