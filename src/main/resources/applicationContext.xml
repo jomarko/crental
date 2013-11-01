@@ -50,5 +50,10 @@
     </bean>
     
     <bean id="requestDao" class="cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl"/>
+    
+    <bean id="requestService" class="cz.muni.fi.pompe.crental.service.RequestService">
+        <property name="daoRequest" ref="requestDao" />
+        <property name="daoEmployee" ref="employeeDao" />
+    </bean>
 
 </beans>

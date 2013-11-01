@@ -187,13 +187,13 @@ public class DAORequestImplTest {
         daorequest.createRequest(req1);
         daorequest.createRequest(req2);
         
-        assertTrue(daorequest.getAllRequest().size() == 2);
+        assertTrue(daorequest.getAllRequests().size() == 2);
         
         daorequest.deleteRequest(req1);
-        assertTrue(daorequest.getAllRequest().size() == 1);
+        assertTrue(daorequest.getAllRequests().size() == 1);
         
         daorequest.deleteRequest(req2);
-        assertTrue(daorequest.getAllRequest().size() == 0);
+        assertTrue(daorequest.getAllRequests().size() == 0);
         
         // *** Incorrect part ***
         
@@ -260,15 +260,15 @@ public class DAORequestImplTest {
         Request req1 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "carname", employee);
         Request req2 = newRequest(null, sdf.parse("10/10/1990"), sdf.parse("10/10/1991"), "name of car", employee);
         
-        assertTrue(daorequest.getAllRequest().isEmpty());
+        assertTrue(daorequest.getAllRequests().isEmpty());
         
         daorequest.createRequest(req1);
         daorequest.createRequest(req2);
 
-        assertTrue(daorequest.getAllRequest().size() == 2);
+        assertTrue(daorequest.getAllRequests().size() == 2);
 
         List<Request> expected = Arrays.asList(req1, req2);
-        List<Request> actual = daorequest.getAllRequest();
+        List<Request> actual = daorequest.getAllRequests();
         
         Comparator<Request> idComparator = new Comparator<Request>() {
 

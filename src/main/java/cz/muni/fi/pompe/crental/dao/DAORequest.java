@@ -30,7 +30,7 @@ public interface DAORequest {
      * Get all records of Request in persistance unit
      * @return
      */
-    public List<Request> getAllRequest();
+    public List<Request> getAllRequests();
 
     /**
      * Get record of Request with specific id
@@ -38,4 +38,10 @@ public interface DAORequest {
      * @return
      */
     public Request getRequestById(Long id);
+
+    /**
+     * Get list of request which haven't been confirmed as a rent yet
+     * @return 
+     */
+    public List<Request> getUnconfirmedRequests();
 }

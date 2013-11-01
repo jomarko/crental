@@ -45,14 +45,11 @@ public class RequestService {
     }
     
     public List<DTORequest> getAllRequests() {
-        return entitiesToDTOs(this.daoRequest.getAllRequest());
+        return entitiesToDTOs(this.daoRequest.getAllRequests());
     }
     
-    /**
-     * @todo optimalization: add support on dao layer
-     */
     public List<DTORequest> getUnconfirmedRequests() {
-        return null;
+        return entitiesToDTOs(daoRequest.getUnconfirmedRequests());
     }
     
     private List<DTORequest> entitiesToDTOs(List<Request> entities) {

@@ -110,7 +110,7 @@ public class DAOCarImpl implements DAOCar {
     @Override
     public List<Car> getFreeCars(Date from, Date to) {
         try {
-            Query q = em.createQuery("SELECT c FROM Car p WHERE p.id NOT IN (SELECT DISTINCT r.car_id FROM Rent r JOIN Request rq ON rq.id = r.request_id WHERE rq.dateFrom <= :from AND rq.dateTo >= :to)", Car.class);
+            Query q = em.createQuery("FROM Car c WHERE c NOT IN (SELECT r.rentedCar FROM Rent r JOIN r.request rq WHERE rq.dateFrom <= :from AND rq.dateTo >= :to)", Car.class);
             q.setParameter("from", from);
             q.setParameter("to", to);
             List<Car> result = q.getResultList();

@@ -3,6 +3,7 @@ package cz.muni.fi.pompe.crental.entity;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,40 @@ public class Request implements Serializable {
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date dateTo;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.dateFrom);
+        hash = 73 * hash + Objects.hashCode(this.dateTo);
+        hash = 73 * hash + Objects.hashCode(this.description);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Request other = (Request) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateFrom, other.dateFrom)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateTo, other.dateTo)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        return true;
+    }
     
     private String description;
     

@@ -66,7 +66,7 @@ public class DAORequestImpl implements DAORequest {
     }
 
     @Override
-    public List<Request> getAllRequest() {
+    public List<Request> getAllRequests() {
         List<Request> result = new ArrayList<>();
         try {
             TypedQuery<Request> query = em.createQuery("from Request as r", Request.class);
@@ -130,5 +130,18 @@ public class DAORequestImpl implements DAORequest {
             em.close();
         }
         LOG.log(Level.INFO, "Request {0} was updated", r);
+    }
+
+    @Override
+    public List<Request> getUnconfirmedRequests() {
+        List<Request> result = new ArrayList<>();
+        try {
+            TypedQuery<Request> query = em.createQuery("FROM Request AS rq WHERE rq NOT IN (SELECT rt.request FROM Rent rt)", Request.class);
+            result = query.getResultList();
+        } finally {
+            em.close();
+        }
+
+        return result;
     }
 }

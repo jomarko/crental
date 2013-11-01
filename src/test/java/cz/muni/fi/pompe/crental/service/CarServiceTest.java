@@ -33,7 +33,7 @@ public class CarServiceTest extends AbstractIntegrationTest {
     private Car testCar;
     
     @Before
-    public void init() {
+    public void setUp() {
         testCarDTO = new DTOCar();
         testCarDTO.setCarType("BMW X5");
         testCarDTO.setEvidencePlate("123456");
