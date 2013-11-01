@@ -44,7 +44,7 @@ public class CarService {
     }
     
     public void deleteCar(DTOCar dto) {
-        dao.deleteCar(dtoToEntity(dto));
+        dao.deleteCar(dto.getId());
     }
     
     public void updateCar(DTOCar dto) {
