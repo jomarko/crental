@@ -5,8 +5,10 @@ import cz.muni.fi.pompe.crental.dto.DTOCar;
 import cz.muni.fi.pompe.crental.entity.Car;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 
 /**
  *
@@ -30,60 +33,105 @@ public class CarServiceTest extends AbstractIntegrationTest {
     @InjectMocks
     @Autowired
     private CarService carService;
-    private DTOCar testCarDTO;
-    private Car testCar;
+    private DTOCar carDTO;
+    private Car car;
 
     @Before
     public void setUp() {
-        testCarDTO = new DTOCar();
-        testCarDTO.setCarType("BMW X5");
-        testCarDTO.setEvidencePlate("123456");
-        testCar = new Car();
-        testCar.setCarType("BMW X5");
-        testCar.setEvidencePlate("123456");
+        carDTO = new DTOCar();
+        carDTO.setCarType("BMW X5");
+        carDTO.setEvidencePlate("123456");
+        car = new Car();
+        car.setCarType("BMW X5");
+        car.setEvidencePlate("123456");
     }
 
     @Test
     public void testCreateNewCar() {
 
-        // test of persisting valid instance of Car
-        carService.createCar(testCarDTO);
-        verify(MockDAOCar, times(1)).createCar(testCar);     //check that method createCar() was invoked one time
-        
-        doReturn(Arrays.asList(testCar)).when(MockDAOCar).getAllCars();
+        carService.createCar(carDTO);
+        verify(MockDAOCar, times(1)).createCar(car);     //check that method createCar() was invoked one time
+
+        doReturn(Arrays.asList(car)).when(MockDAOCar).getAllCars();
         assertEquals(1, carService.getAllCars().size());
 
-        //tests of persisting invalid instance of Car
+        car.setId(Long.MIN_VALUE);
+        carDTO.setId(Long.MIN_VALUE);
+        doThrow(new DataIntegrityViolationException("fail")).when(MockDAOCar).createCar(car);
         try {
-            carService.createCar(null);
-            fail("cannot persist null instance of car");
-        } catch (NullPointerException ex) {
-            //ok
+            carService.createCar(carDTO);
+            fail("cannot persist instance of car with setted id");
+        } catch (DataAccessException ex) {
+        }
+
+    }
+
+    @Test
+    public void testDeleteCar() {
+
+        carDTO.setId(1l);
+        carService.deleteCar(carDTO);
+        verify(MockDAOCar, times(1)).deleteCar(1l);
+
+        carDTO.setId(null);
+        doThrow(new DataIntegrityViolationException("fail")).when(MockDAOCar).deleteCar(null);
+
+        try {
+            carService.deleteCar(carDTO);
+        } catch (DataAccessException ex) {
         }
     }
 
+    @Test
+    public void testUpdateCar() {
+        carDTO.setId(1l);
+        car.setId(1l);
+        carService.updateCar(carDTO);
+        verify(MockDAOCar, times(1)).updateCar(car);
+
+        carDTO.setId(null);
+        car.setId(null);
+        doThrow(new DataIntegrityViolationException("fail")).when(MockDAOCar).updateCar(car);
+
+        try {
+            carService.updateCar(carDTO);
+        } catch (DataAccessException ex) {
+        }
+    }
+
+    @Test
+    public void testGetAllCars() {
+        carService.getAllCars();
+        verify(MockDAOCar, times(1)).getAllCars();
+
+        List<DTOCar> DTOCars = new ArrayList<>();
+        DTOCars.add(carDTO);
+        doReturn(Arrays.asList(car)).when(MockDAOCar).getAllCars();
+        carService.createCar(carDTO);
+        assertEquals(1, carService.getAllCars().size());
+    }
+
+    @Test
+    public void testGetCarById() {
+        carService.getCarById(1l);
+        verify(MockDAOCar, times(1)).getCarById(1l);
+
+        car.setId(Long.MIN_VALUE);
+        carDTO.setId(Long.MIN_VALUE);
+        doReturn(car).when(MockDAOCar).getCarById(anyLong());
+        assertEquals(carDTO, carService.getCarById(Long.MIN_VALUE));
+        
+        doReturn(null).when(MockDAOCar).getCarById(1l);
+        assertNull(carService.getCarById(1l));
+    }
+
     /*@Test
-    public void testDeleteCar() {
-        
-        carService.createCar(testCarDTO);
-        carService.deleteCar(testCarDTO);
-        verify(MockDAOCar, times(1)).deleteCar(testCar);
-        
-        assertEquals(0, carService.getAllCars().size());
-        
-        try {
-            carService.deleteCar(null);
-            fail("cannot delete null instance of car");
-        } catch (NullPointerException ex) {
-            
-        }
-        
-        try {
-            carService.deleteCar(testCarDTO);
-            fail("cannot delete car that is not in database");
-        } catch (Exception ex) {
-            
-        }
+    public void testGetFreeCars() {
+        carService.getFreeCars(new Date(), new Date());
+        verify(MockDAOCar, times(1)).getFreeCars(new Date(), new Date());
+
+        List<Car> resultCars = new ArrayList<>();
+        resultCars.add(car);
         
     }*/
 }
