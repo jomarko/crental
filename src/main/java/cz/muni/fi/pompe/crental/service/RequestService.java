@@ -15,44 +15,52 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Service
-public class RequestService {
+public class RequestService implements AbstractRequestService {
     private DAORequest daoRequest;
     private DAOEmployee dAOEmployee;
     
+    @Override
     public void setDaoRequest(DAORequest dao) {
         this.daoRequest = dao;
     }
     
+    @Override
     public void setDaoEmployee(DAOEmployee dao) {
         this.dAOEmployee = dao;
     }
     
     @Transactional
+    @Override
     public void createRequest(DTORequest dto) {
         this.daoRequest.createRequest(this.dtoToEntity(dto));
     }
     
     @Transactional
+    @Override
     public void deleteRequest(DTORequest dto) {
         this.daoRequest.deleteRequest(this.dtoToEntity(dto));
     }
     
     @Transactional
+    @Override
     public void updateRequest(DTORequest dto) {
         this.daoRequest.updateRequest(this.dtoToEntity(dto));
     }
     
     @Transactional(readOnly = true)
+    @Override
     public DTORequest getRequestById(Long id) {
         return entityToDTO(this.daoRequest.getRequestById(id));
     }
     
     @Transactional(readOnly = true)
+    @Override
     public List<DTORequest> getAllRequests() {
         return entitiesToDTOs(this.daoRequest.getAllRequests());
     }
     
     @Transactional(readOnly = true)
+    @Override
     public List<DTORequest> getUnconfirmedRequests() {
         return entitiesToDTOs(daoRequest.getUnconfirmedRequests());
     }
