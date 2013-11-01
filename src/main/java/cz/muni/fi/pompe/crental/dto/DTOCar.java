@@ -42,9 +42,9 @@ public class DTOCar {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.carType);
-        hash = 59 * hash + Objects.hashCode(this.evidencePlate);
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.carType);
+        hash = 43 * hash + Objects.hashCode(this.evidencePlate);
         return hash;
     }
 
@@ -57,7 +57,7 @@ public class DTOCar {
             return false;
         }
         final DTOCar other = (DTOCar) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.carType, other.carType)) {
