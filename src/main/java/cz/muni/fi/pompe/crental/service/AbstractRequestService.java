@@ -1,11 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pompe.crental.service;
 
-import cz.muni.fi.pompe.crental.dao.DAOEmployee;
-import cz.muni.fi.pompe.crental.dao.DAORequest;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
 import java.util.List;
 
@@ -32,7 +26,7 @@ public interface AbstractRequestService {
     /**
      * get list of all requests
      * @throws DataAccessException subclass, if any error has occurred
-     * @return 
+     * @return list of stored DTORequest, in no such exists, empty list is returned
      */
     List<DTORequest> getAllRequests();
 
@@ -40,14 +34,14 @@ public interface AbstractRequestService {
      * get request with passed id
      * @throws DataAccessException subclass, if any error has occurred
      * @param id
-     * @return 
+     * @return DTORequest with passed id, if no such is found, null is returned
      */
     DTORequest getRequestById(Long id);
 
     /**
      * get list of all unconfirmed requests
      * @throws DataAccessException subclass, if any error has occurred
-     * @return 
+     * @return list of stored DTORequest which have not been confirmed as rents, empty list returned if no such request exists
      */
     List<DTORequest> getUnconfirmedRequests();
 

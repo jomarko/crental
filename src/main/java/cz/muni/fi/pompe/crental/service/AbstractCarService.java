@@ -27,7 +27,7 @@ public interface AbstractCarService {
     /**
      * Get list of all cars from DAO layer
      * @throws DataAccessException subclass, if any error has occurred
-     * @return 
+     * @return List of stored DTOCars, if no one exists, empty list is returned
      */
     List<DTOCar> getAllCars();
 
@@ -35,7 +35,7 @@ public interface AbstractCarService {
      * Get car with passed id
      * @throws DataAccessException subclass, if any error has occurred
      * @param id
-     * @return 
+     * @return DTOCar with passed id, if no such is found, null is returned
      */
     DTOCar getCarById(Long id);
 
@@ -44,7 +44,7 @@ public interface AbstractCarService {
      * @throws DataAccessException subclass, if any error has occurred
      * @param from
      * @param to
-     * @return 
+     * @return List of DTOCars, which are assigned to any rents between passed dates
      */
     List<DTOCar> getFreeCars(Date from, Date to);
 
