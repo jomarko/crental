@@ -17,24 +17,28 @@ public interface AbstractRequestService {
 
     /**
      * Create new request
+     * @throws DataAccessException subclass, if any error has occurred
      * @param dto 
      */
     void createRequest(DTORequest dto);
 
     /**
      * delete passed request
+     * @throws DataAccessException subclass, if any error has occurred
      * @param dto 
      */
     void deleteRequest(DTORequest dto);
 
     /**
      * get list of all requests
+     * @throws DataAccessException subclass, if any error has occurred
      * @return 
      */
     List<DTORequest> getAllRequests();
 
     /**
      * get request with passed id
+     * @throws DataAccessException subclass, if any error has occurred
      * @param id
      * @return 
      */
@@ -42,16 +46,14 @@ public interface AbstractRequestService {
 
     /**
      * get list of all unconfirmed requests
+     * @throws DataAccessException subclass, if any error has occurred
      * @return 
      */
     List<DTORequest> getUnconfirmedRequests();
 
-    void setDaoEmployee(DAOEmployee dao);
-
-    void setDaoRequest(DAORequest dao);
-
     /**
      * update passed request
+     * @throws DataAccessException subclass, if any error has occurred
      * @param dto 
      */
     void updateRequest(DTORequest dto);

@@ -19,12 +19,10 @@ public class RequestService implements AbstractRequestService {
     private DAORequest daoRequest;
     private DAOEmployee dAOEmployee;
     
-    @Override
     public void setDaoRequest(DAORequest dao) {
         this.daoRequest = dao;
     }
     
-    @Override
     public void setDaoEmployee(DAOEmployee dao) {
         this.dAOEmployee = dao;
     }

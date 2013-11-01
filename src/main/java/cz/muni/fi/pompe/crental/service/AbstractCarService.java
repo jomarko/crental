@@ -12,24 +12,28 @@ public interface AbstractCarService {
 
     /**
      * Create new row in DAO layer
+     * @throws DataAccessException subclass, if any error has occurred
      * @param dto 
      */
     void createCar(DTOCar dto);
 
     /**
      * Delete row from DAO layer
+     * @throws DataAccessException subclass, if any error has occurred
      * @param dto 
      */
     void deleteCar(DTOCar dto);
 
     /**
      * Get list of all cars from DAO layer
+     * @throws DataAccessException subclass, if any error has occurred
      * @return 
      */
     List<DTOCar> getAllCars();
 
     /**
      * Get car with passed id
+     * @throws DataAccessException subclass, if any error has occurred
      * @param id
      * @return 
      */
@@ -37,6 +41,7 @@ public interface AbstractCarService {
 
     /**
      * Get list of cars available between passed dates
+     * @throws DataAccessException subclass, if any error has occurred
      * @param from
      * @param to
      * @return 
@@ -45,6 +50,7 @@ public interface AbstractCarService {
 
     /**
      * Update passed car
+     * @throws DataAccessException subclass, if any error has occurred
      * @param dto 
      */
     void updateCar(DTOCar dto);
