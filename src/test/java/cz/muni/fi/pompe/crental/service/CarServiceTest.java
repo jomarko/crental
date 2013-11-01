@@ -79,11 +79,11 @@ public class CarServiceTest extends AbstractIntegrationTest {
         assertEquals(result.size(), carService.getAllCars().size());
 
         carDTO.setId(null);
-        doThrow(new DataIntegrityViolationException("fail")).when(MockDAOCar).deleteCar(null);
-
+        
         try {
             carService.deleteCar(carDTO);
-        } catch (DataAccessException ex) {
+        } catch (NullPointerException ex) {
+            fail("service is protected  to null id");
         }
     }
 
@@ -100,6 +100,7 @@ public class CarServiceTest extends AbstractIntegrationTest {
 
         try {
             carService.updateCar(carDTO);
+            fail("can not update such car");
         } catch (DataAccessException ex) {
         }
     }
