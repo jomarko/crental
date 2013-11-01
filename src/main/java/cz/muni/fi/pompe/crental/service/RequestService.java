@@ -32,25 +32,35 @@ public class RequestService implements AbstractRequestService {
     @Transactional
     @Override
     public void createRequest(DTORequest dto) {
-        this.daoRequest.createRequest(this.dtoToEntity(dto));
+        if(dto != null){
+            this.daoRequest.createRequest(this.dtoToEntity(dto));
+        }
     }
     
     @Transactional
     @Override
     public void deleteRequest(DTORequest dto) {
-        this.daoRequest.deleteRequest(this.dtoToEntity(dto));
+        if(dto != null){
+            this.daoRequest.deleteRequest(this.dtoToEntity(dto));
+        }
     }
     
     @Transactional
     @Override
     public void updateRequest(DTORequest dto) {
-        this.daoRequest.updateRequest(this.dtoToEntity(dto));
+        if(dto != null){
+            this.daoRequest.updateRequest(this.dtoToEntity(dto));
+        }
     }
     
     @Transactional(readOnly = true)
     @Override
     public DTORequest getRequestById(Long id) {
-        return entityToDTO(this.daoRequest.getRequestById(id));
+        if(id != null){
+            return entityToDTO(this.daoRequest.getRequestById(id));
+        } else{
+            return null;
+        }
     }
     
     @Transactional(readOnly = true)
