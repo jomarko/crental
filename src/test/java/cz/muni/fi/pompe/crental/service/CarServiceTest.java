@@ -109,11 +109,12 @@ public class CarServiceTest extends AbstractIntegrationTest {
         carService.getAllCars();
         verify(MockDAOCar, times(1)).getAllCars();
 
-        List<DTOCar> DTOCars = new ArrayList<>();
-        DTOCars.add(carDTO);
+        List<Car> cars = new ArrayList<>();
+        cars.add(car);
 
-        doReturn(Arrays.asList(car)).when(MockDAOCar).getAllCars();
+        doReturn(cars).when(MockDAOCar).getAllCars();
         assertEquals(1, carService.getAllCars().size());
+        assertEquals(carDTO, carService.getAllCars().get(0));
     }
 
     @Test
@@ -133,11 +134,13 @@ public class CarServiceTest extends AbstractIntegrationTest {
     @Test
     public void testGetFreeCars() {
         carService.getFreeCars(new Date(), new Date());
-        verify(MockDAOCar, times(1)).getFreeCars(new Date(), new Date());
+        verify(MockDAOCar, times(1)).getFreeCars((Date)anyObject(), (Date)anyObject());
 
         List<Car> resultCars = new ArrayList<>();
-        when(MockDAOCar.getFreeCars(new Date(), new Date())).thenReturn(resultCars);
+        resultCars.add(car);
+        when(MockDAOCar.getFreeCars((Date)anyObject(), (Date)anyObject())).thenReturn(resultCars);
         
-        assertEquals(resultCars.size(), carService.getFreeCars(new Date(), new Date()).size());
+        assertEquals(1, carService.getFreeCars(new Date(), new Date()).size());
+        assertEquals(carDTO, carService.getFreeCars(new Date(), new Date()).get(0));
     }
 }
