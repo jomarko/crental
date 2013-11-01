@@ -1,6 +1,5 @@
 package cz.muni.fi.pompe.crental.dao;
 
-import cz.muni.fi.pompe.crental.exception.CarRentalException;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.entity.Car;
 import cz.muni.fi.pompe.crental.entity.AccessRight;
@@ -39,7 +38,7 @@ public class DAORentImplTest {
     private DAORequest daoRequest;
 
     @Test
-    public void testCreateRent() throws CarRentalException {
+    public void testCreateRent() {
         Employee admin = DAOEmployeeImplTest.newEmployee(null, "Patrik Pomope", "XXXX", AccessRight.Admin);
         daoEmployee.createEmployee(admin);
 
@@ -86,7 +85,7 @@ public class DAORentImplTest {
     }
 
     @Test
-    public void testUpdateRent() throws CarRentalException {
+    public void testUpdateRent() {
         Rent rent = getSampleRent();
         daoRent.createRent(rent);
 
@@ -117,7 +116,7 @@ public class DAORentImplTest {
     }
 
     @Test
-    public void testDeleteRent() throws CarRentalException {
+    public void testDeleteRent() {
         int countBefore = this.daoRent.getAllRents().size();
         Rent rent = getSampleRent();
 
@@ -145,7 +144,7 @@ public class DAORentImplTest {
     }
 
     @Test
-    public void testGetAllRequest() throws CarRentalException {
+    public void testGetAllRequest() {
         List<Rent> list = daoRent.getAllRents();
         Rent rent = getSampleRent();
         daoRent.createRent(rent);
@@ -156,7 +155,7 @@ public class DAORentImplTest {
     }
 
     @Test
-    public void testGetRentById() throws CarRentalException {
+    public void testGetRentById() {
         Rent rent = getSampleRent();
         daoRent.createRent(rent);
 

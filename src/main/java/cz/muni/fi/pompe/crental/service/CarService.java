@@ -53,7 +53,7 @@ public class CarService implements AbstractCarService {
     @Transactional
     @Override
     public void deleteCar(DTOCar dto) {
-        dao.deleteCar(dtoToEntity(dto));
+        dao.deleteCar(dto.getId());
     }
     
     @Transactional

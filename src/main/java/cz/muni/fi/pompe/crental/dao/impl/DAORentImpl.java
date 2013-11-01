@@ -80,7 +80,7 @@ public class DAORentImpl implements DAORent {
             rentToUpdate.setRequest(rent.getRequest());
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Error when trying to update rent {0}", rent);
-            throw new IllegalArgumentException("Error when trying to update rent " + rent + " from the database", ex);
+            throw new IllegalArgumentException("Error when trying to update rent " + rent, ex);
         } finally {
             em.close();
         }
@@ -115,7 +115,7 @@ public class DAORentImpl implements DAORent {
             TypedQuery<Rent> query = em.createNamedQuery("Rent.SelectRentById", Rent.class);
             query.setParameter("id", id);
             result = query.getSingleResult();
-            LOG.log(Level.INFO, "Rentwith id {0} was retrieved", id);
+            LOG.log(Level.INFO, "Rent with id {0} was retrieved", id);
         } catch (NoResultException ex) {
             LOG.log(Level.SEVERE, "There is no rent with id {0} in the database");
             throw new IllegalArgumentException("There is no rent with id " + id + " in the database", ex);

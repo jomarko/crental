@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -22,16 +23,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class CarServiceTest extends AbstractIntegrationTest {
+
     @Mock
-    private DAOCar MockDAOcar;
-    
+    private DAOCar MockDAOCar;
     @InjectMocks
     @Autowired
     private CarService carService;
-    
     private DTOCar testCarDTO;
     private Car testCar;
-    
+
     @Before
     public void setUp() {
         testCarDTO = new DTOCar();
@@ -40,26 +40,47 @@ public class CarServiceTest extends AbstractIntegrationTest {
         testCar = new Car();
         testCar.setCarType("BMW X5");
         testCar.setEvidencePlate("123456");
-        
-        List<Car> allCars = new ArrayList<>();
-        allCars.add(testCar);
-        
-        doReturn(allCars).when(MockDAOcar).getAllCars();
-        doThrow(new NullPointerException()).when(MockDAOcar).createCar(null);
     }
-    
+
     @Test
     public void testCreateNewCar() {
+
+        // test of persisting valid instance of Car
         carService.createCar(testCarDTO);
-        List<DTOCar> carDTOs = this.carService.getAllCars();
-        assertEquals(1, carDTOs.size());      
-    }
-    
-    @Test
-    public void testCreateNullCar() {
-        try{
+        verify(MockDAOCar, times(1)).createCar(testCar);     //check that method createCar() was invoked one time
+        assertEquals(1, carService.getAllCars().size());
+
+        //tests of persisting invalid instance of Car
+        try {
             carService.createCar(null);
-            fail("null car");
-        } catch(NullPointerException ex){    }
+            fail("cannot persist null instance of car");
+        } catch (NullPointerException ex) {
+            //ok
+        }
     }
+
+    /*@Test
+    public void testDeleteCar() {
+        
+        carService.createCar(testCarDTO);
+        carService.deleteCar(testCarDTO);
+        verify(MockDAOCar, times(1)).deleteCar(testCar);
+        
+        assertEquals(0, carService.getAllCars().size());
+        
+        try {
+            carService.deleteCar(null);
+            fail("cannot delete null instance of car");
+        } catch (NullPointerException ex) {
+            
+        }
+        
+        try {
+            carService.deleteCar(testCarDTO);
+            fail("cannot delete car that is not in database");
+        } catch (Exception ex) {
+            
+        }
+        
+    }*/
 }
