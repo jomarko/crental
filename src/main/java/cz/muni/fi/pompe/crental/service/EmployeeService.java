@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jozef
  */
 @Service
-public class EmployeeService {
+public class EmployeeService implements AbstractEmployeeService{
     
     private DAOEmployee daoemployee;
 
@@ -25,29 +25,33 @@ public class EmployeeService {
         this.daoemployee = daoemployee;
     }
     
+    @Override
     @Transactional
-    void createEmployee(DTOEmployee dtoemployee){
+    public void createEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
             daoemployee.createEmployee(dtoToEntity(dtoemployee));
         }
     }
     
+    @Override
     @Transactional
-    void deleteEmployee(DTOEmployee dtoemployee){
+    public void deleteEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
             daoemployee.deleteEmployee(dtoToEntity(dtoemployee));
         }
     }
     
+    @Override
     @Transactional
-    void updateEmployee(DTOEmployee dtoemployee){
+    public void updateEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
             daoemployee.updateEmployee(dtoToEntity(dtoemployee));
         }
     }
     
+    @Override
     @Transactional(readOnly = true)
-    List<DTOEmployee> getAllEmployees(){
+    public List<DTOEmployee> getAllEmployees(){
         List<DTOEmployee> result = new ArrayList<>();
         
         for(Employee e : daoemployee.getAllEmployees()){
@@ -57,8 +61,9 @@ public class EmployeeService {
         return result;
     }
     
+    @Override
     @Transactional(readOnly = true)
-    DTOEmployee getEmployeeById(Long id){
+    public DTOEmployee getEmployeeById(Long id){
         DTOEmployee result = null;
         Employee e = daoemployee.getEmployeeById(id);
         if(e != null){

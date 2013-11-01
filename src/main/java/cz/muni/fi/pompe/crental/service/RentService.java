@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jozef
  */
 @Service
-public class RentService {
+public class RentService implements AbstractRentService {
     
     private DAORent daorent;
     private DAOCar daocar;
@@ -47,6 +47,7 @@ public class RentService {
     }
     
     @Transactional
+    @Override
     public void createRent(DTORent dtorent) {
         if(dtorent != null) {
             daorent.createRent(dtoToEntity(dtorent));
@@ -54,6 +55,7 @@ public class RentService {
     }
 
     @Transactional
+    @Override
     public void deleteRent(DTORent dtorent) {
         if(dtorent != null && dtorent.getId() != null) {
             daorent.deleteRent(dtorent.getId());
@@ -61,6 +63,7 @@ public class RentService {
     }
 
     @Transactional
+    @Override
     public void updateRent(DTORent dtorent) {
         if(dtorent != null) {
             daorent.updateRent(dtoToEntity(dtorent));
@@ -68,6 +71,7 @@ public class RentService {
     }
 
     @Transactional(readOnly = true)
+    @Override
     public List<DTORent> getAllRents() {
         List<DTORent> result = new ArrayList<>();
         
@@ -79,6 +83,7 @@ public class RentService {
     }
     
     @Transactional(readOnly = true)
+    @Override
     public List<DTORent> getAllRentsIn(Date from, Date to) {
         List<DTORent> result = new ArrayList<>();
         if(from != null && to != null && to.compareTo(from)>= 0){
@@ -98,6 +103,7 @@ public class RentService {
     }
     
     @Transactional(readOnly = true)
+    @Override
     public List<DTORent> getAllRentsOfCar(DTOCar dtocar) {
         List<DTORent> result = new ArrayList<>();
         if(dtocar != null && dtocar.getId() != null){
@@ -112,6 +118,7 @@ public class RentService {
     }
     
     @Transactional(readOnly = true)
+    @Override
     public List<DTORent> getAllRentsOfEmployee(DTOEmployee dtoemp) {
         List<DTORent> result = new ArrayList<>();
         if(dtoemp != null && dtoemp.getId() != null){
@@ -126,6 +133,7 @@ public class RentService {
     }
 
     @Transactional(readOnly = true)
+    @Override
     public DTORent getRentById(Long id) {
         DTORent result = null;
         Rent r = daorent.getRentById(id);

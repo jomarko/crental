@@ -20,10 +20,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,6 +34,7 @@ import org.springframework.dao.DataIntegrityViolationException;
  *
  * @author jozef
  */
+@RunWith(MockitoJUnitRunner.class)
 public class RentServiceTest extends AbstractIntegrationTest{
     @Mock
     private DAORent daorent;
