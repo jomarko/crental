@@ -4,6 +4,7 @@ import cz.muni.fi.pompe.crental.dao.DAOCar;
 import cz.muni.fi.pompe.crental.dto.DTOCar;
 import cz.muni.fi.pompe.crental.entity.Car;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -48,6 +49,8 @@ public class CarServiceTest extends AbstractIntegrationTest {
         // test of persisting valid instance of Car
         carService.createCar(testCarDTO);
         verify(MockDAOCar, times(1)).createCar(testCar);     //check that method createCar() was invoked one time
+        
+        doReturn(Arrays.asList(testCar)).when(MockDAOCar).getAllCars();
         assertEquals(1, carService.getAllCars().size());
 
         //tests of persisting invalid instance of Car

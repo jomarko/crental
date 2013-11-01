@@ -99,13 +99,13 @@ public class DAOCarImplTest {
         
         assertEquals(daocar.getAllCars().size(), 2);
         
-        daocar.deleteCar(car);
+        daocar.deleteCar(car.getId());
         
         assertEquals(daocar.getAllCars().size(), 1);
         
         assertEquals(daocar.getAllCars().get(0), auto);
 
-        daocar.deleteCar(auto);
+        daocar.deleteCar(auto.getId());
         
         assertEquals(daocar.getAllCars().size(), 0);
         
@@ -118,7 +118,7 @@ public class DAOCarImplTest {
         daocar.createCar(auto);
         car = newCar(11452l, "cartype", "spz");
         try{
-            daocar.deleteCar(car);
+            daocar.deleteCar(car.getId());
             fail("invalid car");
         }catch(DataAccessException ex){    }
     }
@@ -134,8 +134,8 @@ public class DAOCarImplTest {
         assertEquals(daocar.getAllCars().get(0), car);
         assertEquals(daocar.getAllCars().get(1), auto);
                
-        daocar.deleteCar(car);
-        daocar.deleteCar(auto);
+        daocar.deleteCar(car.getId());
+        daocar.deleteCar(auto.getId());
         
         assertEquals(daocar.getAllCars().size(), 0);
     }
