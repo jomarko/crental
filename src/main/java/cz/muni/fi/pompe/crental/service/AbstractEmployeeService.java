@@ -12,9 +12,34 @@ import java.util.List;
  * @author jozef
  */
 public interface AbstractEmployeeService {
+    /**
+     * Method
+     * @param dtoemployee 
+     */
     void createEmployee(DTOEmployee dtoemployee);
+    
+    /**
+     * 
+     * @param dtoemployee 
+     */
     void deleteEmployee(DTOEmployee dtoemployee);
+    
+    /**
+     * 
+     * @param dtoemployee 
+     */
     void updateEmployee(DTOEmployee dtoemployee);
+    
+    /**
+     * 
+     * @return 
+     */
     List<DTOEmployee> getAllEmployees();
+    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     DTOEmployee getEmployeeById(Long id);
 }

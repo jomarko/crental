@@ -16,19 +16,56 @@ import java.util.List;
  */
 public interface AbstractRentService {
 
+    /**
+     * 
+     * @param dtorent 
+     */
     void createRent(DTORent dtorent);
 
+    /**
+     * 
+     * @param dtorent 
+     */
     void deleteRent(DTORent dtorent);
 
+    /**
+     * 
+     * @return 
+     */
     List<DTORent> getAllRents();
 
+    /**
+     * 
+     * @param from
+     * @param to
+     * @return 
+     */
     List<DTORent> getAllRentsIn(Date from, Date to);
 
+    /**
+     * 
+     * @param dtocar
+     * @return 
+     */
     List<DTORent> getAllRentsOfCar(DTOCar dtocar);
 
+    /**
+     * 
+     * @param dtoemp
+     * @return 
+     */
     List<DTORent> getAllRentsOfEmployee(DTOEmployee dtoemp);
 
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     DTORent getRentById(Long id);
 
+    /**
+     * 
+     * @param dtorent 
+     */
     void updateRent(DTORent dtorent);
 }

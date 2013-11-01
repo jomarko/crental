@@ -139,7 +139,7 @@ public class RentServiceTest extends AbstractIntegrationTest{
         verify(daorent).deleteRent(1l);
         
         dtorent.setId(null);
-        doThrow(new DataIntegrityViolationException("fail")).when(daorent).deleteRent(1l);
+        doThrow(new DataIntegrityViolationException("fail")).when(daorent).deleteRent(null);
         
         try{
             rentservice.deleteRent(dtorent);
