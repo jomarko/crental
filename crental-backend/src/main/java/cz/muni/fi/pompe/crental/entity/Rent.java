@@ -26,7 +26,7 @@ import javax.persistence.Temporal;
 public class Rent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @OneToOne(optional = false)

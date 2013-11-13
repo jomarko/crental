@@ -23,7 +23,7 @@ import javax.persistence.NamedQuery;
 
 public class Employee implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)

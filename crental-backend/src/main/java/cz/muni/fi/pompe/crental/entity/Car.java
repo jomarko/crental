@@ -20,7 +20,7 @@ import javax.persistence.NamedQuery;
 public class Car implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String carType;
     private String evidencePlate;
