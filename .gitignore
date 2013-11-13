@@ -5,3 +5,5 @@
 *.war
 *.ear
 /target/*
+/crental-backend/target/
+/crental-web/target/

@@ -1,120 +1,102 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-		
-  <groupId>cz.muni.fi.pompe</groupId>
-  <artifactId>crental</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <name>crental</name>
-  <url>http://maven.apache.org</url>
- 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
-  <build>
-      <plugins>
-        <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <version>3.1</version>
-              <configuration>
-                      <source>1.7</source>
-                      <target>1.7</target>
-              </configuration>
-        </plugin>
-      </plugins>
-  </build>
+    <groupId>cz.muni.fi.pompe</groupId>
+    <artifactId>crental</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>Crental aggregator module</name>
 
-  <dependencies>
-    <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-    </dependency>
-    
-    
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>4.1.4.Final</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derbyclient</artifactId>
-      <version>10.7.1.1</version>
-    </dependency>
-    
-    <dependency>
-	<groupId>hsqldb</groupId>
-	<artifactId>hsqldb</artifactId>
-	<version>1.8.0.7</version>
-    </dependency>
-    
-    
-    <dependency>
-	<groupId>org.mockito</groupId>
-	<artifactId>mockito-all</artifactId>
-	<version>1.9.5</version>
-    </dependency>
-    
-    <!--Spring-->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aspects</artifactId>
-        <version>3.0.6.RELEASE</version>
-    </dependency>
+    <modules>
+        <module>crental-web</module>
+        <module>crental-backend</module>
+    </modules>
 
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>3.0.6.RELEASE</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>3.0.6.RELEASE</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-        <version>3.0.6.RELEASE</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-tx</artifactId>
-        <version>3.0.6.RELEASE</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-beans</artifactId>
-        <version>3.0.6.RELEASE</version>
-    </dependency>
     
-    <dependency>
-	<groupId>org.springframework</groupId>
-	<artifactId>spring-orm</artifactId>
-	<version>3.0.6.RELEASE</version>
-    </dependency>
-            
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-dao</artifactId>
-        <version>2.0</version>
-    </dependency>       
-            
-    <dependency>
-        <groupId>cglib</groupId>
-        <artifactId>cglib</artifactId>
-        <version>2.2.2</version>
-    </dependency>
 
-  </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
+
+    <dependencies>
+        <!--Spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-dao</artifactId>
+            <version>2.0</version>
+        </dependency>       
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Java language version -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
