@@ -5,15 +5,12 @@
 package cz.muni.fi.pompe.crental.web;
 
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
-import cz.muni.fi.pompe.crental.service.EmployeeService;
+import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
 import java.util.List;
-import net.sourceforge.stripes.action.ActionBean;
-import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.LocalizableMessage;
-import net.sourceforge.stripes.action.Message;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
@@ -25,7 +22,6 @@ import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -37,7 +33,7 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     final static Logger log = LoggerFactory.getLogger(EmployeeActionBean.class);
     
     @SpringBean
-    private EmployeeService empService;
+    private AbstractEmployeeService employeeService;
     
     private List<DTOEmployee> employees;
 
@@ -62,13 +58,13 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     
     @DefaultHandler
     public Resolution list() {
-        employees = empService.getAllEmployees();
+        employees = employeeService.getAllEmployees();
         return new ForwardResolution("/employee/list.jsp");
     }
     
     public Resolution add() {
         log.debug("add() employee={}", employee);
-        empService.createEmployee(employee);
+        employeeService.createEmployee(employee);
         log.debug("addded() employee={}", employee);
         getContext().getMessages().add(new LocalizableMessage("employee.add.message",escapeHTML(employee.getName())));
         return new RedirectResolution(this.getClass(), "list");
@@ -77,7 +73,7 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     @Override
     public Resolution handleValidationErrors(ValidationErrors errors) throws Exception {
         //fill up the data for the table if validation errors occured
-        employees = empService.getAllEmployees();
+        employees = employeeService.getAllEmployees();
         //return null to let the event handling continue
         return null;
     }
@@ -86,8 +82,8 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
 
     public Resolution delete() {
         //only id is filled by the form
-        employee = empService.getEmployeeById(employee.getId());
-        empService.deleteEmployee(employee);
+        employee = employeeService.getEmployeeById(employee.getId());
+        employeeService.deleteEmployee(employee);
         getContext().getMessages().add(new LocalizableMessage("employee.delete.message",escapeHTML(employee.getName())));
         return new RedirectResolution(this.getClass(), "list");
     }
@@ -98,7 +94,7 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     public void loadBookFromDatabase() {
         String ids = getContext().getRequest().getParameter("employee.id");
         if (ids == null) return;
-        employee = empService.getEmployeeById(Long.parseLong(ids));
+        employee = employeeService.getEmployeeById(Long.parseLong(ids));
     }
 
     public Resolution edit() {
@@ -106,7 +102,7 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     }
 
     public Resolution save() {
-        empService.updateEmployee(employee);
+        employeeService.updateEmployee(employee);
         return new RedirectResolution(this.getClass(), "list");
     }
     
