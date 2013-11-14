@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 @Entity
 public class Request implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     
     @Column(nullable = false)
