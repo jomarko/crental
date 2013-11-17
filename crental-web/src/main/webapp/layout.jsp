@@ -17,7 +17,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand">Crental</a>
+          <s:link class="navbar-brand" href="/index.jsp">Crental</s:link>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -26,9 +26,6 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li>
-              <s:link href="/index.jsp"><f:message key="navigation.index"/></s:link>
-            </li>
             <li>
               <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean"><f:message key="navigation.employees"/></s:link>
             </li>
@@ -43,11 +40,11 @@
     <div class="container">
 
       <div class="page-header" id="banner">
-        <div class="row">
+<!--        <div class="row">
             <div class="col-lg-12">
                 <h1><f:message key="${titlekey}"/></h1>
             </div>
-        </div>
+        </div>-->
       </div>
 
 
@@ -65,8 +62,8 @@
       <footer>
         <div class="row">
           <div class="col-lg-12">
-
-            <ul class="list-unstyled">
+              <p></p>
+<!--            <ul class="list-unstyled">
               <li class="pull-right"><a href="#top">Back to top</a></li>
               <li><a href="https://github.com/pompep/crental">GitHub</a></li>
               <li><a href="../help/#api">API</a></li>
@@ -74,7 +71,7 @@
 
             <p>Made by <a href="http://thomaspark.me">Thomas Park</a>. Contact him at <a href="mailto:hello@thomaspark.me">hello@thomaspark.me</a>.</p>
             <p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</p>
-            <p>Based on <a href="http://getbootstrap.com">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts">Google</a>. Favicon by <a href="https://twitter.com/geraldhiller">Gerald Hiller</a>.</p>
+            <p>Based on <a href="http://getbootstrap.com">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts">Google</a>. Favicon by <a href="https://twitter.com/geraldhiller">Gerald Hiller</a>.</p>-->
 
           </div>
         </div>
