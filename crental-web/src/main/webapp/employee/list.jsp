@@ -28,7 +28,7 @@
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" event="edit"><s:param name="employee.id" value="${employee.id}"/>edit</s:link>
                     </td>
                     <td>
-                        <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean">
+                        <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="delete">
                             <s:hidden name="employee.id" value="${employee.id}"/>
                             <s:submit name="delete"><f:message key="employee.list.delete"/></s:submit>
                         </s:form>

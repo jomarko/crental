@@ -10,6 +10,7 @@ import java.util.List;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.LocalizableMessage;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
@@ -62,6 +63,7 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
         return new ForwardResolution("/employee/list.jsp");
     }
     
+    @HandlesEvent("add")
     public Resolution add() {
         log.debug("add() employee={}", employee);
         employeeService.createEmployee(employee);
@@ -80,8 +82,8 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
 
     //--- part for deleting a book ----
 
+    @HandlesEvent("delete")
     public Resolution delete() {
-        //only id is filled by the form
         employee = employeeService.getEmployeeById(employee.getId());
         employeeService.deleteEmployee(employee);
         getContext().getMessages().add(new LocalizableMessage("employee.delete.message",escapeHTML(employee.getName())));
@@ -97,15 +99,18 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
         employee = employeeService.getEmployeeById(Long.parseLong(ids));
     }
 
+    @HandlesEvent("edit")
     public Resolution edit() {
-        return new ForwardResolution("/book/edit.jsp");
+        return new ForwardResolution("/employee/edit.jsp");
     }
 
+    @HandlesEvent("save")
     public Resolution save() {
         employeeService.updateEmployee(employee);
         return new RedirectResolution(this.getClass(), "list");
     }
     
+    @HandlesEvent("cancel")
     public Resolution cancel() {
         return new RedirectResolution(this.getClass(), "list");
     }
