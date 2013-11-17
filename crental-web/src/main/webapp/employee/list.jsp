@@ -9,7 +9,7 @@
 
         <p><f:message key="employee.list.allemployees"/></p>
 
-        <table class="basic">
+        <table class="table">
             <tr>
                 <th>id</th>
                 <th><f:message key="employee.name"/></th>
@@ -36,12 +36,13 @@
                 </tr>
             </c:forEach>
         </table>
-
+        
         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="add">
             <fieldset><legend><f:message key="employee.list.newemployee"/></legend>
                 <%@include file="form.jsp"%>
                 <s:submit name="add"><f:message key="employee.list.newemployee"/></s:submit>
             </fieldset>
         </s:form>
+        
     </s:layout-component>
 </s:layout-render>
