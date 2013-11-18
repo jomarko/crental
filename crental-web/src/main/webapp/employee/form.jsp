@@ -1,18 +1,36 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
-<s:errors/>
-<table>
-    <tr>
-        <th><s:label for="e1" name="employee.name"/></th>
-        <td><s:text id="e1" name="employee.name"/></td>
-    </tr>
-    <tr>
-        <th><s:label for="e2" name="employee.password"/></th>
-        <td><s:text id="e2" name="employee.password"/></td>
-    </tr>
-    <tr>
-        <th><s:label for="e3" name="employee.accessRight"/></th>
-        <td>
-            <s:select id="e3" name="employee.accessRight"><s:options-enumeration enum="cz.muni.fi.pompe.crental.entity.AccessRight"/></s:select>
-        </td>
-    </tr>
-</table>
+        <div class="form-group">
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <s:label for="employee.name" name="employee.name"/>
+                </div>
+                <div class="col-lg-6 ">
+                    <s:text id="employee.name" name="employee.name" class="form-control"/>
+                </div>
+                <div class="col-lg-4"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <s:label for="employee.password" name="employee.password"/>
+                </div>
+                <div class="col-lg-6 ">
+                    <s:text id="employee.password" name="employee.password" class="form-control"/>
+                </div>
+                
+                <div class="col-lg-4"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <s:label for="employee.accessRight" name="employee.accessRight" />       
+                </div>
+                <div class="col-lg-6">
+                    <s:select id="employee.accessRight" name="employee.accessRight" class="form-control"><s:options-enumeration enum="cz.muni.fi.pompe.crental.entity.AccessRight"/></s:select>
+                </div>
+                <div class="col-lg-4"/>
+            </div>
+        </div>  
+    

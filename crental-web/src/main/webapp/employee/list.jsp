@@ -6,9 +6,7 @@
 <s:layout-render name="/layout.jsp" titlekey="employee.list.title">
     <s:layout-component name="body">
         <s:useActionBean beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" var="actionBean"/>
-
-        <p><f:message key="employee.list.allemployees"/></p>
-
+        <h1><f:message key="employee.list.title"/></h1>
         <table class="table">
             <tr>
                 <th>id</th>
@@ -30,17 +28,17 @@
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="delete">
                             <s:hidden name="employee.id" value="${employee.id}"/>
-                            <s:submit name="delete"><f:message key="employee.list.delete"/></s:submit>
+                            <s:submit name="delete" class="btn btn-danger"><f:message key="employee.list.delete"/></s:submit>
                         </s:form>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-        
+        <s:errors/>
         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="add">
             <fieldset><legend><f:message key="employee.list.newemployee"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add"><f:message key="employee.list.newemployee"/></s:submit>
+                <s:submit name="add" class="btn btn-success"><f:message key="employee.list.newemployee"/></s:submit>
             </fieldset>
         </s:form>
         

@@ -39,8 +39,8 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     private List<DTOEmployee> employees;
 
     @ValidateNestedProperties(value = {
-            @Validate(on = {"add", "save"}, field = "name", required = true),
-            @Validate(on = {"add", "save"}, field = "password", required = true),
+            @Validate(on = {"add", "save"}, field = "name", required = true, label = "Name"),
+            @Validate(on = {"add", "save"}, field = "password", required = true, label = "Password"),
             @Validate(on = {"add", "save"}, field = "accessRight", required = true)
     })
     private DTOEmployee employee;
