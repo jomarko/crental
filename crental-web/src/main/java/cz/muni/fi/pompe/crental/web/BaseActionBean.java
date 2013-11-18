@@ -7,14 +7,21 @@ package cz.muni.fi.pompe.crental.web;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.apache.taglibs.standard.functions.Functions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author jozef
  */
 public class BaseActionBean implements ActionBean{
-
     private ActionBeanContext context;
+    
+    protected Logger log;
+
+    public BaseActionBean() {
+        log = LoggerFactory.getLogger(this.getClass());
+    }
 
     @Override
     public void setContext(ActionBeanContext context) {
