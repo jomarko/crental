@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme.min.css" media="screen">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/crental.css" media="screen">
     <s:layout-component name="header"/>
   </head>
   <body>
