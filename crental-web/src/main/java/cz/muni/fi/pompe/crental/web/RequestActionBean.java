@@ -103,7 +103,7 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
         return new RedirectResolution(this.getClass(), "list");
     }
     
-    @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit"})
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit", "add", "save"})
     public void loadRequestsEmployees() {
         employees = employeeService.getAllEmployees();
         requests = requestService.getAllRequests();
