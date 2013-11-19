@@ -47,6 +47,9 @@
             <li>
               <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean"><f:message key="navigation.request"/></s:link>
             </li>
+            <li>
+            <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean"></s:link>
+            </li>
           </ul>
         </div>
       </div>
