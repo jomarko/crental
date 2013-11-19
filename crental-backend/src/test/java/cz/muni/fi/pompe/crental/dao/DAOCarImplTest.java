@@ -94,20 +94,22 @@ public class DAOCarImplTest {
     public void testDeleteCar() {
         Car car = newCar(null, "cartype", "spz");
         Car auto = newCar(null, "autotype", "autospz");
+        int old = daocar.getAllCars().size();
+        
         daocar.createCar(car);
         daocar.createCar(auto);
         
-        assertEquals(daocar.getAllCars().size(), 2);
+        assertEquals(daocar.getAllCars().size(), old + 2);
         
         daocar.deleteCar(car.getId());
         
-        assertEquals(daocar.getAllCars().size(), 1);
+        assertEquals(daocar.getAllCars().size(), old + 1);
         
         assertEquals(daocar.getAllCars().get(0), auto);
 
         daocar.deleteCar(auto.getId());
         
-        assertEquals(daocar.getAllCars().size(), 0);
+        assertEquals(daocar.getAllCars().size(), old);
         
         try{
             daocar.deleteCar(null);
@@ -125,19 +127,20 @@ public class DAOCarImplTest {
     
     @Test
     public void testGetAllCars() {
+        int old = daocar.getAllCars().size();
         Car car = newCar(null, "cartype", "spz");
         daocar.createCar(car);
         Car auto = newCar(null, "autotype", "spz");
         daocar.createCar(auto);
         
-        assertEquals(daocar.getAllCars().size(), 2);
+        assertEquals(daocar.getAllCars().size(), old + 2);
         assertEquals(daocar.getAllCars().get(0), car);
         assertEquals(daocar.getAllCars().get(1), auto);
                
         daocar.deleteCar(car.getId());
         daocar.deleteCar(auto.getId());
         
-        assertEquals(daocar.getAllCars().size(), 0);
+        assertEquals(daocar.getAllCars().size(), old);
     }
     
     @Test

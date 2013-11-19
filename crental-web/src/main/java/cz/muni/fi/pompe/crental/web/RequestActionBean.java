@@ -1,20 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pompe.crental.web;
 
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
 import cz.muni.fi.pompe.crental.service.AbstractRequestService;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import net.sourceforge.stripes.action.ActionBean;
-import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -24,19 +15,17 @@ import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.controller.LifecycleStage;
-import net.sourceforge.stripes.exception.DefaultExceptionHandler;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.DateTypeConverter;
+import net.sourceforge.stripes.validation.LocalizableError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import net.sourceforge.stripes.validation.ValidationMethod;
-import org.apache.derby.client.am.DateTime;
-import org.apache.taglibs.standard.functions.Functions;
+import net.sourceforge.stripes.validation.ValidationState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -114,7 +103,7 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
         return new RedirectResolution(this.getClass(), "list");
     }
     
-    @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit"})
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit", "add", "save"})
     public void loadRequestsEmployees() {
         employees = employeeService.getAllEmployees();
         requests = requestService.getAllRequests();
@@ -137,5 +126,21 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
     @HandlesEvent("cancel")
     public Resolution cancel() {
         return new RedirectResolution(this.getClass(), "list");
+    }
+    
+    @ValidationMethod(when=ValidationState.NO_ERRORS, on={"add", "save"})
+    public void validateDates() {
+        if (request.getDateFrom().after(request.getDateTo())) {
+            getContext().getValidationErrors().add("dateFrom", new LocalizableError("request.validate.datesMissMatch"));
+        }
+    }
+    
+    @ValidationMethod(when=ValidationState.NO_ERRORS, on={"save"})
+    public void validateDateFrom() {
+        Date today = new Date(); // TODO dnes 00
+   
+        if (request.getDateFrom().after(today)) {
+            getContext().getValidationErrors().add("dateFrom", new LocalizableError("request.validate.dateFromPast"));
+        }
     }
 }
