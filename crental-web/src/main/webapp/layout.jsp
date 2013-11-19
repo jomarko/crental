@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme.min.css" media="screen">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/crental.css" media="screen">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "#datepickerFrom" ).datepicker();
+        });
+        $(function() {
+            $( "#datepickerTo" ).datepicker();
+        });
+    </script>
     <s:layout-component name="header"/>
   </head>
   <body>
@@ -32,6 +43,9 @@
             </li>
             <li>
               <s:link beanclass="cz.muni.fi.pompe.crental.web.CarActionBean"><f:message key="navigation.car"/></s:link>
+            </li>
+            <li>
+              <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean"><f:message key="navigation.request"/></s:link>
             </li>
           </ul>
         </div>
