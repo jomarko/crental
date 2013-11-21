@@ -101,14 +101,14 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
         boolean findedDependency = false;
         for(DTORequest r : requestService.getAllRequests()){
             if(r.getEmployeeId().equals(employee.getId())){
-                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
+                getContext().getMessages().add(new LocalizableMessage("employee.validate.dependency"));       
                 findedDependency = true;
                 break;
             }
         }
         for(DTORent r : rentService.getAllRents()){
             if(r.getConfirmedById().equals(employee.getId())){
-                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
+                getContext().getMessages().add(new LocalizableMessage("employee.validate.dependency"));       
                 findedDependency = true;
                 break;
             }

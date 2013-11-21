@@ -24,12 +24,12 @@
                     <td><c:out value="${employee.name}"/></td>
                     <td><c:out value="${employee.accessRight}"/></td>
                     <td>
-                     <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" event="edit" class="btn btn-success"><s:param name="employee.id" value="${employee.id}"/>edit</s:link>
+                     <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" event="edit" class="btn btn-success"><s:param name="employee.id" value="${employee.id}"/><f:message key="common.edit"/></s:link>
                     </td>
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="delete">
                             <s:hidden name="employee.id" value="${employee.id}"/>
-                            <s:submit name="delete" class="btn btn-danger"><f:message key="employee.list.delete"/></s:submit>
+                            <s:submit name="delete" class="btn btn-danger"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td>
                 </tr>

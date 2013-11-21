@@ -11,7 +11,7 @@
                 <s:hidden name="employee.id"/>
                 <fieldset><legend><f:message key="employee.edit.edit"/></legend>
                     <%@include file="form.jsp"%>
-                    <s:submit class="btn btn-success" name="save" value="save"><f:message key="button.save"/></s:submit>
+                    <s:submit class="btn btn-success" name="save" value="save"><f:message key="common.save"/></s:submit>
                     <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" event="list" class="btn btn-warning"><f:message key="common.cancel"/></s:link>
                 </fieldset>
             </s:form>

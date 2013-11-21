@@ -16,7 +16,7 @@
                     <s:label for="employee.password" name="employee.password"/>
                 </div>
                 <div class="col-lg-6 ">
-                    <s:text id="employee.password" name="employee.password" class="form-control"/>
+                    <s:password id="employee.password" name="employee.password" class="form-control"/>
                 </div>
                 
                 <div class="col-lg-4"/>

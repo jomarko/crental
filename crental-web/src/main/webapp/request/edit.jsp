@@ -11,7 +11,7 @@
                 <s:hidden name="request.id"/>
                 <fieldset><legend><f:message key="request.edit.title"/></legend>
                     <%@include file="form.jsp"%>
-                    <s:submit class="btn btn-success" name="save" value="save"><f:message key="button.save"/></s:submit>
+                    <s:submit class="btn btn-success" name="save" value="save"><f:message key="common.save"/></s:submit>
                     <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="list" class="btn btn-warning"><f:message key="common.cancel"/></s:link>
                 </fieldset>
             </s:form>

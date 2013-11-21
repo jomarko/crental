@@ -28,12 +28,12 @@
                     <td><c:out value="${request.dateTo}"/></td>
                     <td><c:out value="${request.description}"/></td>
                     <td>
-                     <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="edit" class="btn btn-success"><s:param name="request.id" value="${request.id}"/>edit</s:link>
+                     <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="edit" class="btn btn-success"><s:param name="request.id" value="${request.id}"/><f:message key="common.edit"/></s:link>
                     </td>
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" action="delete">
                             <s:hidden name="request.id" value="${request.id}"/>
-                            <s:submit name="delete" class="btn btn-danger"><f:message key="request.list.delete"/></s:submit>
+                            <s:submit name="delete" class="btn btn-danger"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td>
                 </tr>
