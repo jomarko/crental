@@ -5,7 +5,11 @@
 package cz.muni.fi.pompe.crental.web;
 
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
+import cz.muni.fi.pompe.crental.dto.DTORent;
+import cz.muni.fi.pompe.crental.dto.DTORequest;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
+import cz.muni.fi.pompe.crental.service.AbstractRentService;
+import cz.muni.fi.pompe.crental.service.AbstractRequestService;
 import java.util.List;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -17,10 +21,13 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.integration.spring.SpringBean;
+import net.sourceforge.stripes.validation.LocalizableError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
+import net.sourceforge.stripes.validation.ValidationMethod;
+import net.sourceforge.stripes.validation.ValidationState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +42,12 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     
     @SpringBean
     private AbstractEmployeeService employeeService;
+    
+    @SpringBean
+    private AbstractRequestService requestService;
+    
+    @SpringBean
+    private AbstractRentService rentService;
     
     private List<DTOEmployee> employees;
 
@@ -85,15 +98,48 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     @HandlesEvent("delete")
     public Resolution delete() {
         employee = employeeService.getEmployeeById(employee.getId());
-        employeeService.deleteEmployee(employee);
-        getContext().getMessages().add(new LocalizableMessage("employee.delete.message",escapeHTML(employee.getName())));
+        boolean findedDependency = false;
+        for(DTORequest r : requestService.getAllRequests()){
+            if(r.getEmployeeId().equals(employee.getId())){
+                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
+                findedDependency = true;
+                break;
+            }
+        }
+        for(DTORent r : rentService.getAllRents()){
+            if(r.getConfirmedById().equals(employee.getId())){
+                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
+                findedDependency = true;
+                break;
+            }
+        }
+        if(!findedDependency){
+            employeeService.deleteEmployee(employee);
+            getContext().getMessages().add(new LocalizableMessage("employee.delete.message",escapeHTML(employee.getName())));
+        }
         return new RedirectResolution(this.getClass(), "list");
     }
 
-    //--- part for editing a book ----
+    /*@ValidationMethod(when=ValidationState.ALWAYS, on={"delete"})
+    public void validateDependencies() {
+        Long id = Long.parseLong(getContext().getRequest().getParameter("employee.id"));
+        employee = employeeService.getEmployeeById(id);
+        for(DTORequest r : requestService.getAllRequests()){
+            if(r.getEmployeeId().equals(employee.getId())){
+                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
+                break;
+            }
+        }
+        for(DTORent r : rentService.getAllRents()){
+            if(r.getConfirmedById().equals(employee.getId())){
+                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
+                break;
+            }
+        }
+    }*/
 
     @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
-    public void loadBookFromDatabase() {
+    public void loadEmployeeFromDatabase() {
         String ids = getContext().getRequest().getParameter("employee.id");
         if (ids == null) return;
         employee = employeeService.getEmployeeById(Long.parseLong(ids));

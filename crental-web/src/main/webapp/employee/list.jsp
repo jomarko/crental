@@ -36,7 +36,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <s:errors/>
+        <s:errors/>        
         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="add">
             <fieldset><legend><f:message key="employee.list.newemployee"/></legend>
                 <%@include file="form.jsp"%>
