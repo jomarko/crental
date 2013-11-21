@@ -7,7 +7,8 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" var="actionBean"/>
         <h1><f:message key="request.list.title"/></h1>
-        <table class="table">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>id</th>
                 <th><f:message key="request.employee"/></th>
@@ -17,6 +18,8 @@
                 <th></th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach items="${actionBean.requests}" var="request">
                 <tr>
                     <td>${request.id}</td>
@@ -25,7 +28,7 @@
                     <td><c:out value="${request.dateTo}"/></td>
                     <td><c:out value="${request.description}"/></td>
                     <td>
-                     <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="edit"><s:param name="request.id" value="${request.id}"/>edit</s:link>
+                     <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="edit" class="btn btn-success"><s:param name="request.id" value="${request.id}"/>edit</s:link>
                     </td>
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" action="delete">
@@ -35,6 +38,7 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
         <s:errors/>
         <s:form beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" action="add">

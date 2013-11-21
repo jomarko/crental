@@ -7,23 +7,24 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" var="actionBean"/>
         <h1><f:message key="employee.list.title"/></h1>
-        <table class="table">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>id</th>
                 <th><f:message key="employee.name"/></th>
-                <th><f:message key="employee.password"/></th>
                 <th><f:message key="employee.accessright"/></th>
                 <th></th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach items="${actionBean.employees}" var="employee">
                 <tr>
                     <td>${employee.id}</td>
                     <td><c:out value="${employee.name}"/></td>
-                    <td><c:out value="${employee.password}"/></td>
                     <td><c:out value="${employee.accessRight}"/></td>
                     <td>
-                     <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" event="edit"><s:param name="employee.id" value="${employee.id}"/>edit</s:link>
+                     <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" event="edit" class="btn btn-success"><s:param name="employee.id" value="${employee.id}"/>edit</s:link>
                     </td>
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="delete">
@@ -33,6 +34,7 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
         <s:errors/>
         <s:form beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" action="add">

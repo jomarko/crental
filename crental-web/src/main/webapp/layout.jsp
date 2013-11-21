@@ -15,14 +15,9 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $( "#datepickerFrom" ).datepicker();
-        });
-        $(function() {
-            $( "#datepickerTo" ).datepicker();
-        });
-    </script>
+    <script src="${pageContext.request.contextPath}/assets/js/crental.lib.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/crental.${pageContext.request.locale}.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/crental.js"></script>
     <s:layout-component name="header"/>
   </head>
   <body>

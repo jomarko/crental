@@ -6,7 +6,7 @@
                     <s:label for="request.dateFrom" name="request.dateFrom"/>
                 </div>
                 <div class="col-lg-6 ">
-                    <s:text id="datepickerFrom" name="request.dateFrom" class="form-control"/>
+                    <s:text id="datepickerFrom" name="request.dateFrom" class="form-control datepicker"/>
                 </div>
                 <div class="col-lg-4"/>
             </div>
@@ -17,7 +17,7 @@
                     <s:label for="request.dateTo" name="request.dateTo"/>
                 </div>
                 <div class="col-lg-6 ">
-                    <s:text id="datepickerTo" name="request.dateTo" class="form-control"/>
+                    <s:text id="datepickerTo" name="request.dateTo" class="form-control datepicker"/>
                 </div>
                 
                 <div class="col-lg-4"/>
