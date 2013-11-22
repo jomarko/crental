@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
-        <div class="form-group">
-            <div class="row form-group">
+        <div class="row form-group">
                 <div class="col-lg-2">
                     <s:label for="request.dateFrom" name="request.dateFrom"/>
                 </div>

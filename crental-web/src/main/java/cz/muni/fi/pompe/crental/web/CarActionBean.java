@@ -105,15 +105,11 @@ public class CarActionBean extends BaseActionBean {
             carService.deleteCar(car);
             message_key += ".success";
             this.log.debug("delete(), car={}", car);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             message_key += ".fail";
         }
         
         getContext().getMessages().add(new LocalizableMessage(message_key, car.getId()));
-        return new RedirectResolution(this.getClass(), "list");
-    }
-
-    public Resolution cancel() {
         return new RedirectResolution(this.getClass(), "list");
     }
 }

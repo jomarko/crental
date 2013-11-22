@@ -6,7 +6,9 @@
 <s:layout-render name="/layout.jsp" titlekey="request.list.title">
     <s:layout-component name="body">
         <s:useActionBean beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" var="actionBean"/>
-        <h1><f:message key="request.list.title"/></h1>
+        <div class="page-header">
+            <h3><f:message key="request.list.title"/></h3>
+        </div>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -29,6 +31,7 @@
                     <td><c:out value="${request.description}"/></td>
                     <td>
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="edit" class="btn btn-success"><s:param name="request.id" value="${request.id}"/><f:message key="common.edit"/></s:link>
+                     <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="edit" class="btn btn-success"><s:param name="rent.requestId" value="${request.id}"/><f:message key="request.approve"/></s:link>
                     </td>
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" action="delete">

@@ -6,7 +6,9 @@
 <s:layout-render name="/layout.jsp" titlekey="employee.list.title">
     <s:layout-component name="body">
         <s:useActionBean beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean" var="actionBean"/>
-        <h1><f:message key="employee.list.title"/></h1>
+        <div class="page-header">
+            <h3><f:message key="employee.list.title"/></h3>
+        </div>
         <table class="table table-hover">
             <thead>
             <tr>

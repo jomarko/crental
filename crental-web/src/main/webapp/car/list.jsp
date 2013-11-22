@@ -6,6 +6,9 @@
 <s:layout-render name="/layout.jsp" titlekey="car.list.title">
     <s:layout-component name="body">
         <s:useActionBean beanclass="cz.muni.fi.pompe.crental.web.CarActionBean" var="actionBean"/>
+        <div class="page-header">
+            <h3><f:message key="car.list.title"/></h3>
+        </div>
         <p class="text-right"><s:link beanclass="cz.muni.fi.pompe.crental.web.CarActionBean" event="edit">+<f:message key="car.create"/></s:link></p>
         <table class="table table-hover">
             <thead>

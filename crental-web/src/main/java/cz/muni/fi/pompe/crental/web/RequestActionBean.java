@@ -88,7 +88,7 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
     @Override
     public Resolution handleValidationErrors(ValidationErrors errors) throws Exception {
         //fill up the data for the table if validation errors occured
-        requests = requestService.getAllRequests();
+        requests = requestService.getUnconfirmedRequests();
         //return null to let the event handling continue
         return null;
     }
