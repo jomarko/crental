@@ -11,7 +11,7 @@
         
             <div class="row form-group">
                 <div class="col-lg-2">
-                    <f:message key="request.employee"/>
+                    <f:message key="request.employeeId"/>
                 </div>
                 <div class="col-lg-6 ">
                     <c:out value="${actionBean.employee.name}"/>
@@ -19,7 +19,7 @@
             </div>
             <div class="row form-group">
                 <div class="col-lg-2">
-                    <f:message key="request.from"/>
+                    <f:message key="request.dateFrom"/>
                 </div>
                 <div class="col-lg-6 ">
                     <c:out value="${actionBean.request.dateFrom}"/>
@@ -27,7 +27,7 @@
             </div>
             <div class="row form-group">
                 <div class="col-lg-2">
-                    <f:message key="request.to"/>
+                    <f:message key="request.dateTo"/>
                 </div>
                 <div class="col-lg-6 ">
                     <c:out value="${actionBean.request.dateTo}"/>

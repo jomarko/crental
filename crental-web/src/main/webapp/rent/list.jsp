@@ -17,7 +17,7 @@
                 <th><f:message key="request.dateFrom"/></th>
                 <th><f:message key="request.dateTo"/></th>
                 <th><f:message key="rent.car"/></th>
-                <th><f:message key="rent.confirmedBy"/></th>
+                <th><f:message key="rent.confirmedById"/></th>
                 <th><f:message key="rent.confirmedAt"/></th>
                 <th></th>
             </tr>
