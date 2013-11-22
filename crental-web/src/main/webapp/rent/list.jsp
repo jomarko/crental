@@ -30,11 +30,11 @@
                 <tr>
                     <td>${request.id}</td>
                     <td><c:out value="${request.employeeName}"/></td>
-                    <td><c:out value="${request.dateFrom}"/></td>
-                    <td><c:out value="${request.dateTo}"/></td>
+                    <td><f:formatDate type="date" dateStyle="short"  value="${request.dateFrom}"/></td>
+                    <td><f:formatDate type="date" dateStyle="short"  value="${request.dateTo}"/></td>
                     <td><c:out value="${car.evidencePlate} - ${car.carType}"/></td>
                     <td><c:out value="${admin.name}"/></td>
-                    <td><c:out value="${rent.confirmedAt}"/></td>
+                    <td><f:formatDate type="date" dateStyle="short"  value="${rent.confirmedAt}"/></td>
                     <td>
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="edit" class="btn btn-success"><s:param name="rent.id" value="${rent.id}"/><f:message key="common.edit"/></s:link>
                      <c:if test="${request.dateFrom > actionBean.today}">
