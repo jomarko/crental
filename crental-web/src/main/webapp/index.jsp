@@ -5,7 +5,25 @@
 <s:layout-render name="/layout.jsp" titlekey="index.title">
     <s:layout-component name="body">
 
-        <p>crental application is under construction</p>
+        <div class="row">
+            <h3><f:message key="guidelines"/></h3>
+        </div>
+        <div class="row">
+            <ul>
+                <li>
+                    <f:message key="guidelines.employee"/>
+                </li>
+                <li>
+                    <f:message key="guidelines.car"/>
+                </li>
+                <li>
+                    <f:message key="guidelines.request"/>
+                </li>
+                <li>
+                    <f:message key="guidelines.rent"/>
+                </li>
+            </ul>
+        </div>
 
     </s:layout-component>
 </s:layout-render>

@@ -13,9 +13,9 @@
             <thead>
             <tr>
                 <th>id</th>
-                <th><f:message key="request.employee"/></th>
-                <th><f:message key="request.from"/></th>
-                <th><f:message key="request.to"/></th>
+                <th><f:message key="request.employeeId"/></th>
+                <th><f:message key="request.dateFrom"/></th>
+                <th><f:message key="request.dateTo"/></th>
                 <th><f:message key="request.description"/></th>
                 <th></th>
                 <th></th>

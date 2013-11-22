@@ -14,7 +14,7 @@
             <tr>
                 <th>id</th>
                 <th><f:message key="employee.name"/></th>
-                <th><f:message key="employee.accessright"/></th>
+                <th><f:message key="employee.accessRight"/></th>
                 <th></th>
                 <th></th>
             </tr>
