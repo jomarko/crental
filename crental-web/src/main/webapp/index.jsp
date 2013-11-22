@@ -5,11 +5,11 @@
 <s:layout-render name="/layout.jsp" titlekey="index.title">
     <s:layout-component name="body">
 
-        <div class="row">
+        <div class="page-header">
             <h3><f:message key="guidelines"/></h3>
         </div>
         <div class="row">
-            <ul>
+            <ul class="guide">
                 <li>
                     <f:message key="guidelines.employee"/>
                 </li>
@@ -24,6 +24,5 @@
                 </li>
             </ul>
         </div>
-
     </s:layout-component>
 </s:layout-render>
