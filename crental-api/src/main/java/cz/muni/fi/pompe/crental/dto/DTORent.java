@@ -4,7 +4,6 @@
  */
 package cz.muni.fi.pompe.crental.dto;
 
-import cz.muni.fi.pompe.crental.entity.Rent;
 import java.util.Date;
 import java.util.Objects;
 

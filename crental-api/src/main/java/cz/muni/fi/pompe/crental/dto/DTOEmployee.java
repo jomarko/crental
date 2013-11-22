@@ -4,8 +4,8 @@
  */
 package cz.muni.fi.pompe.crental.dto;
 
-import cz.muni.fi.pompe.crental.entity.AccessRight;
-import cz.muni.fi.pompe.crental.entity.Employee;
+import cz.muni.fi.pompe.crental.dto.AccessRight;
+
 
 /**
  *

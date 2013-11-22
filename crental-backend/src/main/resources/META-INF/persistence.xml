@@ -18,9 +18,8 @@
                         <property name="hibernate.connection.password" value="pa165"/>
                         <property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/pa165"/>
                         <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-                        <property name="hibernate.hbm2ddl.auto" value="update"/>
+                        <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
                         <property name ="hibernate.show_sql" value = "true"/>
-                        <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
                         <property name ="hibernate.connection.autocommit" value = "true"/>
                         <property name ="hibernate.transaction.flush_before_completion" value = "true"/>
                     </properties>

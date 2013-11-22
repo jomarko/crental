@@ -1,7 +1,7 @@
 package cz.muni.fi.pompe.crental.dao;
 
 import cz.muni.fi.pompe.crental.entity.Employee;
-import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;
 import java.util.List;
 import javax.annotation.Resource;

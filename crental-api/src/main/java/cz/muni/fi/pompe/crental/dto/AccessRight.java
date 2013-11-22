@@ -1,4 +1,4 @@
-package cz.muni.fi.pompe.crental.entity;
+package cz.muni.fi.pompe.crental.dto;
 
 /**
  *

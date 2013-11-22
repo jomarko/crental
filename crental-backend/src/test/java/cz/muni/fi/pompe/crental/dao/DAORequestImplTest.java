@@ -1,7 +1,7 @@
 package cz.muni.fi.pompe.crental.dao;
 
 import cz.muni.fi.pompe.crental.entity.Employee;
-import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.entity.Request;
 import cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl;
 import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;

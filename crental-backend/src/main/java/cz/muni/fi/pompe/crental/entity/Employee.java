@@ -1,5 +1,6 @@
 package cz.muni.fi.pompe.crental.entity;
 
+import cz.muni.fi.pompe.crental.dto.AccessRight;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

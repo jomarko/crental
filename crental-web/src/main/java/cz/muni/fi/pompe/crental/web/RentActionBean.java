@@ -4,7 +4,7 @@ import cz.muni.fi.pompe.crental.dto.DTOCar;
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORent;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
-import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.service.AbstractCarService;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
 import cz.muni.fi.pompe.crental.service.AbstractRentService;

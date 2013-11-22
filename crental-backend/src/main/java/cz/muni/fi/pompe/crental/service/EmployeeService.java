@@ -6,7 +6,7 @@ package cz.muni.fi.pompe.crental.service;
 
 import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
-import cz.muni.fi.pompe.crental.entity.AccessRight;
+import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
