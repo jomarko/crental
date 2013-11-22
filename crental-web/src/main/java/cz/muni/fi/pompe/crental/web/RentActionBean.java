@@ -58,6 +58,7 @@ public class RentActionBean extends BaseActionBean {
     private HashMap<Long, DTOEmployee> adminMap;
     private HashMap<Long, DTOCar> carMap;
     private HashMap<Long, DTORequest> requestMap = new HashMap<>();
+    private Date today;
 
     public HashMap<Long, DTORequest> getRequestMap() {
         return requestMap;
@@ -91,16 +92,21 @@ public class RentActionBean extends BaseActionBean {
         return rents;
     }
 
+    public Date getToday() {
+        return today;
+    }
+
     @DefaultHandler
     public Resolution list() {
         setCarMap(carService.getAllCars());
         setAdminMap();
         setRequestMap();
         rents = rentService.getAllRents();
+        setToday();
         return new ForwardResolution(LIST);
     }
     
-    @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit"})
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "delete"})
     public void loadRent() {
         String ids = getContext().getRequest().getParameter("rent.id");
         if (ids == null) return;
@@ -121,7 +127,23 @@ public class RentActionBean extends BaseActionBean {
     }
 
     public Resolution delete() {
-        return new ForwardResolution(LIST);
+        setToday();
+        String message_key = "common.delete";
+        request = requestService.getRequestById(rent.getRequestId());
+        
+        if (request.getDateFrom().before(today)) {
+            message_key = "rent.delete.dateMissMatch";
+        } else {
+            try {
+                rentService.deleteRent(rent);
+                message_key += ".success";
+            } catch (Exception e) {
+                message_key += ".fail";
+            }
+        }
+        
+        getContext().getMessages().add(new LocalizableMessage(message_key, rent.getId()));
+        return new RedirectResolution(this.getClass(), "list");
     }
 
     public Resolution save() {
@@ -180,5 +202,10 @@ public class RentActionBean extends BaseActionBean {
         for (DTORequest r:requestService.getAllRequests()) {
             requestMap.put(r.getId(), r);
         }
+    }
+
+    private void setToday() {
+        Long time = new Date().getTime();
+        today = new Date(time - time % (-1 + 24 * 60 * 60 * 1000));
     }
 }

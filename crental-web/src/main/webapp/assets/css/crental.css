@@ -1,12 +1,5 @@
-/* 
-    Document   : crental
-    Created on : 18.11.2013, 11:00:57
-    Author     : Patrik Pompe <325292@mail.muni.cz>
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-root { 
-    display: block;
+fieldset {
+    padding-bottom: 9.5px;
+    margin: 42px 0 21px;
+    border-bottom: 1px solid #ecf0f1;
 }
-
