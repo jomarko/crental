@@ -106,23 +106,36 @@ public class RentActionBean extends BaseActionBean {
         return new ForwardResolution(LIST);
     }
     
-    @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "delete"})
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "delete", "save"})
     public void loadRent() {
         String ids = getContext().getRequest().getParameter("rent.id");
-        if (ids == null) return;
+        if (ids == null || ids.isEmpty()) return;
         rent = rentService.getRentById(Long.parseLong(ids));
     }
     
-    public Resolution edit() {
-        request = requestService.getRequestById(rent.getRequestId());
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
+    public void loadRequest() {
+        Long requestId;
+        
+        if (rent == null || rent.getRequestId() == null) {
+            String ids = getContext().getRequest().getParameter("rent.requestId");
+            if (ids == null || ids.isEmpty()) return;
+            requestId = Long.parseLong(ids);
+        } else {
+            requestId = rent.getRequestId();
+        }
+        
+        request = requestService.getRequestById(requestId);
         employee = employeeService.getEmployeeById(request.getEmployeeId());
         setAdminMap();
         setCarMap(carService.getFreeCars(request.getDateFrom(), request.getDateTo()));
         
-        if (rent.getId() != null) {
+        if (rent != null && rent.getId() != null) {
             carMap.put(rent.getRentedCarId(), carService.getCarById(rent.getRentedCarId()));
         }
-        
+    }
+    
+    public Resolution edit() {
         return new ForwardResolution(EDIT);
     }
 
@@ -205,7 +218,6 @@ public class RentActionBean extends BaseActionBean {
     }
 
     private void setToday() {
-        Long time = new Date().getTime();
-        today = new Date(time - time % (-1 + 24 * 60 * 60 * 1000));
+        today = calcToday();
     }
 }

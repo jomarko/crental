@@ -24,17 +24,13 @@ import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import net.sourceforge.stripes.validation.ValidationMethod;
 import net.sourceforge.stripes.validation.ValidationState;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author jozef
  */
 @UrlBinding("/request/{$event}/{request.id}")
-public class RequestActionBean extends BaseActionBean implements ValidationErrorHandler{
-    final static Logger log = LoggerFactory.getLogger(RequestActionBean.class);
-    
+public class RequestActionBean extends BaseActionBean implements ValidationErrorHandler{    
     @SpringBean
     private AbstractRequestService requestService;
     
@@ -106,12 +102,12 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
     @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit", "add", "save"})
     public void loadRequestsEmployees() {
         employees = employeeService.getAllEmployees();
-        requests = requestService.getAllRequests();
+        requests = requestService.getUnconfirmedRequests();
         String ids = getContext().getRequest().getParameter("request.id");
         if (ids == null) return;
         request = requestService.getRequestById(Long.parseLong(ids));
     }
-    
+
     @HandlesEvent("edit")
     public Resolution edit() {
         return new ForwardResolution("/request/edit.jsp");
@@ -135,11 +131,11 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
         }
     }
     
-    @ValidationMethod(when=ValidationState.NO_ERRORS, on={"save"})
+    @ValidationMethod(when=ValidationState.NO_ERRORS, on={"add"})
     public void validateDateFrom() {
-        Date today = new Date(); // TODO dnes 00
+        Date today = calcToday();
    
-        if (request.getDateFrom().after(today)) {
+        if (request.getDateFrom().before(today)) {
             getContext().getValidationErrors().add("dateFrom", new LocalizableError("request.validate.dateFromPast"));
         }
     }

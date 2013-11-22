@@ -130,7 +130,7 @@ public class DAOCarImpl implements DAOCar {
     public List<Car> getFreeCars(Date from, Date to) {
         List<Car> result = new ArrayList<>();
         try {
-            Query q = em.createQuery("FROM Car c WHERE c NOT IN (SELECT r.rentedCar FROM Rent r JOIN r.request rq WHERE rq.dateFrom <= :from AND rq.dateTo >= :to)", Car.class);
+            Query q = em.createQuery("FROM Car c WHERE c NOT IN (SELECT r.rentedCar FROM Rent r JOIN r.request rq WHERE rq.dateFrom <= :to AND rq.dateTo >= :from)", Car.class);
             q.setParameter("from", from);
             q.setParameter("to", to);
             result = q.getResultList();

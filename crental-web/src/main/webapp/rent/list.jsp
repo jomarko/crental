@@ -38,7 +38,7 @@
                     <td>
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="edit" class="btn btn-success"><s:param name="rent.id" value="${rent.id}"/><f:message key="common.edit"/></s:link>
                      <c:if test="${request.dateFrom > actionBean.today}">
-                         <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="delete" class="btn btn-danger"><s:param name="rent.id" value="${rent.id}"/><f:message key="common.delete"/></s:link>
+                         <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="delete" class="btn btn-danger"><s:param name="rent.id" value="${rent.id}"/><f:message key="rent.reject"/></s:link>
                      </c:if>
                     </td>
                 </tr>

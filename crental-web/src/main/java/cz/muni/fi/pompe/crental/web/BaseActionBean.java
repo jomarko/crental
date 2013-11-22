@@ -4,6 +4,7 @@
  */
 package cz.muni.fi.pompe.crental.web;
 
+import java.util.Date;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.apache.taglibs.standard.functions.Functions;
@@ -37,4 +38,11 @@ public class BaseActionBean implements ActionBean{
         return Functions.escapeXml(s);
     }
     
+    /**
+     * @return Date todays midnight timestamp
+     */
+    public Date calcToday() {
+        Long time = new Date().getTime();
+        return new Date(time - time % (24 * 60 * 60 * 1000 - 1));
+    }
 }
