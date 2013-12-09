@@ -1,11 +1,13 @@
 package cz.muni.fi.pompe.crental.dto;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
+@XmlRootElement
 public class DTOCar {
     private Long id;
     private String carType;

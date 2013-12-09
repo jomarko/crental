@@ -12,7 +12,7 @@
         <module>crental-web</module>
         <module>crental-backend</module>
     	<module>crental-api</module>
-    </modules>
+  </modules>
 
     
 

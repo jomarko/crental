@@ -5,12 +5,14 @@
 package cz.muni.fi.pompe.crental.dto;
 
 import cz.muni.fi.pompe.crental.dto.AccessRight;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
  *
  * @author jozef
  */
+@XmlRootElement
 public class DTOEmployee {
     private Long id;
 
