@@ -9,3 +9,5 @@
 /crental-web/target/
 /crental-api/target/
 /crental-rest-api/target/
+/crental-client/nbproject/private/
+/crental-client/target/
