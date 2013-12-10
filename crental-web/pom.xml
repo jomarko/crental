@@ -85,9 +85,9 @@
             <version>2.6.1</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>jcl-over-slf4j</artifactId>-->
-            <!--<version>${slf4j.version}</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>jcl-over-slf4j</artifactId>-->
+        <!--<version>${slf4j.version}</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -117,13 +117,21 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>3.0.6.RELEASE</version>
-      </dependency>
+        </dependency>
 
-      <dependency>
+        <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
             <version>2.4.1</version>
-      </dependency>
+        </dependency>
+      
+        <!--CORS-->
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>1.8</version>
+        </dependency>
+            
 
     </dependencies>
 
