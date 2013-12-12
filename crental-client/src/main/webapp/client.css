@@ -628,3 +628,7 @@ div.pGroup {
         /* common inner cell properties*/ {
         overflow: hidden;
 }
+
+tr:hover {
+    cursor: pointer;
+}

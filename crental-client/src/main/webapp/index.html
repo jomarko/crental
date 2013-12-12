@@ -3,13 +3,50 @@
     <head>
         <title>AJAX client</title>
         <link rel="stylesheet" href="client.css" />
+        <link rel="stylesheet" href="jquery-ui-1.10.3.custom.min.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="grid.js"></script>
         <script type="text/javascript" src="client.js"></script>
     </head>
     <body>
         <h1>Crental REST client</h1>
+        <p>Kliknutím označte řádky pro odstranění. Dvojklik pro editaci řádku.</p>
         <div id="employee"></div>
+        <div id="car"></div>
+        
+        <div id="car-form" title="Vozidlo">
+            <p class="validateTips">Všechny prvky formuláře jsou povinné.</p>
+
+            <form>
+                <fieldset>
+                    <label for="car_carType">Popis</label>
+                    <input type="text" name="carType" id="car_carType" class="text ui-widget-content ui-corner-all">
+                    <label for="car_evidencePlate">SPZ</label>
+                    <input type="text" name="evidencePlate" id="car_evidencePlate" value="" class="text ui-widget-content ui-corner-all">
+                    <input type="hidden" name="id" id="car_id" value="">
+                </fieldset>
+            </form>
+        </div>
+        <div id="employee-form" title="Employee">
+            <p class="validateTips">Všechny prvky formuláře jsou povinné.</p>
+
+            <form>
+                <fieldset>
+                    <label for="employee_name">Jméno</label>
+                    <input type="text" name="name" id="employee_name" class="text ui-widget-content ui-corner-all">
+                    <label for="employee_password">Heslo</label>
+                    <input type="password" name="password" id="employee_password" value="" class="text ui-widget-content ui-corner-all">
+                    <label for="employee_accessRight">Přístupová práva</label>
+                    <select name="accessRight" id="employee_accessRight">
+                        <option value="Employee">Zaměstnanec</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                    
+                    <input type="hidden" name="id" id="employee_id" value="">
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>

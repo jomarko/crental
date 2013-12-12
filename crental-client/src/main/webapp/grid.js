@@ -399,13 +399,15 @@
                                 this.rePosDrag();
                         },
                         addData: function (data) { //parse data
+                                this.rawData = {}
+                                var rawData = this.rawData;
+                                
                                 if (p.dataType == 'json') {
                                         data = {
                                             rows: data
                                             , total: data.length
                                         };
                                         data = $.extend({rows: [], page: 0, total: 0}, data);
-                                        console.log(data);
                                 }
                                 if (p.preProcess) {
                                         data = p.preProcess(data);
@@ -454,6 +456,7 @@
                                                 if (row[p.idProperty]) {
                                                         tr.id = 'row' + row[p.idProperty];
                                                         jtr.attr('data-id', row[p.idProperty]);
+                                                        rawData[row[p.idProperty]] = row;
                                                 }
                                                 $('thead tr:first th', g.hDiv).each( //add cell
                                                         function () {
