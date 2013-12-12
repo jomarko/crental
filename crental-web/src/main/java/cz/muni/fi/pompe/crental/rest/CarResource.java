@@ -55,7 +55,7 @@ public class CarResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response postCar(DTOCar car) {
         carService.createCar(car);
-        return Response.created(URI.create(context.getAbsolutePath() + "/"+ car.getId())).build();
+        return Response.status(Response.Status.OK).build();
     }
     
     @PUT
@@ -65,7 +65,7 @@ public class CarResource {
         Response response;
         if (car.getId() != null && carService.getCarById(car.getId()) != null) {
             carService.updateCar(car);
-            response = Response.created(URI.create(context.getAbsolutePath().toString())).build();
+            response = Response.status(Response.Status.OK).build();
         } else {
             response = Response.noContent().build();
         }

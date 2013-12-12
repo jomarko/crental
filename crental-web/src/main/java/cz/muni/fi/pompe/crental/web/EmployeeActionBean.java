@@ -120,24 +120,6 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
         return new RedirectResolution(this.getClass(), "list");
     }
 
-    /*@ValidationMethod(when=ValidationState.ALWAYS, on={"delete"})
-    public void validateDependencies() {
-        Long id = Long.parseLong(getContext().getRequest().getParameter("employee.id"));
-        employee = employeeService.getEmployeeById(id);
-        for(DTORequest r : requestService.getAllRequests()){
-            if(r.getEmployeeId().equals(employee.getId())){
-                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
-                break;
-            }
-        }
-        for(DTORent r : rentService.getAllRents()){
-            if(r.getConfirmedById().equals(employee.getId())){
-                getContext().getValidationErrors().add("dependency", new LocalizableError("employee.validate.dependency"));       
-                break;
-            }
-        }
-    }*/
-
     @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
     public void loadEmployeeFromDatabase() {
         String ids = getContext().getRequest().getParameter("employee.id");

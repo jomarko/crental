@@ -52,7 +52,7 @@ public class EmployeeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response postEmployee(DTOEmployee employee) {
         employeeService.createEmployee(employee);
-        return Response.created(URI.create(context.getAbsolutePath() + "id/"+ employee.getId())).build();
+        return Response.status(Response.Status.OK).build();
     }
     
     @PUT
@@ -62,7 +62,7 @@ public class EmployeeResource {
         Response response;
         if (employee.getId() != null && employeeService.getEmployeeById(employee.getId()) != null) {
             employeeService.updateEmployee(employee);
-            response = Response.created(URI.create(context.getAbsolutePath().toString())).build();
+            response = Response.status(Response.Status.OK).build();
         } else {
             response = Response.noContent().build();
         }
