@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -54,7 +55,11 @@ public class CarResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response postCar(DTOCar car) {
-        carService.createCar(car);
+        try{
+            carService.createCar(car);
+        }catch(DataAccessException ex){
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
         return Response.status(Response.Status.OK).build();
     }
     
@@ -64,7 +69,11 @@ public class CarResource {
     public Response putCar(DTOCar car) {
         Response response;
         if (car.getId() != null && carService.getCarById(car.getId()) != null) {
-            carService.updateCar(car);
+            try{
+                carService.updateCar(car);
+            }catch(DataAccessException ex){
+                return Response.status(Response.Status.FORBIDDEN).build();
+            }
             response = Response.status(Response.Status.OK).build();
         } else {
             response = Response.noContent().build();
@@ -77,7 +86,11 @@ public class CarResource {
     public Response delete(@PathParam("id") Long id) {
         
         if (id != null && carService.getCarById(id) != null) {
-            carService.deleteCar(carService.getCarById(id));
+            try{
+                carService.deleteCar(carService.getCarById(id));
+            }catch(DataAccessException ex){
+                return Response.status(Response.Status.FORBIDDEN).build();
+            }
             return Response.status(Response.Status.OK).build();
         }
         

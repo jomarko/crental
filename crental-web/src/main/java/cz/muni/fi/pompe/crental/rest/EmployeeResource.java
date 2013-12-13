@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -51,7 +52,11 @@ public class EmployeeResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response postEmployee(DTOEmployee employee) {
-        employeeService.createEmployee(employee);
+        try{
+            employeeService.createEmployee(employee);
+        }catch(DataAccessException ex){
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
         return Response.status(Response.Status.OK).build();
     }
     
@@ -61,7 +66,11 @@ public class EmployeeResource {
     public Response putEmployee(DTOEmployee employee) {
         Response response;
         if (employee.getId() != null && employeeService.getEmployeeById(employee.getId()) != null) {
-            employeeService.updateEmployee(employee);
+            try{
+                employeeService.updateEmployee(employee);
+            }catch(DataAccessException ex){
+                return Response.status(Response.Status.FORBIDDEN).build();
+            }
             response = Response.status(Response.Status.OK).build();
         } else {
             response = Response.noContent().build();
@@ -74,7 +83,11 @@ public class EmployeeResource {
     public Response delete(@PathParam("id") Long id) {
         
         if (id != null && employeeService.getEmployeeById(id) != null) {
-            employeeService.deleteEmployee(employeeService.getEmployeeById(id));
+            try{
+                employeeService.deleteEmployee(employeeService.getEmployeeById(id));
+            }catch(DataAccessException ex){
+                return Response.status(Response.Status.FORBIDDEN).build();
+            }
             return Response.status(Response.Status.OK).build();
         }
         
