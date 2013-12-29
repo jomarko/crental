@@ -7,6 +7,8 @@ import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.entity.Request;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RequestService implements AbstractRequestService {
     private DAORequest daoRequest;
     private DAOEmployee dAOEmployee;
-    
+     
     public void setDaoRequest(DAORequest dao) {
         this.daoRequest = dao;
     }
@@ -41,6 +43,9 @@ public class RequestService implements AbstractRequestService {
     @Override
     public void deleteRequest(DTORequest dto) {
         if(dto != null){
+            Subject currentUser = SecurityUtils.getSubject();
+            currentUser.checkPermission("request:delete:" + dto.getEmployeeId());
+            
             this.daoRequest.deleteRequest(this.dtoToEntity(dto));
         }
     }
@@ -49,6 +54,8 @@ public class RequestService implements AbstractRequestService {
     @Override
     public void updateRequest(DTORequest dto) {
         if(dto != null){
+            Subject currentUser = SecurityUtils.getSubject();
+            currentUser.checkPermission("request:update:" + dto.getEmployeeId());
             this.daoRequest.updateRequest(this.dtoToEntity(dto));
         }
     }
@@ -57,7 +64,10 @@ public class RequestService implements AbstractRequestService {
     @Override
     public DTORequest getRequestById(Long id) {
         if(id != null){
-            return entityToDTO(this.daoRequest.getRequestById(id));
+            DTORequest dto = entityToDTO(this.daoRequest.getRequestById(id));
+            Subject currentUser = SecurityUtils.getSubject();
+            currentUser.checkPermission("request:get:" + dto.getEmployeeId());
+            return dto;
         } else{
             return null;
         }
@@ -66,12 +76,16 @@ public class RequestService implements AbstractRequestService {
     @Transactional(readOnly = true)
     @Override
     public List<DTORequest> getAllRequests() {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
         return entitiesToDTOs(this.daoRequest.getAllRequests());
     }
     
     @Transactional(readOnly = true)
     @Override
     public List<DTORequest> getUnconfirmedRequests() {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
         return entitiesToDTOs(daoRequest.getUnconfirmedRequests());
     }
     

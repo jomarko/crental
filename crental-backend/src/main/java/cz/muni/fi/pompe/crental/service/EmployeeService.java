@@ -6,12 +6,12 @@ package cz.muni.fi.pompe.crental.service;
 
 import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
-import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -34,6 +34,9 @@ public class EmployeeService implements AbstractEmployeeService{
     @Override
     @Transactional
     public void createEmployee(DTOEmployee dtoemployee){
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if(dtoemployee != null){
             Employee e = dtoToEntity(dtoemployee);
             daoemployee.createEmployee(e);
@@ -44,6 +47,9 @@ public class EmployeeService implements AbstractEmployeeService{
     @Override
     @Transactional
     public void deleteEmployee(DTOEmployee dtoemployee){
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if(dtoemployee != null){
             daoemployee.deleteEmployee(dtoToEntity(dtoemployee));
         }
@@ -53,6 +59,8 @@ public class EmployeeService implements AbstractEmployeeService{
     @Transactional
     public void updateEmployee(DTOEmployee dtoemployee){
         if(dtoemployee != null){
+            Subject currentUser = SecurityUtils.getSubject();
+            currentUser.checkPermission("employee:update:" + dtoemployee.getId());
             Employee e = dtoToEntity(dtoemployee);
             daoemployee.updateEmployee(dtoToEntity(dtoemployee));
         }
@@ -61,6 +69,9 @@ public class EmployeeService implements AbstractEmployeeService{
     @Override
     @Transactional(readOnly = true)
     public List<DTOEmployee> getAllEmployees(){
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         List<DTOEmployee> result = new ArrayList<>();
         
         for(Employee e : daoemployee.getAllEmployees()){
@@ -73,6 +84,9 @@ public class EmployeeService implements AbstractEmployeeService{
     @Override
     @Transactional(readOnly = true)
     public DTOEmployee getEmployeeById(Long id){
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkPermission("employee:get:" + id);
+        
         DTOEmployee result = null;
         Employee e = daoemployee.getEmployeeById(id);
         if(e != null){
@@ -102,5 +116,16 @@ public class EmployeeService implements AbstractEmployeeService{
         e.setAccessRight(dtoemployee.getAccessRight());
         
         return e;
+    }
+
+    @Override
+    public DTOEmployee getEmployeeByName(String name) {
+        for(Employee e : daoemployee.getAllEmployees()){
+            if (e.getName().toLowerCase().equals(name.toLowerCase())) {
+                return entityToDto(e);
+            }
+        }
+
+        return null;
     }
 }

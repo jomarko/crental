@@ -15,6 +15,8 @@ import cz.muni.fi.pompe.crental.entity.Rent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +51,9 @@ public class RentService implements AbstractRentService {
     @Transactional
     @Override
     public void createRent(DTORent dtorent) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if(dtorent != null) {
             Rent r = dtoToEntity(dtorent);
             daorent.createRent(r);
@@ -59,6 +64,9 @@ public class RentService implements AbstractRentService {
     @Transactional
     @Override
     public void deleteRent(DTORent dtorent) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if(dtorent != null && dtorent.getId() != null) {
             daorent.deleteRent(dtorent.getId());
         }
@@ -67,6 +75,9 @@ public class RentService implements AbstractRentService {
     @Transactional
     @Override
     public void updateRent(DTORent dtorent) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if(dtorent != null) {
             daorent.updateRent(dtoToEntity(dtorent));
         }
@@ -75,6 +86,9 @@ public class RentService implements AbstractRentService {
     @Transactional(readOnly = true)
     @Override
     public List<DTORent> getAllRents() {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         List<DTORent> result = new ArrayList<>();
         
         for(Rent r : daorent.getAllRents()){
@@ -87,6 +101,9 @@ public class RentService implements AbstractRentService {
     @Transactional(readOnly = true)
     @Override
     public List<DTORent> getAllRentsIn(Date from, Date to) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         List<DTORent> result = new ArrayList<>();
         if(from != null && to != null && to.compareTo(from)>= 0){
             for(Rent r : daorent.getAllRents()){
@@ -107,6 +124,9 @@ public class RentService implements AbstractRentService {
     @Transactional(readOnly = true)
     @Override
     public List<DTORent> getAllRentsOfCar(DTOCar dtocar) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         List<DTORent> result = new ArrayList<>();
         if(dtocar != null && dtocar.getId() != null){
             for(Rent r : daorent.getAllRents()){
@@ -122,6 +142,9 @@ public class RentService implements AbstractRentService {
     @Transactional(readOnly = true)
     @Override
     public List<DTORent> getAllRentsOfEmployee(DTOEmployee dtoemp) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkPermission("rent:getAllOfEmployee:" + dtoemp.getId());
+
         List<DTORent> result = new ArrayList<>();
         if(dtoemp != null && dtoemp.getId() != null){
             for(Rent r : daorent.getAllRents()){

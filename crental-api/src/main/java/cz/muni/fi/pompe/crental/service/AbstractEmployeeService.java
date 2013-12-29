@@ -47,4 +47,13 @@ public interface AbstractEmployeeService {
      * @return DTOEmployee with given id, null if no such employee exists
      */
     DTOEmployee getEmployeeById(Long id);
+
+
+    /**
+     * Method finds DTOEmployee
+     * @throws DataAccessException subclass, if any error has occurred
+     * @param name of searched employee
+     * @return DTOEmployee with given email, null if no such employee exists
+     */
+    DTOEmployee getEmployeeByName(String name);
 }

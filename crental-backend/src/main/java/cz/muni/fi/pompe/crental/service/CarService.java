@@ -6,6 +6,8 @@ import cz.muni.fi.pompe.crental.entity.Car;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +61,9 @@ public class CarService implements AbstractCarService {
     @Transactional
     @Override
     public void createCar(DTOCar dto) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if (dto != null) {
             Car c = dtoToEntity(dto);
             dao.createCar(c);
@@ -69,6 +74,9 @@ public class CarService implements AbstractCarService {
     @Transactional
     @Override
     public void deleteCar(DTOCar dto) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+
         if (dto != null && dto.getId() != null) {
             dao.deleteCar(dto.getId());
         }
@@ -77,6 +85,9 @@ public class CarService implements AbstractCarService {
     @Transactional
     @Override
     public void updateCar(DTOCar dto) {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.checkRole("admin");
+        
         if (dto != null) {
             dao.updateCar(dtoToEntity(dto));
         }
