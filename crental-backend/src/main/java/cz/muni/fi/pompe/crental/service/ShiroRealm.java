@@ -32,7 +32,7 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
         boolean admin;
         Long eID = null;
-
+        
         if (pc.getPrimaryPrincipal().equals("rest")) {
             admin = true;
         } else {
@@ -70,9 +70,13 @@ public class ShiroRealm extends AuthorizingRealm {
         if (upToken.getUsername().equals("rest") && new String(upToken.getPassword()).equals("rest")) {
             return new SimpleAuthenticationInfo(upToken.getUsername(), upToken.getPassword(), this.getName());
         } else {
+            DTOEmployee employee = employeeService.getEmployeeByName(upToken.getUsername());
+            
+            if(employee != null && employee.getPassword().equals(new String(upToken.getPassword()))){     
+                return new SimpleAuthenticationInfo(employee.getName(), employee.getPassword(), this.getName());
+            }
 
         }
-
-        throw new AccountException("Authentication failed.");
+        throw new AccountException("Authentication failed." + upToken.getUsername() + " xxx "+ new String(upToken.getPassword()));
     }
 }

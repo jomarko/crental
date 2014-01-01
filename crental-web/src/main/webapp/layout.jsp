@@ -46,6 +46,11 @@
             <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean"><f:message key="navigation.rent"/></s:link>
             </li>
           </ul>
+          <ul class="nav navbar-right">
+            <li>
+            <s:link event="logout" beanclass="cz.muni.fi.pompe.crental.web.AuthActionBean"><f:message key="navigation.logout"/></s:link>
+            </li>
+          </ul>  
         </div>
       </div>
     </div>

@@ -13,4 +13,28 @@
     
     <import resource="classpath:applicationContext.xml"/>
     
+    <bean id="anyRole" class="cz.muni.fi.pompe.crental.web.AnyOfRolesAuthorizationFilter"/>
+    
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManagerWeb"/>
+        
+        <property name="loginUrl" value="/auth"/>
+        <property name="successUrl" value="/index.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+                
+                # some example chain definitions:
+                /employee/** = authc, roles[admin]
+                /car/** = authc, roles[admin]
+                /request/** = authc, anyRole["admin,employee"]
+                /rent/** = authc, anyRole["admin,employee"]
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="securityManagerWeb" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+    
 </beans>
