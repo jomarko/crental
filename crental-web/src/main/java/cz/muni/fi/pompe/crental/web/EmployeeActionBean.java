@@ -84,6 +84,23 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
         getContext().getMessages().add(new LocalizableMessage("employee.add.message",escapeHTML(employee.getName())));
         return new RedirectResolution(this.getClass(), "list");
     }
+    
+    @ValidationMethod(when=ValidationState.NO_ERRORS, on={"add"})
+    public void validateUniqueName() {
+        
+        if (employeeService.getEmployeeByName(employee.getName()) != null) {
+            getContext().getValidationErrors().add("name", new LocalizableError("employee.name.unique"));
+        }
+    }
+    
+    @ValidationMethod(when=ValidationState.NO_ERRORS, on={"save"})
+    public void validateUniqueNameOnSave() {
+        
+        if (employeeService.getEmployeeByName(employee.getName()) != null && 
+            !employeeService.getEmployeeByName(employee.getName()).getId().equals(employee.getId())) {
+            getContext().getValidationErrors().add("name", new LocalizableError("employee.name.unique"));
+        }
+    }
 
     @Override
     public Resolution handleValidationErrors(ValidationErrors errors) throws Exception {

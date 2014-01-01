@@ -6,12 +6,9 @@ import cz.muni.fi.pompe.crental.dto.DTORequest;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.entity.Request;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +32,7 @@ public class RequestService implements AbstractRequestService {
     
     @Transactional
     @Override
+    @RequiresAuthentication
     public void createRequest(DTORequest dto) {
         if(dto != null){
             Request r = this.dtoToEntity(dto);

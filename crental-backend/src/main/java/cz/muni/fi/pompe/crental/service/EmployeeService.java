@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,9 +35,8 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional
+    @RequiresRoles("admin")
     public void createEmployee(DTOEmployee dtoemployee){
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
 
         if(dtoemployee != null){
             Employee e = dtoToEntity(dtoemployee);
@@ -47,9 +47,8 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional
+    @RequiresRoles("admin")
     public void deleteEmployee(DTOEmployee dtoemployee){
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
 
         if(dtoemployee != null){
             daoemployee.deleteEmployee(dtoToEntity(dtoemployee));
@@ -118,6 +117,7 @@ public class EmployeeService implements AbstractEmployeeService{
     }
 
     @Override
+    @RequiresAuthentication
     public DTOEmployee getEmployeeByName(String name) {
         for(Employee e : daoemployee.getAllEmployees()){
             if (e.getName().toLowerCase().equals(name.toLowerCase())) {

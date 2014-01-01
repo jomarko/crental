@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ public class CarService implements AbstractCarService {
 
     @Transactional(readOnly = true)
     @Override
+    @RequiresRoles("admin")
     public List<DTOCar> getAllCars() {
         List<DTOCar> DTOCars = new ArrayList<>();
         List<Car> entities = dao.getAllCars();
@@ -37,6 +39,7 @@ public class CarService implements AbstractCarService {
 
     @Transactional(readOnly = true)
     @Override
+    @RequiresRoles("admin")
     public List<DTOCar> getFreeCars(Date from, Date to) {
         List<DTOCar> DTOCars = new ArrayList<>();
         List<Car> entities = dao.getFreeCars(from, to);
@@ -48,6 +51,7 @@ public class CarService implements AbstractCarService {
 
     @Transactional(readOnly = true)
     @Override
+    @RequiresRoles("admin")
     public DTOCar getCarById(Long id) {
         DTOCar result = null;
         Car c = dao.getCarById(id);
@@ -60,9 +64,8 @@ public class CarService implements AbstractCarService {
 
     @Transactional
     @Override
+    @RequiresRoles("admin")
     public void createCar(DTOCar dto) {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
 
         if (dto != null) {
             Car c = dtoToEntity(dto);
@@ -73,9 +76,8 @@ public class CarService implements AbstractCarService {
 
     @Transactional
     @Override
+    @RequiresRoles("admin")
     public void deleteCar(DTOCar dto) {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
 
         if (dto != null && dto.getId() != null) {
             dao.deleteCar(dto.getId());
@@ -84,9 +86,8 @@ public class CarService implements AbstractCarService {
 
     @Transactional
     @Override
+    @RequiresRoles("admin")
     public void updateCar(DTOCar dto) {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
         
         if (dto != null) {
             dao.updateCar(dtoToEntity(dto));
