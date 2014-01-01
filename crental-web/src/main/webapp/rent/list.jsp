@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <s:layout-render name="/layout.jsp" titlekey="rent.list.title">
     <s:layout-component name="body">
@@ -36,10 +37,12 @@
                     <td><c:out value="${admin.name}"/></td>
                     <td><f:formatDate type="date" dateStyle="short"  value="${rent.confirmedAt}"/></td>
                     <td>
+                        <shiro:hasRole name="admin">
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="edit" class="btn btn-success"><s:param name="rent.id" value="${rent.id}"/><f:message key="common.edit"/></s:link>
                      <c:if test="${request.dateFrom > actionBean.today}">
                          <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="delete" class="btn btn-danger"><s:param name="rent.id" value="${rent.id}"/><f:message key="rent.reject"/></s:link>
                      </c:if>
+                        </shiro:hasRole>
                     </td>
                 </tr>
             </c:forEach>

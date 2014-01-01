@@ -10,6 +10,7 @@ import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,10 +69,8 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional(readOnly = true)
+    @RequiresAuthentication
     public List<DTOEmployee> getAllEmployees(){
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
-
         List<DTOEmployee> result = new ArrayList<>();
         
         for(Employee e : daoemployee.getAllEmployees()){

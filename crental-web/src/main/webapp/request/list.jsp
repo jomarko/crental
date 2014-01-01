@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <s:layout-render name="/layout.jsp" titlekey="request.list.title">
     <s:layout-component name="body">
@@ -28,8 +29,12 @@
                     <td><f:formatDate type="date" dateStyle="short" value="${request.dateFrom}" /></td>
                     <td><f:formatDate type="date" dateStyle="short" value="${request.dateTo}"/></td>
                     <td>
+                     <shiro:hasRole name="employee">
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" event="edit" class="btn btn-success"><s:param name="request.id" value="${request.id}"/><f:message key="common.edit"/></s:link>
+                     </shiro:hasRole>
+                     <shiro:hasRole name="admin">
                      <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" event="edit" class="btn btn-success"><s:param name="rent.requestId" value="${request.id}"/><f:message key="request.approve"/></s:link>
+                     </shiro:hasRole>
                     </td>
                     <td>
                         <s:form beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean" action="delete">

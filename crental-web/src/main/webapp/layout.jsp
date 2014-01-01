@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <s:layout-definition>
 <!DOCTYPE html>
 <html lang="${pageContext.request.locale}">
@@ -32,13 +33,16 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
+        <shiro:authenticated>
           <ul class="nav navbar-nav">
+          <shiro:hasRole name="admin">
             <li>
               <s:link beanclass="cz.muni.fi.pompe.crental.web.EmployeeActionBean"><f:message key="navigation.employees"/></s:link>
             </li>
             <li>
               <s:link beanclass="cz.muni.fi.pompe.crental.web.CarActionBean"><f:message key="navigation.car"/></s:link>
             </li>
+           </shiro:hasRole>
             <li>
               <s:link beanclass="cz.muni.fi.pompe.crental.web.RequestActionBean"><f:message key="navigation.request"/></s:link>
             </li>
@@ -46,11 +50,24 @@
             <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean"><f:message key="navigation.rent"/></s:link>
             </li>
           </ul>
-          <ul class="nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="label-success">
+            
+            <shiro:principal/>
+            
+            </li>
             <li>
             <s:link event="logout" beanclass="cz.muni.fi.pompe.crental.web.AuthActionBean"><f:message key="navigation.logout"/></s:link>
             </li>
+          </ul>
+        </shiro:authenticated>
+        <shiro:notAuthenticated>
+          <ul class="nav navbar-right">
+            <li>
+            <s:link event="login" beanclass="cz.muni.fi.pompe.crental.web.AuthActionBean"><f:message key="navigation.login"/></s:link>
+            </li>
           </ul>  
+        </shiro:notAuthenticated>
         </div>
       </div>
     </div>

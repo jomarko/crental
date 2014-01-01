@@ -6,8 +6,12 @@ import cz.muni.fi.pompe.crental.dto.DTORequest;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.entity.Request;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,18 +79,30 @@ public class RequestService implements AbstractRequestService {
     
     @Transactional(readOnly = true)
     @Override
+    @RequiresAuthentication
     public List<DTORequest> getAllRequests() {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
+        
         return entitiesToDTOs(this.daoRequest.getAllRequests());
     }
     
     @Transactional(readOnly = true)
     @Override
+    @RequiresAuthentication
     public List<DTORequest> getUnconfirmedRequests() {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
-        return entitiesToDTOs(daoRequest.getUnconfirmedRequests());
+        List<Request> unconfirmed = daoRequest.getUnconfirmedRequests();
+        
+        Subject user = SecurityUtils.getSubject();
+        if(user.hasRole("employee")){
+            List<Request> toDelete = new ArrayList<>();
+            for(Request r : unconfirmed){
+                if(!r.getEmployee().getName().equals(user.getPrincipal().toString())){
+                    toDelete.add(r);
+                }
+            }
+            unconfirmed.removeAll(toDelete);
+        }
+        
+        return entitiesToDTOs(unconfirmed);
     }
     
     private List<DTORequest> entitiesToDTOs(List<Request> entities) {

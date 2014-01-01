@@ -44,21 +44,6 @@
             </div>
             <s:form beanclass="cz.muni.fi.pompe.crental.web.RentActionBean" action="/rent/save" method="post">
                 <s:errors/>
-                <div class="form-group">
-                    <div class="row form-group">
-                        <div class="col-lg-2">
-                            <s:label for="rent.confirmedById" name="rent.confirmedById"/>
-                        </div>
-                        <div class="col-lg-6 ">
-                            <s:select id="rent.confirmedById" name="rent.confirmedById" class="form-control">
-                            <c:forEach items="${actionBean.adminMap.keySet()}" var="adminId">
-                                <c:set var="admin" value="${actionBean.adminMap.get(adminId)}" />
-                                <s:option value="${admin.id}" label="${admin.name}" />
-                            </c:forEach>
-                            </s:select>
-                        </div>
-                    </div>
-                </div>
                             
                 <div class="form-group">
                     <div class="row form-group">

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,9 +86,8 @@ public class RentService implements AbstractRentService {
 
     @Transactional(readOnly = true)
     @Override
+    @RequiresAuthentication
     public List<DTORent> getAllRents() {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkRole("admin");
 
         List<DTORent> result = new ArrayList<>();
         

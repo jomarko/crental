@@ -9,7 +9,6 @@ import cz.muni.fi.pompe.crental.service.AbstractCarService;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
 import cz.muni.fi.pompe.crental.service.AbstractRentService;
 import cz.muni.fi.pompe.crental.service.AbstractRequestService;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +23,8 @@ import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 /**
  *
@@ -49,7 +50,6 @@ public class RentActionBean extends BaseActionBean {
     private List<DTORent> rents;
     
     @ValidateNestedProperties(value = {
-        @Validate(on = {"save"}, field = "confirmedById", required = true),
         @Validate(on = {"save"}, field = "rentedCarId", required = true)
     })
     private DTORent rent;
@@ -160,6 +160,9 @@ public class RentActionBean extends BaseActionBean {
     }
 
     public Resolution save() {
+        Subject user = SecurityUtils.getSubject();
+        DTOEmployee emp = employeeService.getEmployeeByName(user.getPrincipal().toString());
+        rent.setConfirmedById(emp.getId());
         rent.setConfirmedAt(new Date());
         log.debug("Saved Rent {}", rent);
 //        rent.setConfirmedById(); TODO logged admin

@@ -24,6 +24,8 @@ import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import net.sourceforge.stripes.validation.ValidationMethod;
 import net.sourceforge.stripes.validation.ValidationState;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 /**
  *
@@ -44,7 +46,6 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
     @ValidateNestedProperties(value = {
         @Validate(on = {"add", "save"}, field = "dateFrom", required = true, converter = DateTypeConverter.class),
         @Validate(on = {"add", "save"}, field = "dateTo", required = true, converter = DateTypeConverter.class),
-        @Validate(on = {"add", "save"}, field = "employeeId", required = true),
         @Validate(on = {"add", "save"}, field = "description", required = true)
     })
     private DTORequest request;
@@ -76,6 +77,9 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
     
     @HandlesEvent("add")
     public Resolution add() {
+        Subject user = SecurityUtils.getSubject();
+        DTOEmployee emp = employeeService.getEmployeeByName(user.getPrincipal().toString());
+        request.setEmployeeId(emp.getId());
         requestService.createRequest(request);
         getContext().getMessages().add(new LocalizableMessage("request.add.message" ));
         return new RedirectResolution(this.getClass(), "list");
@@ -99,9 +103,9 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
         return new RedirectResolution(this.getClass(), "list");
     }
     
-    @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit", "add", "save"})
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"list", "edit", "save"})
     public void loadRequestsEmployees() {
-        employees = employeeService.getAllEmployees();
+        
         requests = requestService.getUnconfirmedRequests();
         String ids = getContext().getRequest().getParameter("request.id");
         if (ids == null) return;

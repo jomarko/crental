@@ -44,7 +44,7 @@ public interface AbstractRequestService {
      * @return list of stored DTORequest which have not been confirmed as rents, empty list returned if no such request exists
      */
     List<DTORequest> getUnconfirmedRequests();
-
+    
     /**
      * update passed request
      * @throws DataAccessException subclass, if any error has occurred
