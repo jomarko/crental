@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
@@ -19,7 +21,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries(value={
     @NamedQuery(name = "Employee.SelectAllEmployee", query = "SELECT e FROM Employee e"),
-    @NamedQuery(name = "Employee.SelectEmployeeById", query = "SELECT e FROM Employee e WHERE e.id = :id")
+    @NamedQuery(name = "Employee.SelectEmployeeById", query = "SELECT e FROM Employee e WHERE e.id = :id"),
+    @NamedQuery(name = "Employee.SelectEmployeeByName", query = "SELECT e FROM Employee e WHERE e.name = :name")
 })
 
 public class Employee implements Serializable {

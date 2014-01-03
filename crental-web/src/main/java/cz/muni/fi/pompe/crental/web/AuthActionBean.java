@@ -35,9 +35,6 @@ public class AuthActionBean extends BaseActionBean{
         this.employee = employee;
     }
     
-    @SpringBean
-    private AbstractEmployeeService empService;
-    
     @DefaultHandler
     public Resolution form(){
         employee = null;
@@ -47,7 +44,7 @@ public class AuthActionBean extends BaseActionBean{
     @HandlesEvent("login")
     public Resolution login(){
         if(employee != null && employee.getName() != null && employee.getPassword() != null){
-            UsernamePasswordToken token = new UsernamePasswordToken(employee.getName(), employee.getPassword()); // admin role, ktera je vzdy v systemu, muze delat vse - vhodna pro service testy
+            UsernamePasswordToken token = new UsernamePasswordToken(employee.getName(), employee.getPassword());
             Subject currentUser = SecurityUtils.getSubject();
             try{
                 currentUser.login(token);

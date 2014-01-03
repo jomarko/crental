@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Path("/employee")
-public class EmployeeResource {
+public class EmployeeResource extends Resource{
  
     @Autowired
     private AbstractEmployeeService employeeService;

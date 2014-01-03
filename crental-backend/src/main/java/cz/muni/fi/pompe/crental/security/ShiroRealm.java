@@ -1,7 +1,9 @@
-package cz.muni.fi.pompe.crental.service;
+package cz.muni.fi.pompe.crental.security;
 
+import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
+import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.shiro.authc.AccountException;
@@ -14,31 +16,32 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 
 /**
  *
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 public class ShiroRealm extends AuthorizingRealm {
-    private AbstractEmployeeService employeeService;
+    private DAOEmployee daoEmployee;
 
-    public void setEmployeeService(AbstractEmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public void setDaoEmployee(DAOEmployee daoemployee) {
+        daoEmployee = daoemployee;
     }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
-        System.out.println("autorizace: " + pc.toString());
         SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
         boolean admin;
         Long eID = null;
-        
-        if (pc.getPrimaryPrincipal().equals("rest")) {
+        Principals p = (Principals) pc.getPrimaryPrincipal();
+                
+        if (p.getName().equals("rest")) {
             admin = true;
         } else {
-            DTOEmployee employee = this.employeeService.getEmployeeByName(pc.toString());
+            eID = p.getId();
+            Employee employee = this.daoEmployee.getEmployeeById(eID);
             admin = employee.getAccessRight() == AccessRight.Admin;
-            eID = employee.getId();
         }
 
         if (admin) {
@@ -70,10 +73,10 @@ public class ShiroRealm extends AuthorizingRealm {
         if (upToken.getUsername().equals("rest") && new String(upToken.getPassword()).equals("rest")) {
             return new SimpleAuthenticationInfo(upToken.getUsername(), upToken.getPassword(), this.getName());
         } else {
-            DTOEmployee employee = employeeService.getEmployeeByName(upToken.getUsername());
+            Employee employee = daoEmployee.getEmployeeByName(upToken.getUsername());
             
             if(employee != null && employee.getPassword().equals(new String(upToken.getPassword()))){     
-                return new SimpleAuthenticationInfo(employee.getName(), employee.getPassword(), this.getName());
+                return new SimpleAuthenticationInfo(new Principals(employee.getId(), employee.getName()), employee.getPassword(), this.getName());
             }
 
         }

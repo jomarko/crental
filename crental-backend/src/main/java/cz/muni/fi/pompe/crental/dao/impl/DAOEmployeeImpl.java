@@ -6,17 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.logging.Logger;
-import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Class must have set EntityManagerFactory for correct working.
@@ -154,5 +148,27 @@ public class DAOEmployeeImpl implements DAOEmployee{
             logger.log(Level.SEVERE, "Employe instance: {0} has set id", e);
             throw new IllegalArgumentException("Employe instance: " + e + " has set id");
         }
+    }
+
+    @Override
+    public Employee getEmployeeByName(String name) {
+        if(name == null) {
+            logger.log(Level.SEVERE, "Name was null");
+            throw new IllegalArgumentException("Name was null");
+        }
+        
+        Employee result = null;
+        
+        try{
+            TypedQuery<Employee> query = em.createNamedQuery("Employee.SelectEmployeeByName", Employee.class);
+            query.setParameter("name", name);
+            result = query.getSingleResult();
+        }catch(NoResultException ex){
+            logger.log(Level.WARNING, "Query for ''Employee'' with unknown name: {0}", name);
+        }finally{
+            em.close();
+        }
+                
+        return result;
     }
 }

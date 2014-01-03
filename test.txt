@@ -1,0 +1,814 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for cz.muni.fi.pompe:crental-web:war:1.0-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.codehaus.mojo:sql-maven-plugin is missing. @ line 44, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for cz.muni.fi.pompe:crental-api:jar:1.0-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ cz.muni.fi.pompe:crental:1.0, /var/www/crental/pom.xml, line 28, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for cz.muni.fi.pa165:crental-client:war:1.0-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ cz.muni.fi.pompe:crental:1.0, /var/www/crental/pom.xml, line 28, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for cz.muni.fi.pompe:crental:pom:1.0
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 28, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Crental aggregator module
+[INFO] crental-api
+[INFO] crental-backend
+[INFO] crental-web
+[INFO] crental-client
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Crental aggregator module 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ crental ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ crental ---
+[INFO] Installing /var/www/crental/pom.xml to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental/1.0/crental-1.0.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building crental-api 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ crental-api ---
+[INFO] Deleting file set: /var/www/crental/crental-api/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ crental-api ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/www/crental/crental-api/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:compile (default-compile) @ crental-api ---
+[INFO] Compiling 9 source files to /var/www/crental/crental-api/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ crental-api ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/www/crental/crental-api/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:testCompile (default-testCompile) @ crental-api ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ crental-api ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /var/www/crental/crental-api/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.2:jar (default-jar) @ crental-api ---
+[INFO] Building jar: /var/www/crental/crental-api/target/crental-api-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ crental-api ---
+[INFO] Installing /var/www/crental/crental-api/target/crental-api-1.0-SNAPSHOT.jar to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental-api/1.0-SNAPSHOT/crental-api-1.0-SNAPSHOT.jar
+[INFO] Installing /var/www/crental/crental-api/pom.xml to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental-api/1.0-SNAPSHOT/crental-api-1.0-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building crental-backend 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ crental-backend ---
+[INFO] Deleting file set: /var/www/crental/crental-backend/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ crental-backend ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ crental-backend ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 17 source files to /var/www/crental/crental-backend/target/classes
+[WARNING] /var/www/crental/crental-backend/src/main/java/cz/muni/fi/pompe/crental/dao/impl/DAOCarImpl.java: /var/www/crental/crental-backend/src/main/java/cz/muni/fi/pompe/crental/dao/impl/DAOCarImpl.java uses unchecked or unsafe operations.
+[WARNING] /var/www/crental/crental-backend/src/main/java/cz/muni/fi/pompe/crental/dao/impl/DAOCarImpl.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ crental-backend ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/www/crental/crental-backend/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ crental-backend ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 9 source files to /var/www/crental/crental-backend/target/test-classes
+[WARNING] /var/www/crental/crental-backend/src/test/java/cz/muni/fi/pompe/crental/service/RequestServiceTest.java: Some input files use or override a deprecated API.
+[WARNING] /var/www/crental/crental-backend/src/test/java/cz/muni/fi/pompe/crental/service/RequestServiceTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ crental-backend ---
+[INFO] Surefire report directory: /var/www/crental/crental-backend/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running cz.muni.fi.pompe.crental.service.RequestServiceTest
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.593 sec
+Running cz.muni.fi.pompe.crental.service.CarServiceTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 sec
+Running cz.muni.fi.pompe.crental.service.RentServiceTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.116 sec
+Running cz.muni.fi.pompe.crental.service.EmployeeServiceTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 sec
+Running cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest
+I 03, 2014 10:21:42 DOP. org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
+INFO: @TestExecutionListeners is not present for class [class cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest]: using defaults.
+I 03, 2014 10:21:42 DOP. org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [applicationContext.xml]
+I 03, 2014 10:21:42 DOP. org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.GenericApplicationContext@50853a16: startup date [Fri Jan 03 10:21:42 CET 2014]; root of context hierarchy
+I 03, 2014 10:21:43 DOP. org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean createNativeEntityManagerFactory
+INFO: Building JPA container EntityManagerFactory for persistence unit 'pa165'
+I 03, 2014 10:21:43 DOP. org.hibernate.annotations.common.Version <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+I 03, 2014 10:21:43 DOP. org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.1.7.Final}
+I 03, 2014 10:21:43 DOP. org.hibernate.cfg.Environment <clinit>
+INFO: HHH000206: hibernate.properties not found
+I 03, 2014 10:21:43 DOP. org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+I 03, 2014 10:21:43 DOP. org.hibernate.ejb.Ejb3Configuration configure
+INFO: HHH000204: Processing PersistenceUnitInfo [
+	name: pa165
+	...]
+I 03, 2014 10:21:43 DOP. org.hibernate.ejb.Ejb3Configuration prepareProperties
+WARN: HHH000059: Defining hibernate.transaction.flush_before_completion=true ignored in HEM
+I 03, 2014 10:21:44 DOP. org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+I 03, 2014 10:21:44 DOP. org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20
+I 03, 2014 10:21:44 DOP. org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000006: Autocommit mode: true
+I 03, 2014 10:21:44 DOP. org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000401: using driver [org.apache.derby.jdbc.ClientDriver] at URL [jdbc:derby://localhost:1527/pa165]
+I 03, 2014 10:21:44 DOP. org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000046: Connection properties: {user=pa165, password=****, autocommit=true, release_mode=auto}
+I 03, 2014 10:21:44 DOP. org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.DerbyDialect
+I 03, 2014 10:21:44 DOP. org.hibernate.dialect.DerbyDialect <init>
+WARN: HHH000430: The DerbyDialect dialect has been deprecated; use one of the version-specific dialects instead
+I 03, 2014 10:21:44 DOP. org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+I 03, 2014 10:21:44 DOP. org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory <init>
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+Hibernate: alter table Rent drop constraint FK26CF59AFA5FF18
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Rent drop constraint FK26CF59AFA5FF18
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'ALTER TABLE' nelze provést v 'RENT', protože neexistuje.
+Hibernate: alter table Rent drop constraint FK26CF59FE5CBF8
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Rent drop constraint FK26CF59FE5CBF8
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'ALTER TABLE' nelze provést v 'RENT', protože neexistuje.
+Hibernate: alter table Rent drop constraint FK26CF59959776FC
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Rent drop constraint FK26CF59959776FC
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'ALTER TABLE' nelze provést v 'RENT', protože neexistuje.
+Hibernate: alter table Request drop constraint FKA4878A6F959776FC
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: alter table Request drop constraint FKA4878A6F959776FC
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'ALTER TABLE' nelze provést v 'REQUEST', protože neexistuje.
+Hibernate: drop table Car
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop table Car
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'DROP TABLE' nelze provést v 'CAR', protože neexistuje.
+Hibernate: drop table Employee
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop table Employee
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'DROP TABLE' nelze provést v 'EMPLOYEE', protože neexistuje.
+Hibernate: drop table Rent
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop table Rent
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'DROP TABLE' nelze provést v 'RENT', protože neexistuje.
+Hibernate: drop table Request
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop table Request
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'DROP TABLE' nelze provést v 'REQUEST', protože neexistuje.
+Hibernate: drop table hibernate_sequences
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: HHH000389: Unsuccessful: drop table hibernate_sequences
+I 03, 2014 10:21:44 DOP. org.hibernate.tool.hbm2ddl.SchemaExport perform
+ERROR: 'DROP TABLE' nelze provést v 'HIBERNATE_SEQUENCES', protože neexistuje.
+Hibernate: create table Car (id bigint not null, carType varchar(255), evidencePlate varchar(255), primary key (id))
+Hibernate: create table Employee (id bigint not null, accessRight varchar(8) not null, name varchar(255) not null, password varchar(255) not null, primary key (id))
+Hibernate: create table Rent (id bigint not null, confirmedAt date not null, employee_id bigint not null, car_id bigint not null, request_id bigint not null, primary key (id), unique (request_id))
+Hibernate: create table Request (id bigint not null, dateFrom date not null, dateTo date not null, description varchar(255), employee_id bigint not null, primary key (id))
+Hibernate: alter table Rent add constraint FK26CF59AFA5FF18 foreign key (request_id) references Request
+Hibernate: alter table Rent add constraint FK26CF59FE5CBF8 foreign key (car_id) references Car
+Hibernate: alter table Rent add constraint FK26CF59959776FC foreign key (employee_id) references Employee
+Hibernate: alter table Request add constraint FKA4878A6F959776FC foreign key (employee_id) references Employee
+Hibernate: create table hibernate_sequences ( sequence_name varchar(255),  sequence_next_hi_value integer ) 
+I 03, 2014 10:21:46 DOP. org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+I 03, 2014 10:21:46 DOP. org.springframework.context.support.AbstractApplicationContext$BeanPostProcessorChecker postProcessAfterInitialization
+INFO: Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+I 03, 2014 10:21:46 DOP. org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@74f62f97: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,entityManagerFactory,transactionManager,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,carDao,carService,employeeDao,employeeService,rentDao,rentService,requestDao,requestService,myRealm,securityManager,lifecycleBeanPostProcessor,org.springframework.beans.factory.config.MethodInvokingFactoryBean#0,org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator#0,org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor#0]; root of factory hierarchy
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl checkEmployee
+SEVERE: Employe instance: Employee{id=null, name=Patrik Pompe, password=null, accessRight=null} hasn't setted accessRight
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl checkEmployee
+SEVERE: Employe instance: Employee{id=null, name=Patrik Pompe, password=xxx, accessRight=null} hasn't setted accessRight
+Hibernate: select sequence_next_hi_value from hibernate_sequences where sequence_name = 'Employee' for update with rs
+Hibernate: insert into hibernate_sequences(sequence_name, sequence_next_hi_value) values('Employee', ?)
+Hibernate: update hibernate_sequences set sequence_next_hi_value = ? where sequence_next_hi_value = ? and sequence_name = 'Employee'
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=1, name=Patrik Pompe, password=xxx, accessRight=Admin}
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=2, name=Petr Novotny, password=xxxxx, accessRight=Employee}
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl checkEmployee
+SEVERE: Employe instance was null
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl checkEmployeeWithoutId
+SEVERE: Employe instance: Employee{id=2, name=Petr Novotny, password=xxxxx, accessRight=Employee} has set id
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@3f552068 testClass = DAOEmployeeImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest@6dc2ac53, testMethod = testCreateEmployee@DAOEmployeeImplTest, testException = [null]]]
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=3, name=Patrik Pompe, password=XXXXX, accessRight=Employee}
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl updateEmployee
+INFO: Updated Employee: Employee{id=3, name=Kirtap Epmop, password=YYYYY, accessRight=Employee}
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: update Employee set accessRight=?, name=?, password=? where id=?
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_ where employee0_.id=?
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl checkEmployee
+SEVERE: Employe instance: Employee{id=3, name=null, password=YYYYY, accessRight=Employee} has invalid name
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl checkEmployee
+SEVERE: Employe instance: Employee{id=null, name=null, password=YYYYY, accessRight=Employee} has invalid name
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@3f552068 testClass = DAOEmployeeImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest@58ed567b, testMethod = testUpdateEmployee@DAOEmployeeImplTest, testException = [null]]]
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=4, name=Patrik Pompe, password=XXXXX, accessRight=Employee}
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl deleteEmployee
+INFO: Deleted Employee: Employee{id=4, name=Patrik Pompe, password=XXXXX, accessRight=Employee}
+Hibernate: delete from Employee where id=?
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@3f552068 testClass = DAOEmployeeImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest@5a21a398, testMethod = testDeleteEmployee@DAOEmployeeImplTest, testException = [null]]]
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (4): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=5, name=Petr Pompe, password=Pass, accessRight=Admin}
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@3f552068 testClass = DAOEmployeeImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest@6c4b58f0, testMethod = testGetAllEmployees@DAOEmployeeImplTest, testException = [null]]]
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (5): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=6, name=Jan Kaplicky, password=DDDD, accessRight=Admin}
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_ where employee0_.id=?
+Hibernate: select employee0_.id as id1_, employee0_.accessRight as accessRi2_1_, employee0_.name as name1_, employee0_.password as password1_ from Employee employee0_ where employee0_.id=?
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl getEmployeeById
+WARNING: Query for 'Employee' with unknown id: 9 223 372 036 854 775 807
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl getEmployeeById
+SEVERE: Id was null
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@3f552068 testClass = DAOEmployeeImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOEmployeeImplTest@1f29432d, testMethod = testGetEmployeeById@DAOEmployeeImplTest, testException = [null]]]
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.247 sec
+Running cz.muni.fi.pompe.crental.dao.DAOCarImplTest
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
+INFO: @TestExecutionListeners is not present for class [class cz.muni.fi.pompe.crental.dao.DAOCarImplTest]: using defaults.
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+Hibernate: select sequence_next_hi_value from hibernate_sequences where sequence_name = 'Car' for update with rs
+Hibernate: insert into hibernate_sequences(sequence_name, sequence_next_hi_value) values('Car', ?)
+Hibernate: update hibernate_sequences set sequence_next_hi_value = ? where sequence_next_hi_value = ? and sequence_name = 'Car'
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 1; CarType: cartype; EvidencePlate: spz was persisted into the database
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 2; CarType: autotype; EvidencePlate: autospz was persisted into the database
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+INFO: Car with id 1 was deleted from the database
+Hibernate: delete from Car where id=?
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+INFO: Car with id 2 was deleted from the database
+Hibernate: delete from Car where id=?
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+SEVERE: Cannot delete car because attribute id is null
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 3; CarType: typ; EvidencePlate: spz was persisted into the database
+Hibernate: select car0_.id as id0_0_, car0_.carType as carType0_0_, car0_.evidencePlate as evidence3_0_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+SEVERE: Car with id 11 452 does not exist
+I 03, 2014 10:21:47 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+SEVERE: Error when trying to remove car with id 11 452 from the database
+I 03, 2014 10:21:47 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@544a6244 testClass = DAOCarImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOCarImplTest@5f798997, testMethod = testDeleteCar@DAOCarImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 4; CarType: cartype; EvidencePlate: spz was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl updateCar
+INFO: Car id: 4; CarType: cartype; EvidencePlate: spzka was updated
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: update Car set carType=?, evidencePlate=? where id=?
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+INFO: Car with id 4 was retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl validate
+SEVERE: Instance of Car is null
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl validate
+SEVERE: Attribute carType of Car id: 4; CarType: ; EvidencePlate: spzka is null or empty
+Hibernate: update Car set carType=?, evidencePlate=? where id=?
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+INFO: Car with id 4 was retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl validate
+SEVERE: Attribute carType of Car id: 5; CarType: ; EvidencePlate: spzka is null or empty
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@544a6244 testClass = DAOCarImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOCarImplTest@4d7efd4, testMethod = testUpdateCar@DAOCarImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 5; CarType: cartype; EvidencePlate: spz was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 6; CarType: autotype; EvidencePlate: spz was persisted into the database
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+INFO: Car with id 5 was retrieved
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+INFO: Car with id 6 was retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+SEVERE: Cannot retrieve car because attribute id is null
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+SEVERE: There is no car with id {0} in the database
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@544a6244 testClass = DAOCarImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOCarImplTest@3af54caa, testMethod = testGetCarById@DAOCarImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (4): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 7; CarType: cartype; EvidencePlate: spz was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 8; CarType: autotype; EvidencePlate: spz was persisted into the database
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+INFO: Car with id 7 was deleted from the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl deleteCar
+INFO: Car with id 8 was deleted from the database
+Hibernate: delete from Car where id=?
+Hibernate: delete from Car where id=?
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getAllCars
+INFO: All cars were retrieved
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@544a6244 testClass = DAOCarImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOCarImplTest@2e81afb3, testMethod = testGetAllCars@DAOCarImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (5): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 9; CarType: cartype; EvidencePlate: spz was persisted into the database
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: select car0_.id as id0_, car0_.carType as carType0_, car0_.evidencePlate as evidence3_0_ from Car car0_ where car0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl getCarById
+INFO: Car with id 9 was retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl validate
+SEVERE: Instance of Car is null
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl validate
+SEVERE: Attribute carType of Car id: null; CarType: ; EvidencePlate: null is null or empty
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@544a6244 testClass = DAOCarImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAOCarImplTest@72e4cde8, testMethod = testCreateCar@DAOCarImplTest, testException = [null]]]
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.565 sec
+Running cz.muni.fi.pompe.crental.dao.DAORentImplTest
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
+INFO: @TestExecutionListeners is not present for class [class cz.muni.fi.pompe.crental.dao.DAORentImplTest]: using defaults.
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=7, name=Patrik Pomope, password=XXXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=8, name=Just an Employee, password=XXXX, accessRight=Employee}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=9, name=Patrik Pomope, password=XXXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=10, name=Just an Employee, password=XXXX, accessRight=Employee}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 10; CarType: Fabia; EvidencePlate: SPZka was persisted into the database
+Hibernate: select sequence_next_hi_value from hibernate_sequences where sequence_name = 'Request' for update with rs
+Hibernate: insert into hibernate_sequences(sequence_name, sequence_next_hi_value) values('Request', ?)
+Hibernate: update hibernate_sequences set sequence_next_hi_value = ? where sequence_next_hi_value = ? and sequence_name = 'Request'
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=1, description=Chci fabii, eployee_id=10,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013} was persisted into the database
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getAllRents
+INFO: All rents were retrieved
+Hibernate: select sequence_next_hi_value from hibernate_sequences where sequence_name = 'Rent' for update with rs
+Hibernate: insert into hibernate_sequences(sequence_name, sequence_next_hi_value) values('Rent', ?)
+Hibernate: update hibernate_sequences set sequence_next_hi_value = ? where sequence_next_hi_value = ? and sequence_name = 'Rent'
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl createRent
+INFO: Rent Rent{id=1, request=Request{id=1, description=Chci fabii, eployee_id=10,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=9, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 10; CarType: Fabia; EvidencePlate: SPZka} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Rent (confirmedAt, employee_id, car_id, request_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getAllRents
+INFO: All rents were retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl validate
+SEVERE: Request can be confirmed only by admin
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl checkRentWithoutId
+SEVERE: Attribute id of Rent Rent{id=5, request=Request{id=1, description=Chci fabii, eployee_id=10,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=7, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 10; CarType: Fabia; EvidencePlate: SPZka} is not null
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl validate
+SEVERE: Attribute confirmedAt of Rent Rent{id=null, request=Request{id=1, description=Chci fabii, eployee_id=10,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=null, confirmedBy=Employee{id=7, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=null} is null
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl validate
+SEVERE: Instance of Rent is null
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@6dcd58f9 testClass = DAORentImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORentImplTest@448c7bc0, testMethod = testCreateRent@DAORentImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=11, name=Patrik Pomope, password=XXXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=12, name=Just an Employee, password=XXXX, accessRight=Employee}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 11; CarType: Fabia; EvidencePlate: SPZka was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=2, description=Chci fabii, eployee_id=12,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl createRent
+INFO: Rent Rent{id=2, request=Request{id=2, description=Chci fabii, eployee_id=12,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=11, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 11; CarType: Fabia; EvidencePlate: SPZka} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=13, name=Admin Adminuv, password=XXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 12; CarType: Skoda octavia; EvidencePlate: SPZ was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=3, description=test, eployee_id=13,dateFrom=Tue Oct 15 00:00:00 CEST 2013, dateTo=Wed Oct 16 00:00:00 CEST 2013} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl updateRent
+INFO: Rent Rent{id=2, request=Request{id=3, description=test, eployee_id=13,dateFrom=Tue Oct 15 00:00:00 CEST 2013, dateTo=Wed Oct 16 00:00:00 CEST 2013}, confirmedAt=Sat Oct 12 00:00:00 CEST 2013, confirmedBy=Employee{id=13, name=Admin Adminuv, password=XXX, accessRight=Admin}, rentedCar=id: 12; CarType: Skoda octavia; EvidencePlate: SPZ} was updated
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Rent (confirmedAt, employee_id, car_id, request_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: update Rent set confirmedAt=?, employee_id=?, car_id=?, request_id=? where id=?
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_ where rent0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getRentById
+INFO: Rent with id 2 was retrieved
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@6dcd58f9 testClass = DAORentImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORentImplTest@135fbbc8, testMethod = testUpdateRent@DAORentImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getAllRents
+INFO: All rents were retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=14, name=Patrik Pomope, password=XXXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=15, name=Just an Employee, password=XXXX, accessRight=Employee}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 13; CarType: Fabia; EvidencePlate: SPZka was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=4, description=Chci fabii, eployee_id=15,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl createRent
+INFO: Rent Rent{id=3, request=Request{id=4, description=Chci fabii, eployee_id=15,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=14, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 13; CarType: Fabia; EvidencePlate: SPZka} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl deleteRent
+INFO: Rent with id 3 was deleted from the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Rent (confirmedAt, employee_id, car_id, request_id, id) values (?, ?, ?, ?, ?)
+Hibernate: delete from Rent where id=?
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getAllRents
+INFO: All rents were retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl createRent
+INFO: Rent Rent{id=4, request=Request{id=4, description=Chci fabii, eployee_id=15,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=14, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 13; CarType: Fabia; EvidencePlate: SPZka} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl deleteRent
+SEVERE: Cannot delete rent because attribute id is null
+Hibernate: select rent0_.id as id2_4_, rent0_.confirmedAt as confirme2_2_4_, rent0_.employee_id as employee3_2_4_, rent0_.car_id as car4_2_4_, rent0_.request_id as request5_2_4_, employee1_.id as id1_0_, employee1_.accessRight as accessRi2_1_0_, employee1_.name as name1_0_, employee1_.password as password1_0_, car2_.id as id0_1_, car2_.carType as carType0_1_, car2_.evidencePlate as evidence3_0_1_, request3_.id as id3_2_, request3_.dateFrom as dateFrom3_2_, request3_.dateTo as dateTo3_2_, request3_.description as descript4_3_2_, request3_.employee_id as employee5_3_2_, employee4_.id as id1_3_, employee4_.accessRight as accessRi2_1_3_, employee4_.name as name1_3_, employee4_.password as password1_3_ from Rent rent0_ inner join Employee employee1_ on rent0_.employee_id=employee1_.id inner join Car car2_ on rent0_.car_id=car2_.id inner join Request request3_ on rent0_.request_id=request3_.id left outer join Employee employee4_ on request3_.employee_id=employee4_.id where rent0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl deleteRent
+SEVERE: Rent with id 5 does not exist
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl deleteRent
+SEVERE: Error when trying to delete rent with id: 5 from the database
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@6dcd58f9 testClass = DAORentImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORentImplTest@107445f3, testMethod = testDeleteRent@DAORentImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (4): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getAllRents
+INFO: All rents were retrieved
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=16, name=Patrik Pomope, password=XXXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=17, name=Just an Employee, password=XXXX, accessRight=Employee}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 14; CarType: Fabia; EvidencePlate: SPZka was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=5, description=Chci fabii, eployee_id=17,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl createRent
+INFO: Rent Rent{id=5, request=Request{id=5, description=Chci fabii, eployee_id=17,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=16, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 14; CarType: Fabia; EvidencePlate: SPZka} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Rent (confirmedAt, employee_id, car_id, request_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getAllRents
+INFO: All rents were retrieved
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@6dcd58f9 testClass = DAORentImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORentImplTest@23fd55f6, testMethod = testGetAllRequest@DAORentImplTest, testException = [null]]]
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (5): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=18, name=Patrik Pomope, password=XXXX, accessRight=Admin}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=19, name=Just an Employee, password=XXXX, accessRight=Employee}
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl createCar
+INFO: Car id: 15; CarType: Fabia; EvidencePlate: SPZka was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=6, description=Chci fabii, eployee_id=19,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013} was persisted into the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl createRent
+INFO: Rent Rent{id=6, request=Request{id=6, description=Chci fabii, eployee_id=19,dateFrom=Sun Oct 20 00:00:00 CEST 2013, dateTo=Sun Oct 20 00:00:00 CEST 2013}, confirmedAt=Sun Oct 20 00:00:00 CEST 2013, confirmedBy=Employee{id=18, name=Patrik Pomope, password=XXXX, accessRight=Admin}, rentedCar=id: 15; CarType: Fabia; EvidencePlate: SPZka} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Car (carType, evidencePlate, id) values (?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Rent (confirmedAt, employee_id, car_id, request_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_ where rent0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getRentById
+INFO: Rent with id 6 was retrieved
+Hibernate: select rent0_.id as id2_, rent0_.confirmedAt as confirme2_2_, rent0_.employee_id as employee3_2_, rent0_.car_id as car4_2_, rent0_.request_id as request5_2_ from Rent rent0_ where rent0_.id=?
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getRentById
+SEVERE: There is no rent with id {0} in the database
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORentImpl getRentById
+SEVERE: Cannot retrieve rent because attribute id is null
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@6dcd58f9 testClass = DAORentImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORentImplTest@399b6c69, testMethod = testGetRentById@DAORentImplTest, testException = [null]]]
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.639 sec
+Running cz.muni.fi.pompe.crental.dao.DAORequestImplTest
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
+INFO: @TestExecutionListeners is not present for class [class cz.muni.fi.pompe.crental.dao.DAORequestImplTest]: using defaults.
+I 03, 2014 10:21:48 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:48 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=20, name=testname, password=testpasswd, accessRight=Admin}
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=7, description=carname, eployee_id=20,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_ where request0_.id=?
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@11ea9ef5 testClass = DAORequestImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORequestImplTest@4269f003, testMethod = testCreateRequest@DAORequestImplTest, testException = [null]]]
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=21, name=testname, password=testpasswd, accessRight=Admin}
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=8, description=carname, eployee_id=21,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=9, description=name of car, eployee_id=21,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl deleteRequest
+INFO: Request with id 8 was deleted from the database
+Hibernate: delete from Request where id=?
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl deleteRequest
+INFO: Request with id 9 was deleted from the database
+Hibernate: delete from Request where id=?
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=10, description=carname, eployee_id=21,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+Hibernate: select request0_.id as id3_1_, request0_.dateFrom as dateFrom3_1_, request0_.dateTo as dateTo3_1_, request0_.description as descript4_3_1_, request0_.employee_id as employee5_3_1_, employee1_.id as id1_0_, employee1_.accessRight as accessRi2_1_0_, employee1_.name as name1_0_, employee1_.password as password1_0_ from Request request0_ inner join Employee employee1_ on request0_.employee_id=employee1_.id where request0_.id=?
+Hibernate: select request0_.id as id3_1_, request0_.dateFrom as dateFrom3_1_, request0_.dateTo as dateTo3_1_, request0_.description as descript4_3_1_, request0_.employee_id as employee5_3_1_, employee1_.id as id1_0_, employee1_.accessRight as accessRi2_1_0_, employee1_.name as name1_0_, employee1_.password as password1_0_ from Request request0_ inner join Employee employee1_ on request0_.employee_id=employee1_.id where request0_.id=?
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@11ea9ef5 testClass = DAORequestImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORequestImplTest@e8097cc, testMethod = testDeleteRequest@DAORequestImplTest, testException = [null]]]
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=22, name=testname, password=testpasswd, accessRight=Admin}
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=11, description=carname, eployee_id=22,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl updateRequest
+INFO: Request Request{id=11, description=carname, eployee_id=22,dateFrom=Sun Nov 11 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was updated
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: update Request set dateFrom=?, dateTo=?, description=?, employee_id=? where id=?
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_ where request0_.id=?
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl updateRequest
+INFO: Request Request{id=11, description=carname2, eployee_id=22,dateFrom=Sun Nov 11 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was updated
+Hibernate: update Request set dateFrom=?, dateTo=?, description=?, employee_id=? where id=?
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_ where request0_.id=?
+Hibernate: select request0_.id as id3_1_, request0_.dateFrom as dateFrom3_1_, request0_.dateTo as dateTo3_1_, request0_.description as descript4_3_1_, request0_.employee_id as employee5_3_1_, employee1_.id as id1_0_, employee1_.accessRight as accessRi2_1_0_, employee1_.name as name1_0_, employee1_.password as password1_0_ from Request request0_ inner join Employee employee1_ on request0_.employee_id=employee1_.id where request0_.id=?
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@11ea9ef5 testClass = DAORequestImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORequestImplTest@70307b0e, testMethod = testUpdateRequest@DAORequestImplTest, testException = [null]]]
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (4): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=23, name=testname, password=testpasswd, accessRight=Admin}
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=12, description=carname, eployee_id=23,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_ where request0_.id=?
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_ where request0_.id=?
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@11ea9ef5 testClass = DAORequestImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORequestImplTest@4a8f146a, testMethod = testGetRequestById@DAORequestImplTest, testException = [null]]]
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener startNewTransaction
+INFO: Began transaction (5): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@11bbf66b]; rollback [true]
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl createEmployee
+INFO: Created Employee: Employee{id=24, name=testname, password=testpasswd, accessRight=Admin}
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=13, description=carname, eployee_id=24,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+I 03, 2014 10:21:49 DOP. cz.muni.fi.pompe.crental.dao.impl.DAORequestImpl createRequest
+INFO: Request Request{id=14, description=name of car, eployee_id=24,dateFrom=Wed Oct 10 00:00:00 CET 1990, dateTo=Thu Oct 10 00:00:00 CET 1991} was persisted into the database
+Hibernate: insert into Employee (accessRight, name, password, id) values (?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: insert into Request (dateFrom, dateTo, description, employee_id, id) values (?, ?, ?, ?, ?)
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_
+Hibernate: select request0_.id as id3_, request0_.dateFrom as dateFrom3_, request0_.dateTo as dateTo3_, request0_.description as descript4_3_, request0_.employee_id as employee5_3_ from Request request0_
+I 03, 2014 10:21:49 DOP. org.springframework.test.context.transaction.TransactionalTestExecutionListener endTransaction
+INFO: Rolled back transaction after test execution for test context [[TestContext@11ea9ef5 testClass = DAORequestImplTest, locations = array<String>['classpath:applicationContext.xml'], testInstance = cz.muni.fi.pompe.crental.dao.DAORequestImplTest@609a34a0, testMethod = testGetAllRequest@DAORequestImplTest, testException = [null]]]
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.465 sec
+Hibernate: alter table Rent drop constraint FK26CF59AFA5FF18
+Hibernate: alter table Rent drop constraint FK26CF59FE5CBF8
+Hibernate: alter table Rent drop constraint FK26CF59959776FC
+Hibernate: alter table Request drop constraint FKA4878A6F959776FC
+Hibernate: drop table Car
+Hibernate: drop table Employee
+Hibernate: drop table Rent
+Hibernate: drop table Request
+Hibernate: drop table hibernate_sequences
+
+Results :
+
+Tests run: 47, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.2:jar (default-jar) @ crental-backend ---
+[INFO] Building jar: /var/www/crental/crental-backend/target/crental-backend-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ crental-backend ---
+[INFO] Installing /var/www/crental/crental-backend/target/crental-backend-1.0-SNAPSHOT.jar to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental-backend/1.0-SNAPSHOT/crental-backend-1.0-SNAPSHOT.jar
+[INFO] Installing /var/www/crental/crental-backend/pom.xml to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental-backend/1.0-SNAPSHOT/crental-backend-1.0-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building crental-web 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ crental-web ---
+[INFO] Deleting file set: /var/www/crental/crental-web/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ crental-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ crental-web ---
+[INFO] Compiling 10 source files to /var/www/crental/crental-web/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ crental-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/www/crental/crental-web/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ crental-web ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ crental-web ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-war-plugin:2.1.1:war (default-war) @ crental-web ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [crental-web] in [/var/www/crental/crental-web/target/crental-web-1.0-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/www/crental/crental-web/src/main/webapp]
+[INFO] Webapp assembled in [202 msecs]
+[INFO] Building war: /var/www/crental/crental-web/target/crental-web-1.0-SNAPSHOT.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ crental-web ---
+[INFO] Installing /var/www/crental/crental-web/target/crental-web-1.0-SNAPSHOT.war to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental-web/1.0-SNAPSHOT/crental-web-1.0-SNAPSHOT.war
+[INFO] Installing /var/www/crental/crental-web/pom.xml to /home/patrik/.m2/repository/cz/muni/fi/pompe/crental-web/1.0-SNAPSHOT/crental-web-1.0-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building crental-client 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ crental-client ---
+[INFO] Deleting file set: /var/www/crental/crental-client/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ crental-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:compile (default-compile) @ crental-client ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ crental-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/www/crental/crental-client/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:testCompile (default-testCompile) @ crental-client ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ crental-client ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /var/www/crental/crental-client/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-war-plugin:2.1.1:war (default-war) @ crental-client ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [crental-client] in [/var/www/crental/crental-client/target/crental-client-1.0-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/www/crental/crental-client/src/main/webapp]
+[INFO] Webapp assembled in [12 msecs]
+[INFO] Building war: /var/www/crental/crental-client/target/crental-client-1.0-SNAPSHOT.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ crental-client ---
+[INFO] Installing /var/www/crental/crental-client/target/crental-client-1.0-SNAPSHOT.war to /home/patrik/.m2/repository/cz/muni/fi/pa165/crental-client/1.0-SNAPSHOT/crental-client-1.0-SNAPSHOT.war
+[INFO] Installing /var/www/crental/crental-client/pom.xml to /home/patrik/.m2/repository/cz/muni/fi/pa165/crental-client/1.0-SNAPSHOT/crental-client-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] Crental aggregator module ......................... SUCCESS [0.798s]
+[INFO] crental-api ....................................... SUCCESS [2.034s]
+[INFO] crental-backend ................................... SUCCESS [12.708s]
+[INFO] crental-web ....................................... SUCCESS [4.586s]
+[INFO] crental-client .................................... SUCCESS [0.452s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 20.854s
+[INFO] Finished at: Fri Jan 03 10:21:56 CET 2014
+[INFO] Final Memory: 34M/310M
+[INFO] ------------------------------------------------------------------------

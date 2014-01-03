@@ -2,20 +2,11 @@ package cz.muni.fi.pompe.crental.dao;
 
 import cz.muni.fi.pompe.crental.entity.Employee;
 import cz.muni.fi.pompe.crental.dto.AccessRight;
-import cz.muni.fi.pompe.crental.dao.impl.DAOEmployeeImpl;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -161,6 +152,23 @@ public class DAOEmployeeImplTest {
             
         try{
             daoemployee.getEmployeeById(null);
+            fail("employee with nullable id found");
+        } catch (DataAccessException ex) { }
+    }
+    
+    @Test
+    public void testGetEmployeeByName() {
+        Employee e = newEmployee(null, "Jan Kaplicky", "DDDD", AccessRight.Admin);
+        daoemployee.createEmployee(e);
+        
+        Employee e2 = daoemployee.getEmployeeByName(e.getName());
+        
+        assertDeepEqualsEmployee(e, e2);
+        
+        assertNull(daoemployee.getEmployeeByName("random name"));
+            
+        try{
+            daoemployee.getEmployeeByName(null);
             fail("employee with nullable id found");
         } catch (DataAccessException ex) { }
     }

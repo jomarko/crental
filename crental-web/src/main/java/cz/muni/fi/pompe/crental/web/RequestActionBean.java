@@ -2,6 +2,7 @@ package cz.muni.fi.pompe.crental.web;
 
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
+import cz.muni.fi.pompe.crental.security.Principals;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
 import cz.muni.fi.pompe.crental.service.AbstractRequestService;
 import java.util.Date;
@@ -78,8 +79,8 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
     @HandlesEvent("add")
     public Resolution add() {
         Subject user = SecurityUtils.getSubject();
-        DTOEmployee emp = employeeService.getEmployeeByName(user.getPrincipal().toString());
-        request.setEmployeeId(emp.getId());
+        Principals p = (Principals) user.getPrincipal();
+        request.setEmployeeId(p.getId());
         requestService.createRequest(request);
         getContext().getMessages().add(new LocalizableMessage("request.add.message" ));
         return new RedirectResolution(this.getClass(), "list");
@@ -87,13 +88,9 @@ public class RequestActionBean extends BaseActionBean implements ValidationError
 
     @Override
     public Resolution handleValidationErrors(ValidationErrors errors) throws Exception {
-        //fill up the data for the table if validation errors occured
         requests = requestService.getUnconfirmedRequests();
-        //return null to let the event handling continue
         return null;
     }
-
-    //--- part for deleting a book ----
 
     @HandlesEvent("delete")
     public Resolution delete() {

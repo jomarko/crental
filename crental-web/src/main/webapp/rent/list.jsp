@@ -34,7 +34,7 @@
                     <td><f:formatDate type="date" dateStyle="short"  value="${request.dateFrom}"/></td>
                     <td><f:formatDate type="date" dateStyle="short"  value="${request.dateTo}"/></td>
                     <td><c:out value="${car.evidencePlate} - ${car.carType}"/></td>
-                    <td><c:out value="${admin.name}"/></td>
+                    <td><c:out value="${admin}"/></td>
                     <td><f:formatDate type="date" dateStyle="short"  value="${rent.confirmedAt}"/></td>
                     <td>
                         <shiro:hasRole name="admin">

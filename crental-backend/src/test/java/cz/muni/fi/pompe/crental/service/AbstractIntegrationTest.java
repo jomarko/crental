@@ -1,5 +1,6 @@
 package cz.muni.fi.pompe.crental.service;
 
+import cz.muni.fi.pompe.crental.security.ShiroRealm;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.support.SubjectThreadState;

@@ -51,4 +51,12 @@ public interface DAOEmployee {
      * @return Instance of Employee with wanted id, if such 'Employee' doesn't exist in database null is returned
      */
     Employee getEmployeeById(Long id);
+
+    /**
+     * Method returns employee with name in database
+     * @throws NullPointerException If name is null
+     * @param name Name of wanted employee
+     * @return Instance of Employee with wanted id, if such 'Employee' doesn't exist in database null is returned
+     */
+    Employee getEmployeeByName(String name);
 }

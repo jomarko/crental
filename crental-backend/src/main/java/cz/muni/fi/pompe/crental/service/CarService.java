@@ -6,9 +6,6 @@ import cz.muni.fi.pompe.crental.entity.Car;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Patrik Pompe <325292@mail.muni.cz>
  */
 @Service
-public class CarService implements AbstractCarService {
+public class CarService extends CrentalService implements AbstractCarService {
 
     private DAOCar dao;
 
@@ -27,46 +24,51 @@ public class CarService implements AbstractCarService {
 
     @Transactional(readOnly = true)
     @Override
-    @RequiresRoles("admin")
     public List<DTOCar> getAllCars() {
+        checkAuthentication();
         List<DTOCar> DTOCars = new ArrayList<>();
         List<Car> entities = dao.getAllCars();
+        
         if (entities.size() != 0) {
             DTOCars = entitiesToDTOs(entities);
         }
+
         return DTOCars;
     }
 
     @Transactional(readOnly = true)
     @Override
-    @RequiresRoles("admin")
     public List<DTOCar> getFreeCars(Date from, Date to) {
+        checkAuthentication();
         List<DTOCar> DTOCars = new ArrayList<>();
         List<Car> entities = dao.getFreeCars(from, to);
+
         if (entities.size() != 0) {
             DTOCars = entitiesToDTOs(entities);
         }
+
         return DTOCars;
     }
 
     @Transactional(readOnly = true)
     @Override
-    @RequiresRoles("admin")
     public DTOCar getCarById(Long id) {
+        checkAdmin();
         DTOCar result = null;
         Car c = dao.getCarById(id);
-        if(c != null){
+        
+        if (c != null) {
             result = entityToDTO(c);
         }
-        
+
         return result;
     }
 
     @Transactional
     @Override
-    @RequiresRoles("admin")
     public void createCar(DTOCar dto) {
-
+        checkAdmin();
+        
         if (dto != null) {
             Car c = dtoToEntity(dto);
             dao.createCar(c);
@@ -76,9 +78,9 @@ public class CarService implements AbstractCarService {
 
     @Transactional
     @Override
-    @RequiresRoles("admin")
     public void deleteCar(DTOCar dto) {
-
+        checkAdmin();
+        
         if (dto != null && dto.getId() != null) {
             dao.deleteCar(dto.getId());
         }
@@ -86,8 +88,8 @@ public class CarService implements AbstractCarService {
 
     @Transactional
     @Override
-    @RequiresRoles("admin")
     public void updateCar(DTOCar dto) {
+        checkAdmin();
         
         if (dto != null) {
             dao.updateCar(dtoToEntity(dto));
@@ -109,6 +111,7 @@ public class CarService implements AbstractCarService {
         entity.setCarType(dto.getCarType());
         entity.setEvidencePlate(dto.getEvidencePlate());
         entity.setId(dto.getId());
+        
         return entity;
     }
 

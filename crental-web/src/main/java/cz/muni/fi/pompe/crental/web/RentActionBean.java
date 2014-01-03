@@ -5,6 +5,7 @@ import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORent;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
 import cz.muni.fi.pompe.crental.dto.AccessRight;
+import cz.muni.fi.pompe.crental.security.Principals;
 import cz.muni.fi.pompe.crental.service.AbstractCarService;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
 import cz.muni.fi.pompe.crental.service.AbstractRentService;
@@ -55,7 +56,7 @@ public class RentActionBean extends BaseActionBean {
     private DTORent rent;
     private DTORequest request;
     private DTOEmployee employee;
-    private HashMap<Long, DTOEmployee> adminMap;
+    private HashMap<Long, String> adminMap;
     private HashMap<Long, DTOCar> carMap;
     private HashMap<Long, DTORequest> requestMap = new HashMap<>();
     private Date today;
@@ -64,7 +65,7 @@ public class RentActionBean extends BaseActionBean {
         return requestMap;
     }
 
-    public HashMap<Long, DTOEmployee> getAdminMap() {
+    public HashMap<Long, String> getAdminMap() {
         return adminMap;
     }
     
@@ -161,11 +162,10 @@ public class RentActionBean extends BaseActionBean {
 
     public Resolution save() {
         Subject user = SecurityUtils.getSubject();
-        DTOEmployee emp = employeeService.getEmployeeByName(user.getPrincipal().toString());
-        rent.setConfirmedById(emp.getId());
+        Principals p = (Principals) user.getPrincipal();
+        rent.setConfirmedById(p.getId());
         rent.setConfirmedAt(new Date());
         log.debug("Saved Rent {}", rent);
-//        rent.setConfirmedById(); TODO logged admin
         String message_key = "common";
         
         if (rent.getId() == null) {
@@ -176,7 +176,6 @@ public class RentActionBean extends BaseActionBean {
                 message_key += ".success";
             } catch (Exception e) {
                 message_key += ".fail";
-//                message_key = e.getLocalizedMessage();
             }
         } else {
             message_key += ".update";
@@ -186,7 +185,6 @@ public class RentActionBean extends BaseActionBean {
                 message_key += ".success";
             } catch (Exception e) {
                 message_key += ".fail";
-//                message_key = e.getLocalizedMessage();
             }
         }
         
@@ -195,13 +193,7 @@ public class RentActionBean extends BaseActionBean {
     }
     
     private void setAdminMap() {
-        adminMap = new HashMap<>();
-        
-        for (DTOEmployee e:employeeService.getAllEmployees()) {
-            if (e.getAccessRight() == AccessRight.Admin) {
-                adminMap.put(e.getId(), e);
-            }
-        }
+        adminMap = employeeService.getAdminsNamesMap();
     }
 
     private void setCarMap(List<DTOCar> cars) {

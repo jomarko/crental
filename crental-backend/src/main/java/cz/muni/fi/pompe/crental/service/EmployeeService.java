@@ -1,17 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pompe.crental.service;
 
 import cz.muni.fi.pompe.crental.dao.DAOEmployee;
+import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jozef
  */
 @Service
-public class EmployeeService implements AbstractEmployeeService{
+public class EmployeeService extends CrentalService implements AbstractEmployeeService{
     
     private DAOEmployee daoemployee;
 
@@ -35,9 +31,9 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional
-    @RequiresRoles("admin")
     public void createEmployee(DTOEmployee dtoemployee){
-
+        checkAdmin();
+        
         if(dtoemployee != null){
             Employee e = dtoToEntity(dtoemployee);
             daoemployee.createEmployee(e);
@@ -47,9 +43,9 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional
-    @RequiresRoles("admin")
     public void deleteEmployee(DTOEmployee dtoemployee){
-
+        checkAdmin();
+        
         if(dtoemployee != null){
             daoemployee.deleteEmployee(dtoToEntity(dtoemployee));
         }
@@ -68,8 +64,8 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional(readOnly = true)
-    @RequiresAuthentication
     public List<DTOEmployee> getAllEmployees(){
+        checkAdmin();
         List<DTOEmployee> result = new ArrayList<>();
         
         for(Employee e : daoemployee.getAllEmployees()){
@@ -81,13 +77,24 @@ public class EmployeeService implements AbstractEmployeeService{
     
     @Override
     @Transactional(readOnly = true)
-    public DTOEmployee getEmployeeById(Long id){
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkPermission("employee:get:" + id);
-        
+    public DTOEmployee getEmployeeById(Long id){       
+        checkPermission("employee:get:" + id);
         DTOEmployee result = null;
         Employee e = daoemployee.getEmployeeById(id);
         if(e != null){
+            result = entityToDto(e);
+        }
+        
+        return result;
+    }
+    
+    @Override
+    public DTOEmployee getEmployeeByName(String name) {
+        checkAdmin();
+        DTOEmployee result = null;
+        Employee e = daoemployee.getEmployeeByName(name);
+        
+        if (e != null) {
             result = entityToDto(e);
         }
         
@@ -117,14 +124,16 @@ public class EmployeeService implements AbstractEmployeeService{
     }
 
     @Override
-    @RequiresAuthentication
-    public DTOEmployee getEmployeeByName(String name) {
-        for(Employee e : daoemployee.getAllEmployees()){
-            if (e.getName().toLowerCase().equals(name.toLowerCase())) {
-                return entityToDto(e);
+    public HashMap<Long, String> getAdminsNamesMap() {
+        checkAuthentication();
+        HashMap<Long, String> adminMap = new HashMap<>();
+        
+        for (Employee e :daoemployee.getAllEmployees()) {
+            if (e.getAccessRight() == AccessRight.Admin) {
+                adminMap.put(e.getId(), e.getName());
             }
         }
-
-        return null;
+        
+        return adminMap;
     }
 }

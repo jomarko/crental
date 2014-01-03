@@ -1,9 +1,6 @@
 package cz.muni.fi.pompe.crental.dao;
 
-import cz.muni.fi.pompe.crental.dao.impl.DAOCarImpl;
 import cz.muni.fi.pompe.crental.entity.Car;
-import java.util.Date;
-import javax.persistence.NoResultException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;

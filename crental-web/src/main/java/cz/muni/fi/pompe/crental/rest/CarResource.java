@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Path("/car")
-public class CarResource {
+public class CarResource extends Resource {
     @Autowired
     private AbstractCarService carService;
     

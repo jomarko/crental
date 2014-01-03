@@ -58,8 +58,8 @@
     </bean>
 
     <!--Define the realm you want to use to connect to your back-end security datasource:-->
-    <bean id="myRealm" class="cz.muni.fi.pompe.crental.service.ShiroRealm">
-        <property name="employeeService" ref="employeeService" />
+    <bean id="myRealm" class="cz.muni.fi.pompe.crental.security.ShiroRealm">
+        <property name="daoEmployee" ref="employeeDao" />
     </bean>
 
     <bean id="securityManager" class="org.apache.shiro.mgt.DefaultSecurityManager">
@@ -71,13 +71,6 @@
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
         <property name="arguments" ref="securityManager"/>
-    </bean>
-
-    <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->
-    <!-- the lifecycleBeanProcessor has run: -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
     </bean>
     
 </beans>

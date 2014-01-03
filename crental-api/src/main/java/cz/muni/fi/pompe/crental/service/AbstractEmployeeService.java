@@ -5,6 +5,7 @@
 package cz.muni.fi.pompe.crental.service;
 
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -56,4 +57,10 @@ public interface AbstractEmployeeService {
      * @return DTOEmployee with given email, null if no such employee exists
      */
     DTOEmployee getEmployeeByName(String name);
+
+    /**
+     * 
+     * @return HashMap with all system admins names, key is admins id
+     */
+    HashMap<Long, String> getAdminsNamesMap();
 }

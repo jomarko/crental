@@ -50,10 +50,10 @@
             <s:link beanclass="cz.muni.fi.pompe.crental.web.RentActionBean"><f:message key="navigation.rent"/></s:link>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <li class="label-success">
+          <ul class="nav navbar-nav pull-right">
+            <li>
             
-            <shiro:principal/>
+                <a><shiro:principal property="name"/></a>
             
             </li>
             <li>

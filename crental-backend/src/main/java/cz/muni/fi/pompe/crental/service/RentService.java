@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pompe.crental.service;
 
 import cz.muni.fi.pompe.crental.dao.DAOCar;
@@ -15,10 +11,6 @@ import cz.muni.fi.pompe.crental.entity.Rent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jozef
  */
 @Service
-public class RentService implements AbstractRentService {
+public class RentService extends CrentalService implements AbstractRentService {
     
     private DAORent daorent;
     private DAOCar daocar;
@@ -52,9 +44,9 @@ public class RentService implements AbstractRentService {
     
     @Transactional
     @Override
-    @RequiresRoles("admin")
     public void createRent(DTORent dtorent) {
-
+        checkAdmin();
+        
         if(dtorent != null) {
             Rent r = dtoToEntity(dtorent);
             daorent.createRent(r);
@@ -64,9 +56,9 @@ public class RentService implements AbstractRentService {
 
     @Transactional
     @Override
-    @RequiresRoles("admin")
     public void deleteRent(DTORent dtorent) {
-
+        checkAdmin();
+        
         if(dtorent != null && dtorent.getId() != null) {
             daorent.deleteRent(dtorent.getId());
         }
@@ -74,9 +66,9 @@ public class RentService implements AbstractRentService {
 
     @Transactional
     @Override
-    @RequiresRoles("admin")
     public void updateRent(DTORent dtorent) {
-
+        checkAdmin();
+        
         if(dtorent != null) {
             daorent.updateRent(dtoToEntity(dtorent));
         }
@@ -84,9 +76,8 @@ public class RentService implements AbstractRentService {
 
     @Transactional(readOnly = true)
     @Override
-    @RequiresAuthentication
     public List<DTORent> getAllRents() {
-
+        checkAuthentication();
         List<DTORent> result = new ArrayList<>();
         
         for(Rent r : daorent.getAllRents()){
@@ -98,9 +89,8 @@ public class RentService implements AbstractRentService {
     
     @Transactional(readOnly = true)
     @Override
-    @RequiresRoles("admin")
     public List<DTORent> getAllRentsIn(Date from, Date to) {
-
+        checkAdmin();
         List<DTORent> result = new ArrayList<>();
         if(from != null && to != null && to.compareTo(from)>= 0){
             for(Rent r : daorent.getAllRents()){
@@ -120,9 +110,8 @@ public class RentService implements AbstractRentService {
     
     @Transactional(readOnly = true)
     @Override
-    @RequiresRoles("admin")
     public List<DTORent> getAllRentsOfCar(DTOCar dtocar) {
-
+        checkAdmin();
         List<DTORent> result = new ArrayList<>();
         if(dtocar != null && dtocar.getId() != null){
             for(Rent r : daorent.getAllRents()){
@@ -138,11 +127,10 @@ public class RentService implements AbstractRentService {
     @Transactional(readOnly = true)
     @Override
     public List<DTORent> getAllRentsOfEmployee(DTOEmployee dtoemp) {
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.checkPermission("rent:getAllOfEmployee:" + dtoemp.getId());
-
         List<DTORent> result = new ArrayList<>();
         if(dtoemp != null && dtoemp.getId() != null){
+            checkPermission("rent:getAllOfEmployee:" + dtoemp.getId());
+            
             for(Rent r : daorent.getAllRents()){
                 if(r.getRequest().getEmployee().equals(EmployeeService.dtoToEntity(dtoemp))){
                    result.add(entityToDto(r));
@@ -155,8 +143,8 @@ public class RentService implements AbstractRentService {
 
     @Transactional(readOnly = true)
     @Override
-    @RequiresRoles("admin")
     public DTORent getRentById(Long id) {
+        checkAdmin();
         DTORent result = null;
         Rent r = daorent.getRentById(id);
         if(r != null){
