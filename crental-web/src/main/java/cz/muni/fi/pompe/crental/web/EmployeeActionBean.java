@@ -97,7 +97,7 @@ public class EmployeeActionBean extends BaseActionBean implements ValidationErro
     public void validateUniqueNameOnSave() {
         DTOEmployee oldEmployee = employeeService.getEmployeeByName(employee.getName());
         
-        if (oldEmployee != null && oldEmployee.getId() != employee.getId()) {
+        if (oldEmployee != null && !oldEmployee.getId().equals(employee.getId())) {
             getContext().getValidationErrors().add("name", new LocalizableError("employee.name.unique"));
         }
     }
