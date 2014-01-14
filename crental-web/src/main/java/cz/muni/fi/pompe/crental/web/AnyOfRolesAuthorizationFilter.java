@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pompe.crental.web;
 
 import org.apache.shiro.subject.Subject;
@@ -12,13 +8,7 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
- * Allows access if current user has at least one role of the specified list.
- * <br/>
- * Basically, it's the same as {@link RolesAuthorizationFilter} but using {@literal OR} instead
- * of {@literal AND} on the specified roles.
- *
- * @see RolesAuthorizationFilter
- * @author Andy Belsky
+ * @author Josef Marko
  */
 public class AnyOfRolesAuthorizationFilter extends RolesAuthorizationFilter {
 
@@ -30,7 +20,6 @@ public class AnyOfRolesAuthorizationFilter extends RolesAuthorizationFilter {
         final String[] rolesArray = (String[]) mappedValue;
 
         if (rolesArray == null || rolesArray.length == 0) {
-            //no roles specified, so nothing to check - allow access.
             return true;
         }
 

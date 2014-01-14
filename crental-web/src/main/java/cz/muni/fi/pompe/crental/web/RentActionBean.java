@@ -4,7 +4,6 @@ import cz.muni.fi.pompe.crental.dto.DTOCar;
 import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.dto.DTORent;
 import cz.muni.fi.pompe.crental.dto.DTORequest;
-import cz.muni.fi.pompe.crental.dto.AccessRight;
 import cz.muni.fi.pompe.crental.security.Principals;
 import cz.muni.fi.pompe.crental.service.AbstractCarService;
 import cz.muni.fi.pompe.crental.service.AbstractEmployeeService;
@@ -102,7 +101,16 @@ public class RentActionBean extends BaseActionBean {
         setCarMap(carService.getAllCars());
         setAdminMap();
         setRequestMap();
-        rents = rentService.getAllRents();
+        
+        Subject user = SecurityUtils.getSubject();
+        Principals p = (Principals) user.getPrincipal();
+        
+        if (user.hasRole("admin")) {
+            rents = rentService.getAllRents();
+        } else {
+            rents = rentService.getAllRentsOfEmployee(employeeService.getEmployeeById(p.getId()));
+        }
+        
         setToday();
         return new ForwardResolution(LIST);
     }
