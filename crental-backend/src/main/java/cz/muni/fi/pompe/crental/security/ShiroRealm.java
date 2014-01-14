@@ -2,7 +2,6 @@ package cz.muni.fi.pompe.crental.security;
 
 import cz.muni.fi.pompe.crental.dao.DAOEmployee;
 import cz.muni.fi.pompe.crental.dto.AccessRight;
-import cz.muni.fi.pompe.crental.dto.DTOEmployee;
 import cz.muni.fi.pompe.crental.entity.Employee;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.SimplePrincipalCollection;
 
 /**
  *
@@ -69,9 +67,10 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken at) throws AuthenticationException {
         UsernamePasswordToken upToken = (UsernamePasswordToken) at;
+        String restCrentals = "rest";
         
-        if (upToken.getUsername().equals("rest") && new String(upToken.getPassword()).equals("rest")) {
-            return new SimpleAuthenticationInfo(upToken.getUsername(), upToken.getPassword(), this.getName());
+        if (upToken.getUsername().equals(restCrentals) && new String(upToken.getPassword()).equals(restCrentals)) {
+            return new SimpleAuthenticationInfo(new Principals(Long.MAX_VALUE, restCrentals), restCrentals, this.getName());
         } else {
             Employee employee = daoEmployee.getEmployeeByName(upToken.getUsername());
             
